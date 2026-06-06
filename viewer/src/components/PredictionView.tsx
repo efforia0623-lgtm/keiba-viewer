@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import type { Race, Horse, Scores } from '../types'
 import RadarChart from './RadarChart'
 
@@ -13,26 +14,52 @@ const SCORE_LABELS: Record<keyof Scores, string> = {
 }
 const SCORE_KEYS = Object.keys(SCORE_LABELS) as Array<keyof Scores>
 
-function scoreColor(v: number): string {
-  if (v >= 8) return '#047857'
-  if (v >= 5) return '#0066CC'
-  return '#D97706'
+function useReveal() {
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const el = ref.current; if (!el) return
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { el.classList.add('in'); obs.disconnect() } },
+      { threshold: 0.05, rootMargin: '0px 0px -20px 0px' }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+  return ref
 }
 
 function PosBadge({ pos }: { pos: number | null }) {
-  if (pos === null) return <span className="pos-badge pos-n">-</span>
+  if (pos === null) return <span className="pos-badge pos-n">–</span>
   const cls = pos === 1 ? 'pos-1' : pos === 2 ? 'pos-2' : pos === 3 ? 'pos-3' : 'pos-n'
   return <span className={`pos-badge ${cls}`}>{pos}</span>
 }
 
-function HorseRadarCard({ horse }: { horse: Horse }) {
-  const isTop = horse.model_rank <= 3
+function HorseRadarCard({ horse, delay }: { horse: Horse; delay: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const el = ref.current; if (!el) return
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setTimeout(() => el.classList.add('in'), delay)
+          obs.disconnect()
+        }
+      },
+      { threshold: 0.04 }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [delay])
+
   return (
-    <div className={`radar-card${isTop ? ' top-horse' : ''}`}>
+    <div
+      ref={ref}
+      className={`radar-card reveal${horse.model_rank <= 3 ? ' top-horse' : ''}`}
+    >
       <div className="radar-card-header">
         {horse.mark
           ? <span className={`radar-horse-mark mark-${horse.mark}`}>{horse.mark}</span>
-          : <span className="radar-horse-mark" style={{ color: '#9CA3AF' }}>—</span>
+          : <span className="radar-horse-mark" style={{ color: '#BEBEBE' }}>—</span>
         }
         <span className="radar-horse-num">{horse.horse_num}番</span>
         <span className="radar-horse-name">{horse.horse_name}</span>
@@ -46,9 +73,9 @@ function HorseRadarCard({ horse }: { horse: Horse }) {
           <div key={k} className="radar-axis">
             <span className="radar-axis-label">{SCORE_LABELS[k]}</span>
             <div className="radar-axis-bar">
-              <div className="radar-axis-fill" style={{ width: `${horse.scores[k] * 10}%`, background: scoreColor(horse.scores[k]) }} />
+              <div className="radar-axis-fill" style={{ width: `${horse.scores[k] * 10}%` }} />
             </div>
-            <span className="radar-axis-val" style={{ color: scoreColor(horse.scores[k]) }}>{horse.scores[k]}</span>
+            <span className="radar-axis-val">{horse.scores[k]}</span>
           </div>
         ))}
       </div>
@@ -59,26 +86,26 @@ function HorseRadarCard({ horse }: { horse: Horse }) {
 }
 
 function HorseTableRow({ horse }: { horse: Horse }) {
-  const isTop3 = horse.model_rank <= 3
+  const top3 = horse.model_rank <= 3
   return (
     <tr>
       <td>
-        <span style={{ fontWeight: 800, fontSize: 16, color: isTop3 ? '#0066CC' : undefined }}>
+        <span style={{ fontWeight: 900, fontSize: 15, color: top3 ? '#0066CC' : undefined }}>
           {horse.model_rank}
         </span>
         {horse.mark && (
-          <span className={`mark-${horse.mark}`} style={{ marginLeft: 6, fontWeight: 900, fontSize: 15 }}>
+          <span className={`mark-${horse.mark}`} style={{ marginLeft: 6, fontWeight: 900, fontSize: 14 }}>
             {horse.mark}
           </span>
         )}
       </td>
-      <td style={{ color: '#6B7280' }}>{horse.gate_num}</td>
+      <td style={{ color: '#8C8C8C' }}>{horse.gate_num}</td>
       <td style={{ fontWeight: 700 }}>{horse.horse_num}</td>
       <td>
-        <div style={{ fontWeight: 700 }}>{horse.horse_name}</div>
-        <div style={{ fontSize: 11, color: '#6B7280' }}>{horse.sex}{horse.horse_age}歳</div>
+        <div style={{ fontWeight: 700, fontSize: 14, color: '#111' }}>{horse.horse_name}</div>
+        <div style={{ fontSize: 11, color: '#8C8C8C', fontWeight: 400 }}>{horse.sex}{horse.horse_age}歳</div>
       </td>
-      <td style={{ fontSize: 13, color: '#6B7280', whiteSpace: 'nowrap' }}>{horse.jockey_name}</td>
+      <td style={{ color: '#8C8C8C', fontWeight: 300 }}>{horse.jockey_name}</td>
       <td><span style={{ fontWeight: 800, color: '#0066CC' }}>{horse.prob}%</span></td>
       <td>
         <div className="score-wrap">
@@ -101,30 +128,31 @@ export default function PredictionView({ race }: Props) {
   const sorted = [...race.horses].sort((a, b) => a.model_rank - b.model_rank)
   const { marks, himo, tickets } = race.recommendations
 
+  const recsRef  = useReveal()
+  const radarRef = useReveal()
+  const tableRef = useReveal()
+
   return (
-    <div>
-      {/* ── レースヘッダー ── */}
-      <div className="pred-header">
-        <div className="pred-header-content">
-          <div className="pred-eyebrow">RACE PREDICTION · {race.race_num}R</div>
-          <div className="pred-title">{race.race_name}</div>
-          <div className="pred-meta">
-            <span className="pred-meta-item">
-              <span className={`tag tag-${race.track_type}`} style={{ marginRight: 6 }}>{race.track_type}</span>
-              {race.distance}m
-            </span>
-            <span className="pred-meta-item">{race.starters}頭立て</span>
-            {['A','B','C'].includes(race.grade_code) && (
-              <span className="pred-meta-item" style={{ background: 'rgba(212,160,23,.3)', color: '#FEF3C7' }}>重賞</span>
-            )}
-          </div>
+    <div className="pred-page">
+      {/* Race header */}
+      <div className="pred-race-header">
+        <div className="pred-race-eyebrow">Race {race.race_num} · Prediction</div>
+        <div className="pred-race-name">{race.race_name}</div>
+        <div className="pred-race-meta">
+          <span className={`tag tag-${race.track_type}`}>{race.track_type}</span>
+          <span className="pred-meta-item">{race.distance}m</span>
+          <span className="pred-meta-item">·</span>
+          <span className="pred-meta-item">{race.starters}頭立て</span>
+          {['A', 'B', 'C'].includes(race.grade_code) && (
+            <span className="pred-grade-pill">重賞</span>
+          )}
         </div>
       </div>
 
-      {/* ── おすすめ馬 ＋ 買い目 ── */}
-      <div className="recs-row">
-        <div className="rec-box">
-          <div className="rec-box-title">おすすめ馬</div>
+      {/* Recommendations + Tickets */}
+      <div ref={recsRef} className="recs-section reveal">
+        <div>
+          <div className="rec-panel-label">Recommended Horses</div>
           {marks.map(m => (
             <div key={m.horse_num} className="rec-row">
               <span className={`rec-mark mark-${m.mark}`}>{m.mark}</span>
@@ -135,7 +163,7 @@ export default function PredictionView({ race }: Props) {
           ))}
           {himo.length > 0 && (
             <>
-              <div className="himo-label">ひも候補</div>
+              <div className="himo-label">Himo Candidates</div>
               {himo.map(h => (
                 <div key={h.horse_num} className="rec-row">
                   <span className="rec-mark mark-△">△</span>
@@ -148,8 +176,8 @@ export default function PredictionView({ race }: Props) {
           )}
         </div>
 
-        <div className="rec-box">
-          <div className="rec-box-title">推奨買い目</div>
+        <div>
+          <div className="rec-panel-label">Recommended Tickets</div>
           <div className="tickets">
             {tickets.map((t, i) => (
               <div key={i} className="ticket">
@@ -161,38 +189,38 @@ export default function PredictionView({ race }: Props) {
         </div>
       </div>
 
-      {/* ── レーダーチャート ── */}
-      <div className="section-h">
-        <span className="section-h-bar" />
-        全馬レーダーチャート
-      </div>
-      <div className="radar-grid">
-        {sorted.map(h => <HorseRadarCard key={h.horse_num} horse={h} />)}
+      {/* Radar charts */}
+      <div ref={radarRef} className="reveal">
+        <div className="sub-section-label">Radar Analysis · All Horses</div>
+        <div className="radar-grid">
+          {sorted.map((h, i) => (
+            <HorseRadarCard key={h.horse_num} horse={h} delay={i * 45} />
+          ))}
+        </div>
       </div>
 
-      {/* ── 出走馬一覧 ── */}
-      <div className="section-h">
-        <span className="section-h-bar" />
-        出走馬一覧
-      </div>
-      <div className="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>AI順</th>
-              <th>枠</th>
-              <th>馬番</th>
-              <th>馬名</th>
-              <th>騎手</th>
-              <th>AI確率</th>
-              <th>評価点/60</th>
-              <th>過去5走</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sorted.map(h => <HorseTableRow key={h.horse_num} horse={h} />)}
-          </tbody>
-        </table>
+      {/* Table */}
+      <div ref={tableRef} className="reveal">
+        <div className="sub-section-label">All Runners · Overview</div>
+        <div className="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>AI Rank</th>
+                <th>枠</th>
+                <th>馬番</th>
+                <th>馬名</th>
+                <th>騎手</th>
+                <th>確率</th>
+                <th>評価</th>
+                <th>過去5走</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sorted.map(h => <HorseTableRow key={h.horse_num} horse={h} />)}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   )
