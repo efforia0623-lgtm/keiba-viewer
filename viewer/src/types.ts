@@ -1,0 +1,75 @@
+export interface PastResult {
+  pos: number | null
+  agari: number | null
+}
+
+export interface Scores {
+  ability: number
+  bloodline: number
+  environment: number
+  pace: number
+  history: number
+  training: number
+}
+
+export interface RecMark {
+  mark: string
+  label: string
+  horse_num: string
+  horse_name: string
+  prob: number
+}
+
+export interface HimoHorse {
+  horse_num: string
+  horse_name: string
+  prob: number
+}
+
+export interface Ticket {
+  type: string
+  desc: string
+}
+
+export interface Horse {
+  model_rank: number
+  horse_num: string
+  gate_num: string
+  horse_name: string
+  jockey_name: string
+  trainer_name: string
+  sex: string
+  horse_age: number | string
+  mark: string
+  prob: number
+  scores: Scores
+  total_score: number
+  comment: string
+  past_5: PastResult[]
+}
+
+export interface Race {
+  race_num: string
+  race_name: string
+  distance: number
+  track_type: string
+  grade_code: string
+  starters: number
+  horses: Horse[]
+  recommendations: {
+    marks: RecMark[]
+    himo: HimoHorse[]
+    tickets: Ticket[]
+  }
+  tickets: Ticket[]
+}
+
+export interface Venue {
+  venue_code: string
+  venue_name: string
+  races: Race[]
+}
+
+export interface DayData {
+  venues: Venue[]
+}

@@ -1,0 +1,20 @@
+# Data and models
+data/
+predictions/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.pkl
+*.lgb
+*.db
+*.db-shm
+*.db-wal
+
+# Misc
+*.txt
+.DS_Store
+tmp_*/
