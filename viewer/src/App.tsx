@@ -6,29 +6,11 @@ type View = 'date' | 'venue' | 'race' | 'prediction'
 
 interface UnsplashPhoto {
   url: string
-  name: string
-  link: string
 }
 
 async function fetchHorsePhoto(): Promise<UnsplashPhoto | null> {
-  const key = import.meta.env.VITE_UNSPLASH_ACCESS_KEY as string | undefined
-  if (!key) return null
-  try {
-    const res = await fetch(
-      `https://api.unsplash.com/photos/random?query=horse+racing&orientation=landscape&client_id=${key}`
-    )
-    if (!res.ok) return null
-    const data = await res.json() as {
-      urls: { regular: string }
-      user: { name: string; links: { html: string } }
-    }
-    return {
-      url: data.urls.regular,
-      name: data.user.name,
-      link: `${data.user.links.html}?utm_source=keiba_efforia&utm_medium=referral`,
-    }
-  } catch {
-    return null
+  return {
+    url: 'https://source.unsplash.com/1920x1080/?horse-racing,jockey,thoroughbred',
   }
 }
 
@@ -116,11 +98,9 @@ function Hero({
 
       {photo && (
         <div className="hero-credit">
-          Photo by{' '}
-          <a href={photo.link} target="_blank" rel="noopener noreferrer">{photo.name}</a>
-          {' '}on{' '}
+          Photo from{' '}
           <a
-            href="https://unsplash.com/?utm_source=keiba_efforia&utm_medium=referral"
+            href="https://unsplash.com/"
             target="_blank"
             rel="noopener noreferrer"
           >

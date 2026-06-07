@@ -10,15 +10,18 @@ Usage:
 from __future__ import annotations
 
 import json
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
 
 import lightgbm as lgb
 import numpy as np
+from dotenv import load_dotenv
 
 # ── パス設定 ─────────────────────────────────────────────────────────────────
 ROOT        = Path(__file__).parent
+load_dotenv(ROOT / ".env")
 DB_PATH     = ROOT / "data" / "keiba.db"
 MODEL_PATH  = ROOT / "data" / "model_placed_pure.lgb"
 OUT_DIR     = ROOT / "viewer" / "public" / "predictions"
@@ -39,6 +42,70 @@ from src.api.main import (
 SEX_JP = {"1": "牡", "2": "牝", "3": "騸", "10": "牡", "20": "牝", "30": "騸"}
 MARK_BY_RANK  = {0: "◎", 1: "○", 2: "▲", 3: "△", 4: "△", 5: "△"}
 MARK_LABELS   = {"◎": "本命", "○": "対抗", "▲": "単穴"}
+
+_anthropic_client = None
+
+def _get_anthropic_client():
+    global _anthropic_client
+    if _anthropic_client is not None:
+        return _anthropic_client
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        return None
+    import anthropic
+    _anthropic_client = anthropic.Anthropic(api_key=api_key)
+    return _anthropic_client
+
+
+def _generate_comment(f: dict, scores: dict, track_type: str) -> str:
+    """Claude APIで解説文を生成する。APIキー未設定時はテンプレート生成にフォールバック。"""
+    from src.api.main import _generate_comment as _tmpl
+
+    client = _get_anthropic_client()
+    if client is None:
+        return _tmpl(f, scores, track_type)
+
+    horse_name = f.get("horse_name", "不明")
+    horse_age  = f.get("_horse_age", "")
+    sex        = SEX_JP.get(str(f.get("_sex_code", "")), "")
+    # DBではjockey/trainerが逆格納
+    jockey     = f.get("trainer_name", "")
+    trainer    = f.get("jockey_name", "")
+    distance   = int(f["distance"]) if np.isfinite(f.get("distance", np.nan)) else 0
+
+    past_pos   = []
+    past_agari = []
+    for k in range(1, 6):
+        pos = f.get(f"horse_pos_{k}", np.nan)
+        past_pos.append(str(int(pos)) if np.isfinite(pos) else "-")
+        agari = f.get(f"horse_agari_{k}", np.nan)
+        past_agari.append(f"{float(agari):.1f}" if np.isfinite(agari) else "-")
+
+    score_text = "、".join(f"{k}:{v}" for k, v in scores.items())
+    prompt = (
+        f"競馬評論家として{horse_name}の解説を300字程度で。"
+        f"近走成績の分析、今回のレース条件への適性、脚質と展開の合致、懸念点を具体的な根拠とともに書いてください。\n\n"
+        f"馬名：{horse_name}\n"
+        f"年齢・性別：{horse_age}歳{sex}\n"
+        f"過去5走着順：{', '.join(past_pos)}\n"
+        f"上がり3F：{', '.join(past_agari)}\n"
+        f"騎手：{jockey}\n"
+        f"調教師：{trainer}\n"
+        f"距離：{distance}m\n"
+        f"コース：{track_type}\n"
+        f"6項目スコア（能力/血統/環境/展開/過去/調教）：{score_text}"
+    )
+
+    try:
+        msg = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=512,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        return msg.content[0].text
+    except Exception as e:
+        print(f"  Claude API error ({horse_name}): {e}")
+        return _tmpl(f, scores, track_type)
 
 
 # ── レース名補完 ──────────────────────────────────────────────────────────────
