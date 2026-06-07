@@ -4,7 +4,7 @@ import PredictionView from './components/PredictionView'
 
 type View = 'date' | 'venue' | 'race' | 'prediction'
 
-const HERO_PHOTO_URL = 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=1920&q=80'
+const HERO_PHOTO_URL = 'https://images.unsplash.com/flagged/photo-1569319388901-605a6d2d1299?w=1920&q=80'
 
 function fmtDate(d: string): string {
   const y = parseInt(d.slice(0, 4), 10)

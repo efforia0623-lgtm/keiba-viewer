@@ -12,23 +12,32 @@ export interface Scores {
   training: number
 }
 
+export interface Caution {
+  weather: string
+  track_condition: string
+  track_bias: string
+  pace_prediction: string
+  lineup: string
+}
+
+export interface TicketItem {
+  type: string
+  desc: string
+}
+
+export interface TicketPatterns {
+  umaren_a: TicketItem[]
+  umaren_b: TicketItem[]
+  sanrenpuku_a: TicketItem[]
+  sanrenpuku_b: TicketItem[]
+}
+
 export interface RecMark {
   mark: string
   label: string
   horse_num: string
   horse_name: string
   prob: number
-}
-
-export interface HimoHorse {
-  horse_num: string
-  horse_name: string
-  prob: number
-}
-
-export interface Ticket {
-  type: string
-  desc: string
 }
 
 export interface Horse {
@@ -55,13 +64,13 @@ export interface Race {
   track_type: string
   grade_code: string
   starters: number
+  caution?: Caution
+  course_description?: string
   horses: Horse[]
   recommendations: {
     marks: RecMark[]
-    himo: HimoHorse[]
-    tickets: Ticket[]
+    tickets: TicketPatterns
   }
-  tickets: Ticket[]
 }
 
 export interface Venue {

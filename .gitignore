@@ -3,7 +3,11 @@
 
 # Data and models
 data/
-predictions/
+/predictions/
+
+# Allow viewer public predictions
+!viewer/public/predictions/
+!viewer/public/predictions/**
 
 # Python
 __pycache__/

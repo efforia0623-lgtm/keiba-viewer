@@ -426,6 +426,82 @@ tr:hover td { background: rgba(0,102,204,.025); }
 .error-box { max-width: 480px; margin: 100px auto; padding: 24px 28px; background: #FFF5F5; border-left: 3px solid #DC2626; border-radius: var(--radius); font-size: 14px; color: #C53030; }
 .empty-msg { text-align: center; padding: 80px 0; color: var(--gray-500); font-size: 15px; font-weight: 300; }
 
+/* ── Caution section ── */
+.caution-section { margin-bottom: 72px; }
+.caution-meta-row { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+.caution-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700; padding: 6px 14px;
+  border-radius: var(--radius); letter-spacing: .3px;
+}
+.caution-weather { background: rgba(0,102,204,.08); color: var(--blue); border: 1px solid rgba(0,102,204,.2); }
+.caution-track   { background: rgba(0,135,90,.08); color: #00875A; border: 1px solid rgba(0,135,90,.2); }
+.caution-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 16px;
+}
+.caution-block {
+  background: var(--off-white); border-radius: var(--radius);
+  padding: 20px; border-left: 3px solid var(--gray-100);
+}
+.caution-block-wide   { border-left-color: var(--blue); }
+.caution-block-lineup { border-left-color: var(--gold); }
+.caution-block-title {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gray-500); margin-bottom: 12px;
+}
+.caution-text   { font-size: 13px; color: var(--gray-700); line-height: 1.85; font-weight: 400; }
+.caution-lineup {
+  font-size: 12px; color: var(--gray-700); line-height: 2.1;
+  font-family: 'Hiragino Kaku Gothic ProN', monospace;
+  white-space: pre-wrap; margin: 0;
+}
+
+/* ── Course description ── */
+.course-desc-section {
+  margin-bottom: 72px;
+  background: var(--blue-faint); border-radius: var(--radius);
+  padding: 28px 32px; border-left: 3px solid var(--blue);
+}
+.course-desc-text {
+  font-size: 14px; color: var(--gray-700);
+  line-height: 1.95; font-weight: 400; margin-top: 16px;
+}
+
+/* ── Ticket patterns ── */
+.ticket-patterns { display: flex; flex-direction: column; gap: 12px; }
+.ticket-pattern-group {
+  border-left: 2px solid var(--blue); padding: 12px 16px;
+  background: var(--blue-faint);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.ticket-pattern-label {
+  font-size: 11px; font-weight: 800; color: var(--blue);
+  letter-spacing: .8px; text-transform: uppercase;
+  margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
+}
+.ticket-count {
+  font-size: 10px; font-weight: 700; background: var(--blue);
+  color: var(--white); padding: 1px 7px; border-radius: 10px; letter-spacing: .5px;
+}
+.ticket-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.ticket-chip {
+  font-size: 12px; font-weight: 600; color: var(--gray-900);
+  background: var(--white); border: 1px solid var(--gray-100);
+  padding: 3px 9px; border-radius: 3px; white-space: nowrap;
+}
+
+/* ── Rec label ── */
+.rec-label { font-size: 10px; font-weight: 600; color: var(--gray-500); letter-spacing: .5px; }
+
+/* ── Radar total score ── */
+.radar-total-score {
+  font-size: 13px; font-weight: 800; color: var(--blue);
+  text-align: center; margin-top: 10px; padding-top: 10px;
+  border-top: 1px solid var(--gray-100);
+}
+
 /* ── Responsive ── */
 @media (max-width: 1024px) { :root { --gutter: 32px; } }
 @media (max-width: 768px) {
@@ -439,6 +515,8 @@ tr:hover td { background: rgba(0,102,204,.025); }
   .radar-grid { grid-template-columns: 1fr; }
   .pred-race-header { margin-bottom: 48px; padding-bottom: 32px; }
   .pred-page { padding: 40px var(--gutter) 80px; }
+  .caution-grid { grid-template-columns: 1fr; }
+  .course-desc-section { padding: 20px; }
 }
 @media (max-width: 480px) {
   .venue-grid { grid-template-columns: 1fr; }

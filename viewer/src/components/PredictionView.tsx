@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import type { Race, Horse, Scores } from '../types'
+import type { Race, Horse, Scores, Caution, TicketPatterns } from '../types'
 import RadarChart from './RadarChart'
 
 interface Props { race: Race }
@@ -34,6 +34,73 @@ function PosBadge({ pos }: { pos: number | null }) {
   return <span className={`pos-badge ${cls}`}>{pos}</span>
 }
 
+// ── 2. 注意書きセクション ─────────────────────────────────────────────────────
+function CautionSection({ caution }: { caution: Caution }) {
+  const ref = useReveal()
+  return (
+    <div ref={ref} className="reveal caution-section">
+      <div className="sub-section-label">Race Conditions · Analysis</div>
+      <div className="caution-meta-row">
+        <span className="caution-badge caution-weather">天候: {caution.weather}</span>
+        <span className="caution-badge caution-track">馬場: {caution.track_condition}</span>
+      </div>
+      <div className="caution-grid">
+        <div className="caution-block">
+          <div className="caution-block-title">トラックバイアス想定</div>
+          <p className="caution-text">{caution.track_bias}</p>
+        </div>
+        <div className="caution-block caution-block-wide">
+          <div className="caution-block-title">展開予想</div>
+          <p className="caution-text">{caution.pace_prediction}</p>
+        </div>
+        <div className="caution-block caution-block-lineup">
+          <div className="caution-block-title">隊列図</div>
+          <pre className="caution-lineup">{caution.lineup}</pre>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ── 3. コース解説セクション ────────────────────────────────────────────────────
+function CourseDesc({ description, distance }: { description: string; distance: number }) {
+  const ref = useReveal()
+  return (
+    <div ref={ref} className="reveal course-desc-section">
+      <div className="sub-section-label">Course Guide · {distance}m</div>
+      <p className="course-desc-text">{description}</p>
+    </div>
+  )
+}
+
+// ── 4. 買い目パターン ──────────────────────────────────────────────────────────
+function TicketSection({ tickets }: { tickets: TicketPatterns }) {
+  const patterns = [
+    { label: '馬連 パターンA', items: tickets.umaren_a },
+    { label: '馬連 パターンB', items: tickets.umaren_b },
+    { label: '3連複 パターンA', items: tickets.sanrenpuku_a },
+    { label: '3連複 パターンB', items: tickets.sanrenpuku_b },
+  ]
+  return (
+    <div className="ticket-patterns">
+      {patterns.map(p => (
+        <div key={p.label} className="ticket-pattern-group">
+          <div className="ticket-pattern-label">
+            {p.label}
+            <span className="ticket-count">{p.items.length}点</span>
+          </div>
+          <div className="ticket-chips">
+            {p.items.map((t, i) => (
+              <span key={i} className="ticket-chip">{t.desc.replace(/^\S+\s/, '')}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// ── 5. レーダーカード ──────────────────────────────────────────────────────────
 function HorseRadarCard({ horse, delay }: { horse: Horse; delay: number }) {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -80,11 +147,14 @@ function HorseRadarCard({ horse, delay }: { horse: Horse; delay: number }) {
         ))}
       </div>
 
+      <div className="radar-total-score">{horse.total_score}点/60点中</div>
+
       {horse.comment && <p className="radar-comment">{horse.comment}</p>}
     </div>
   )
 }
 
+// ── 6. 出走馬テーブル ──────────────────────────────────────────────────────────
 function HorseTableRow({ horse }: { horse: Horse }) {
   const top3 = horse.model_rank <= 3
   return (
@@ -112,7 +182,7 @@ function HorseTableRow({ horse }: { horse: Horse }) {
           <div className="score-bar">
             <div className="score-fill" style={{ width: `${(horse.total_score / 60) * 100}%` }} />
           </div>
-          <span className="score-val">{horse.total_score}</span>
+          <span className="score-val">{horse.total_score}/60</span>
         </div>
       </td>
       <td>
@@ -124,9 +194,10 @@ function HorseTableRow({ horse }: { horse: Horse }) {
   )
 }
 
+// ── メイン ─────────────────────────────────────────────────────────────────────
 export default function PredictionView({ race }: Props) {
   const sorted = [...race.horses].sort((a, b) => a.model_rank - b.model_rank)
-  const { marks, himo, tickets } = race.recommendations
+  const { marks, tickets } = race.recommendations
 
   const recsRef  = useReveal()
   const radarRef = useReveal()
@@ -134,7 +205,8 @@ export default function PredictionView({ race }: Props) {
 
   return (
     <div className="pred-page">
-      {/* Race header */}
+
+      {/* 1. レースヘッダー */}
       <div className="pred-race-header">
         <div className="pred-race-eyebrow">Race {race.race_num} · Prediction</div>
         <div className="pred-race-name">{race.race_name}</div>
@@ -149,47 +221,35 @@ export default function PredictionView({ race }: Props) {
         </div>
       </div>
 
-      {/* Recommendations + Tickets */}
+      {/* 2. 注意書き（天候・馬場・バイアス・展開・隊列） */}
+      {race.caution && <CautionSection caution={race.caution} />}
+
+      {/* 3. コース・距離解説 */}
+      {race.course_description && (
+        <CourseDesc description={race.course_description} distance={race.distance} />
+      )}
+
+      {/* 4. おすすめ馬（◎○▲△×4）＋買い目 */}
       <div ref={recsRef} className="recs-section reveal">
         <div>
-          <div className="rec-panel-label">Recommended Horses</div>
+          <div className="rec-panel-label">Recommended Horses · ◎○▲△×4</div>
           {marks.map(m => (
             <div key={m.horse_num} className="rec-row">
               <span className={`rec-mark mark-${m.mark}`}>{m.mark}</span>
               <span className="rec-num">{m.horse_num}番</span>
               <span className="rec-name">{m.horse_name}</span>
+              <span className="rec-label">{m.label}</span>
               <span className="rec-prob">{m.prob}%</span>
             </div>
           ))}
-          {himo.length > 0 && (
-            <>
-              <div className="himo-label">Himo Candidates</div>
-              {himo.map(h => (
-                <div key={h.horse_num} className="rec-row">
-                  <span className="rec-mark mark-△">△</span>
-                  <span className="rec-num">{h.horse_num}番</span>
-                  <span className="rec-name">{h.horse_name}</span>
-                  <span className="rec-prob">{h.prob}%</span>
-                </div>
-              ))}
-            </>
-          )}
         </div>
-
         <div>
           <div className="rec-panel-label">Recommended Tickets</div>
-          <div className="tickets">
-            {tickets.map((t, i) => (
-              <div key={i} className="ticket">
-                <span className="ticket-type">{t.type}</span>
-                <span className="ticket-desc">{t.desc.replace(/^\S+\s/, '')}</span>
-              </div>
-            ))}
-          </div>
+          {tickets && <TicketSection tickets={tickets} />}
         </div>
       </div>
 
-      {/* Radar charts */}
+      {/* 5. 全馬レーダーチャート＋解説文 */}
       <div ref={radarRef} className="reveal">
         <div className="sub-section-label">Radar Analysis · All Horses</div>
         <div className="radar-grid">
@@ -199,7 +259,7 @@ export default function PredictionView({ race }: Props) {
         </div>
       </div>
 
-      {/* Table */}
+      {/* 6. 出走馬一覧テーブル */}
       <div ref={tableRef} className="reveal">
         <div className="sub-section-label">All Runners · Overview</div>
         <div className="table-wrap">
@@ -222,6 +282,7 @@ export default function PredictionView({ race }: Props) {
           </table>
         </div>
       </div>
+
     </div>
   )
 }
