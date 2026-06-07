@@ -221,6 +221,15 @@ export default function PredictionView({ race }: Props) {
         </div>
       </div>
 
+      {/* Race divider banner */}
+      <div
+        className="race-banner"
+        style={{ backgroundImage: `url(https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80)` }}
+      >
+        <div className="race-banner-overlay" />
+        <div className="race-banner-text">{race.race_name}</div>
+      </div>
+
       {/* 2. 注意書き（天候・馬場・バイアス・展開・隊列） */}
       {race.caution && <CautionSection caution={race.caution} />}
 

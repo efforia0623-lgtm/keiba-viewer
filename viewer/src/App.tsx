@@ -4,7 +4,24 @@ import PredictionView from './components/PredictionView'
 
 type View = 'date' | 'venue' | 'race' | 'prediction'
 
-const HERO_PHOTO_URL = 'https://images.unsplash.com/flagged/photo-1569319388901-605a6d2d1299?w=1920&q=80'
+const HERO_PHOTOS = [
+  'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80',
+  'https://images.unsplash.com/photo-1569319388901-605a6d2d1299?w=1920&q=80',
+  'https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?w=1920&q=80',
+]
+
+const VENUE_IMG_MAP: Array<[string[], string]> = [
+  [['東京', '中山'], 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80'],
+  [['阪神', '京都', '中京'], 'https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?w=800&q=80'],
+  [['札幌', '函館', '福島', '新潟', '小倉'], 'https://images.unsplash.com/photo-1519923041107-7e2e3d8cbe57?w=800&q=80'],
+]
+
+function getVenueImg(name: string): string {
+  for (const [keys, url] of VENUE_IMG_MAP) {
+    if (keys.some(k => name.includes(k))) return url
+  }
+  return VENUE_IMG_MAP[0][1]
+}
 
 function fmtDate(d: string): string {
   const y = parseInt(d.slice(0, 4), 10)
@@ -14,7 +31,6 @@ function fmtDate(d: string): string {
   return `${y}年${m}月${day}日（${wd}）`
 }
 
-// Transparent → white header on scroll
 function useScrolled() {
   const [s, setS] = useState(false)
   useEffect(() => {
@@ -25,7 +41,6 @@ function useScrolled() {
   return s
 }
 
-// Single-element reveal
 function useReveal() {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -40,7 +55,6 @@ function useReveal() {
   return ref
 }
 
-// Stagger-reveal children when container enters viewport
 function useStagger(len: number) {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -61,14 +75,24 @@ function useStagger(len: number) {
   return ref
 }
 
-// ── Hero ─────────────────────────────────────────────────────────────────────
+// ── Hero (slideshow) ─────────────────────────────────────────────────────────
 function Hero({ onScrollDown }: { onScrollDown: () => void }) {
+  const [current, setCurrent] = useState(0)
+
+  useEffect(() => {
+    const t = setInterval(() => setCurrent(c => (c + 1) % HERO_PHOTOS.length), 5000)
+    return () => clearInterval(t)
+  }, [])
+
   return (
     <section className="hero-section">
-      <div
-        className="hero-bg"
-        style={{ backgroundImage: `url(${HERO_PHOTO_URL})` }}
-      />
+      {HERO_PHOTOS.map((url, i) => (
+        <div
+          key={url}
+          className={`hero-slide${i === current ? ' active' : ''}`}
+          style={{ backgroundImage: `url(${url})` }}
+        />
+      ))}
       <div className="hero-overlay" />
 
       <div className="hero-content">
@@ -116,10 +140,9 @@ function DateSection({
 
       <div ref={scheduleRef} className="section">
         <div ref={headRef} className="reveal">
-          <div className="section-eyebrow">Schedule</div>
           <div className="section-headline">
-            開催日程
-            <small>Select a race date</small>
+            今週の予想
+            <small>開催日を選択してください</small>
           </div>
         </div>
 
@@ -159,32 +182,40 @@ function VenueSection({
   const gridRef = useStagger(venues.length)
 
   return (
-    <div className="section">
-      <div ref={headRef} className="reveal">
-        <div className="section-eyebrow">Venue</div>
-        <div className="section-headline">
-          競馬場を選択
-          <small>{fmtDate(date)}</small>
+    <div className="section-wrap-gray">
+      <div className="section">
+        <div ref={headRef} className="reveal">
+          <div className="section-headline">
+            開催競馬場
+            <small>Race Venue · {fmtDate(date)}</small>
+          </div>
         </div>
-      </div>
 
-      <div ref={gridRef} className="venue-grid">
-        {venues.map(v => {
-          const gc = v.races.filter(r => ['A', 'B', 'C'].includes(r.grade_code)).length
-          return (
-            <div
-              key={v.venue_code}
-              className="venue-card reveal"
-              onClick={() => onSelect(v)}
-            >
-              <div className="venue-label">Racecourse</div>
-              <div className="venue-name">{v.venue_name}</div>
-              <div className="venue-sub">{v.races.length}レース開催</div>
-              {gc > 0 && <div className="venue-badge">Grade Race ×{gc}</div>}
-              <div className="venue-cta">→ レースを見る</div>
-            </div>
-          )
-        })}
+        <div ref={gridRef} className="venue-grid">
+          {venues.map(v => {
+            const gc = v.races.filter(r => ['A', 'B', 'C'].includes(r.grade_code)).length
+            return (
+              <div
+                key={v.venue_code}
+                className="venue-card reveal"
+                onClick={() => onSelect(v)}
+              >
+                <div
+                  className="venue-card-bg"
+                  style={{ backgroundImage: `url(${getVenueImg(v.venue_name)})` }}
+                />
+                <div className="venue-card-overlay" />
+                <div className="venue-card-content">
+                  <div className="venue-label">Racecourse</div>
+                  <div className="venue-name">{v.venue_name}</div>
+                  <div className="venue-sub">{v.races.length}レース開催</div>
+                  {gc > 0 && <div className="venue-badge">Grade Race ×{gc}</div>}
+                  <div className="venue-cta">→ レースを見る</div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </div>
     </div>
   )
@@ -242,6 +273,19 @@ function RaceSection({
   )
 }
 
+// ── Footer ────────────────────────────────────────────────────────────────────
+function Footer() {
+  return (
+    <footer className="site-footer">
+      <div className="footer-inner">
+        <div className="footer-logo">競馬予想Efforia</div>
+        <p className="footer-disclaimer">予想はあくまで参考です。馬券の購入は自己責任でお願いします。</p>
+        <p className="footer-copy">© 2026 競馬予想Efforia</p>
+      </div>
+    </footer>
+  )
+}
+
 // ── App ───────────────────────────────────────────────────────────────────────
 export default function App() {
   const [view, setView]   = useState<View>('date')
@@ -254,7 +298,6 @@ export default function App() {
   const [selectedRace, setSelectedRace]   = useState<Race | null>(null)
 
   const scrolled = useScrolled()
-  // Header is always opaque outside of the date hero
   const headerScrolled = view !== 'date' || scrolled
 
   useEffect(() => {
@@ -368,6 +411,8 @@ export default function App() {
           <PredictionView race={selectedRace} />
         )}
       </main>
+
+      <Footer />
     </>
   )
 }

@@ -95,7 +95,7 @@ a { text-decoration: none; color: inherit; }
 }
 .header.scrolled .header-tag { color: var(--blue-dark); }
 
-/* ── Hero ── */
+/* ── Hero (slideshow) ── */
 .hero-section {
   position: relative;
   height: 100vh;
@@ -105,14 +105,17 @@ a { text-decoration: none; color: inherit; }
   justify-content: flex-end;
   overflow: hidden;
 }
-.hero-bg {
+.hero-slide {
   position: absolute; inset: 0;
   background-size: cover;
   background-position: center;
   background-color: #1a2535;
   animation: kenburns 22s ease-out infinite alternate;
-  will-change: transform;
+  will-change: transform, opacity;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
+.hero-slide.active { opacity: 1; }
 @keyframes kenburns {
   from { transform: scale(1.0); }
   to   { transform: scale(1.09); }
@@ -190,11 +193,9 @@ a { text-decoration: none; color: inherit; }
   margin: 0 auto;
   width: 100%;
 }
-.section.bg-off { background: var(--off-white); max-width: 100%; }
-.section.bg-off .section-body {
-  max-width: calc(var(--max-w) + 2 * var(--gutter));
-  margin: 0 auto;
-  padding: 0 var(--gutter);
+.section-wrap-gray {
+  background: #F5F5F5;
+  width: 100%;
 }
 .section-eyebrow {
   font-size: 10px; font-weight: 700;
@@ -269,25 +270,42 @@ a { text-decoration: none; color: inherit; }
   gap: 20px;
 }
 .venue-card {
-  background: var(--white);
+  position: relative;
+  overflow: hidden;
   border-radius: var(--radius);
-  padding: 40px 32px;
+  min-height: 220px;
   cursor: pointer;
   box-shadow: var(--shadow-card);
-  display: flex; flex-direction: column; gap: 10px;
   transition: transform .4s var(--ease), box-shadow .4s var(--ease);
 }
 .venue-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-up); }
-.venue-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); }
-.venue-name  { font-size: 34px; font-weight: 900; letter-spacing: -1px; color: var(--gray-900); }
-.venue-sub   { font-size: 13px; font-weight: 400; color: var(--gray-500); }
+.venue-card-bg {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.4s ease-out;
+}
+.venue-card:hover .venue-card-bg { transform: scale(1.05); }
+.venue-card-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,.55);
+}
+.venue-card-content {
+  position: relative; z-index: 1;
+  padding: 40px 32px;
+  display: flex; flex-direction: column; gap: 10px;
+  height: 100%;
+}
+.venue-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.65); }
+.venue-name  { font-size: 34px; font-weight: 900; letter-spacing: -1px; color: var(--white); }
+.venue-sub   { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.65); }
 .venue-badge {
   display: inline-block; align-self: flex-start;
   font-size: 10px; font-weight: 700; letter-spacing: 1px;
   color: var(--gold); border: 1px solid var(--gold);
   padding: 3px 10px; border-radius: 2px; margin-top: 4px;
 }
-.venue-cta { margin-top: auto; font-size: 13px; font-weight: 700; color: var(--blue); }
+.venue-cta { margin-top: auto; font-size: 13px; font-weight: 700; color: rgba(255,255,255,.85); }
 
 /* ── Race list ── */
 .race-list { display: flex; flex-direction: column; }
@@ -341,6 +359,38 @@ a { text-decoration: none; color: inherit; }
 .pred-race-meta    { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
 .pred-meta-item    { font-size: 13px; color: var(--gray-500); font-weight: 400; }
 .pred-grade-pill   { font-size: 11px; font-weight: 700; color: var(--gold); border: 1px solid var(--gold); padding: 3px 10px; border-radius: 2px; }
+
+/* ── Race banner (full-width divider) ── */
+.race-banner {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -16px;
+  margin-bottom: 80px;
+  overflow: hidden;
+}
+.race-banner-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,.55);
+}
+.race-banner-text {
+  position: relative; z-index: 1;
+  font-size: clamp(28px,4vw,56px);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -1px;
+  text-align: center;
+  padding: 0 var(--gutter);
+}
 
 /* ── Recs section ── */
 .recs-section { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-bottom: 100px; }
@@ -502,6 +552,40 @@ tr:hover td { background: rgba(0,102,204,.025); }
   border-top: 1px solid var(--gray-100);
 }
 
+/* ── Footer ── */
+.site-footer {
+  background: #111111;
+  color: #ffffff;
+  padding: 60px var(--gutter);
+}
+.footer-inner {
+  max-width: calc(var(--max-w) + 2 * var(--gutter));
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.footer-logo {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: #ffffff;
+}
+.footer-disclaimer {
+  font-size: 13px;
+  color: rgba(255,255,255,.55);
+  font-weight: 300;
+  max-width: 480px;
+  line-height: 1.7;
+}
+.footer-copy {
+  font-size: 11px;
+  color: rgba(255,255,255,.3);
+  letter-spacing: 1px;
+}
+
 /* ── Responsive ── */
 @media (max-width: 1024px) { :root { --gutter: 32px; } }
 @media (max-width: 768px) {
@@ -509,7 +593,8 @@ tr:hover td { background: rgba(0,102,204,.025); }
   .section { padding: 72px var(--gutter); }
   .hero-content { padding-bottom: 72px; }
   .venue-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
-  .venue-card { padding: 28px 22px; }
+  .venue-card { min-height: 180px; }
+  .venue-card-content { padding: 28px 22px; }
   .venue-name { font-size: 26px; }
   .recs-section { grid-template-columns: 1fr; gap: 40px; margin-bottom: 64px; }
   .radar-grid { grid-template-columns: 1fr; }
@@ -517,6 +602,9 @@ tr:hover td { background: rgba(0,102,204,.025); }
   .pred-page { padding: 40px var(--gutter) 80px; }
   .caution-grid { grid-template-columns: 1fr; }
   .course-desc-section { padding: 20px; }
+  .race-banner { height: 220px; }
+  .race-banner-text { font-size: clamp(22px,5vw,36px); }
+  .footer-logo { font-size: 24px; }
 }
 @media (max-width: 480px) {
   .venue-grid { grid-template-columns: 1fr; }
@@ -525,4 +613,5 @@ tr:hover td { background: rgba(0,102,204,.025); }
   .recs-section { grid-template-columns: 1fr; }
   th { font-size: 9px; padding: 10px 8px; }
   td { font-size: 12px; padding: 10px 8px; }
+  .race-banner { height: 180px; }
 }
