@@ -4,23 +4,27 @@ import PredictionView from './components/PredictionView'
 
 type View = 'date' | 'venue' | 'race' | 'prediction'
 
-const HERO_PHOTOS = [
-  'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80',
-  'https://images.unsplash.com/photo-1569319388901-605a6d2d1299?w=1920&q=80',
-  'https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?w=1920&q=80',
+const SLIDES = [
+  'https://images.unsplash.com/photo-1635895901494-539a6b2647af?w=1920&auto=format&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1526094633853-031707a44819?w=1920&auto=format&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1495543377553-b2aba1f925d7?w=1920&auto=format&fit=crop&q=80',
 ]
 
-const VENUE_IMG_MAP: Array<[string[], string]> = [
-  [['東京', '中山'], 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80'],
-  [['阪神', '京都', '中京'], 'https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?w=800&q=80'],
-  [['札幌', '函館', '福島', '新潟', '小倉'], 'https://images.unsplash.com/photo-1519923041107-7e2e3d8cbe57?w=800&q=80'],
-]
+const VENUE_PHOTOS: Record<string, string> = {
+  '05': 'https://plus.unsplash.com/premium_photo-1661914240950-b0124f20a5c1?w=800&auto=format&fit=crop&q=80',
+  '06': 'https://plus.unsplash.com/premium_photo-1661914240950-b0124f20a5c1?w=800&auto=format&fit=crop&q=80',
+  '08': 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&auto=format&fit=crop&q=80',
+  '09': 'https://images.unsplash.com/photo-1589452271712-64b8a66c7b71?w=800&auto=format&fit=crop&q=80',
+  '07': 'https://images.unsplash.com/photo-1696245206938-4913660cc260?w=800&auto=format&fit=crop&q=80',
+  '01': 'https://images.unsplash.com/photo-1622607941338-38e1d2035b5a?w=800&auto=format&fit=crop&q=80',
+  '02': 'https://images.unsplash.com/photo-1622607941338-38e1d2035b5a?w=800&auto=format&fit=crop&q=80',
+  '03': 'https://images.unsplash.com/photo-1635562985686-4f8bb9c0d3bf?w=800&auto=format&fit=crop&q=80',
+  '04': 'https://images.unsplash.com/photo-1635562985686-4f8bb9c0d3bf?w=800&auto=format&fit=crop&q=80',
+  '10': 'https://images.unsplash.com/photo-1698110707910-6af9a3fd5d07?w=800&auto=format&fit=crop&q=80',
+}
 
-function getVenueImg(name: string): string {
-  for (const [keys, url] of VENUE_IMG_MAP) {
-    if (keys.some(k => name.includes(k))) return url
-  }
-  return VENUE_IMG_MAP[0][1]
+function getVenueImg(venueCode: string): string {
+  return VENUE_PHOTOS[venueCode] ?? VENUE_PHOTOS['05']
 }
 
 function fmtDate(d: string): string {
@@ -80,13 +84,13 @@ function Hero({ onScrollDown }: { onScrollDown: () => void }) {
   const [current, setCurrent] = useState(0)
 
   useEffect(() => {
-    const t = setInterval(() => setCurrent(c => (c + 1) % HERO_PHOTOS.length), 5000)
+    const t = setInterval(() => setCurrent(c => (c + 1) % SLIDES.length), 5000)
     return () => clearInterval(t)
   }, [])
 
   return (
     <section className="hero-section">
-      {HERO_PHOTOS.map((url, i) => (
+      {SLIDES.map((url, i) => (
         <div
           key={url}
           className={`hero-slide${i === current ? ' active' : ''}`}
@@ -202,7 +206,7 @@ function VenueSection({
               >
                 <div
                   className="venue-card-bg"
-                  style={{ backgroundImage: `url(${getVenueImg(v.venue_name)})` }}
+                  style={{ backgroundImage: `url(${getVenueImg(v.venue_code)})` }}
                 />
                 <div className="venue-card-overlay" />
                 <div className="venue-card-content">
