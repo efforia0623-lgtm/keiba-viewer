@@ -4,15 +4,7 @@ import PredictionView from './components/PredictionView'
 
 type View = 'date' | 'venue' | 'race' | 'prediction'
 
-interface UnsplashPhoto {
-  url: string
-}
-
-async function fetchHorsePhoto(): Promise<UnsplashPhoto | null> {
-  return {
-    url: 'https://source.unsplash.com/1920x1080/?horse-racing,jockey,thoroughbred',
-  }
-}
+const HERO_PHOTO_URL = 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=1920&q=80'
 
 function fmtDate(d: string): string {
   const y = parseInt(d.slice(0, 4), 10)
@@ -70,18 +62,12 @@ function useStagger(len: number) {
 }
 
 // ── Hero ─────────────────────────────────────────────────────────────────────
-function Hero({
-  photo,
-  onScrollDown,
-}: {
-  photo: UnsplashPhoto | null
-  onScrollDown: () => void
-}) {
+function Hero({ onScrollDown }: { onScrollDown: () => void }) {
   return (
     <section className="hero-section">
       <div
         className="hero-bg"
-        style={photo ? { backgroundImage: `url(${photo.url})` } : undefined}
+        style={{ backgroundImage: `url(${HERO_PHOTO_URL})` }}
       />
       <div className="hero-overlay" />
 
@@ -96,18 +82,12 @@ function Hero({
         <div className="hero-chevron" />
       </div>
 
-      {photo && (
-        <div className="hero-credit">
-          Photo from{' '}
-          <a
-            href="https://unsplash.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Unsplash
-          </a>
-        </div>
-      )}
+      <div className="hero-credit">
+        Photo from{' '}
+        <a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">
+          Unsplash
+        </a>
+      </div>
     </section>
   )
 }
@@ -115,11 +95,9 @@ function Hero({
 // ── 日程選択 ──────────────────────────────────────────────────────────────────
 function DateSection({
   dates,
-  photo,
   onSelect,
 }: {
   dates: string[]
-  photo: UnsplashPhoto | null
   onSelect: (d: string) => void
 }) {
   const scheduleRef = useRef<HTMLDivElement>(null)
@@ -134,7 +112,7 @@ function DateSection({
 
   return (
     <>
-      <Hero photo={photo} onScrollDown={scrollDown} />
+      <Hero onScrollDown={scrollDown} />
 
       <div ref={scheduleRef} className="section">
         <div ref={headRef} className="reveal">
@@ -274,7 +252,6 @@ export default function App() {
   const [dayData, setDayData]             = useState<DayData | null>(null)
   const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null)
   const [selectedRace, setSelectedRace]   = useState<Race | null>(null)
-  const [photo, setPhoto] = useState<UnsplashPhoto | null>(null)
 
   const scrolled = useScrolled()
   // Header is always opaque outside of the date hero
@@ -285,10 +262,6 @@ export default function App() {
       .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json() as Promise<{ dates: string[] }> })
       .then(d => { setDates([...d.dates].reverse()); setLoading(false) })
       .catch((e: Error) => { setError(`データ取得に失敗しました: ${e.message}`); setLoading(false) })
-  }, [])
-
-  useEffect(() => {
-    fetchHorsePhoto().then(p => { if (p) setPhoto(p) })
   }, [])
 
   async function selectDate(date: string) {
@@ -376,7 +349,7 @@ export default function App() {
         )}
 
         {!loading && !error && view === 'date' && (
-          <DateSection dates={dates} photo={photo} onSelect={selectDate} />
+          <DateSection dates={dates} onSelect={selectDate} />
         )}
         {!loading && !error && view === 'venue' && dayData && selectedDate && (
           <VenueSection
