@@ -304,7 +304,7 @@ def _build_features(date: str, venue: str, race_num: str) -> list[dict]:
         entries = db.execute("""
             SELECT horse_num, gate_num, blood_reg_num, horse_name,
                    horse_age, sex_code, body_weight, jockey_code,
-                   jockey_name, trainer_name, distance
+                   jockey_name, trainer_name, distance, track_type
             FROM entries
             WHERE race_date=? AND venue_code=? AND race_num=?
             ORDER BY CAST(horse_num AS INTEGER)
@@ -316,6 +316,10 @@ def _build_features(date: str, venue: str, race_num: str) -> list[dict]:
         starters   = len(entries)
         blood_list = [e["blood_reg_num"] for e in entries]
         ph         = ",".join("?" * len(blood_list))
+
+        # 今回のコース種別（entries.track_typeが優先、NULLなら推定）
+        _entry_tt = entries[0]["track_type"] if entries[0]["track_type"] else None
+        race_track_type = _entry_tt or _get_track_type(venue, entries[0]["distance"])
 
         # ② 各馬の過去成績（直近5年・ORDER BY を Python ソートに移して高速化）
         history = db.execute(f"""
@@ -429,6 +433,40 @@ def _build_features(date: str, venue: str, race_num: str) -> list[dict]:
         last_track = next((p["track_type"] for p in past if p["track_type"]), None)
         track_enc  = _f(TRACK_MAP.get(last_track)) if last_track else np.nan
 
+        # コース適性統計（全期間）
+        same_track = [p for p in past if p["track_type"] == race_track_type]
+        st_pos = [p["finish_pos"] for p in same_track if p["finish_pos"] is not None]
+        st_ag  = [_f(p["agari_3f"]) for p in same_track
+                  if p["agari_3f"] is not None and _f(p["agari_3f"]) >= 25]
+        same_track_n      = float(len(same_track))
+        same_track_place  = (sum(1 for p in st_pos if p <= 3) / len(st_pos)) if st_pos else np.nan
+        same_track_agari  = float(np.nanmean(st_ag)) if st_ag else np.nan
+
+        # 同コース直近5走（スコア計算・Claude API用）
+        st_recent = same_track[:5]
+        stp_list  = [p["finish_pos"] for p in st_recent if p["finish_pos"] is not None]
+        sta_list  = [_f(p["agari_3f"]) for p in st_recent
+                     if p["agari_3f"] is not None and _f(p["agari_3f"]) >= 25]
+        stp_f  = [_f(p) for p in stp_list]  + [np.nan] * (5 - len(stp_list))
+        sta_f  = [_f(a) for a in sta_list]  + [np.nan] * (5 - len(sta_list))
+        st_avg_pos_5    = float(np.nanmean(stp_f))  if any(np.isfinite(stp_f))  else np.nan
+        st_win_rate_5   = (sum(1 for p in stp_list if p == 1) / len(stp_list)) if stp_list else np.nan
+        st_avg_agari_5  = float(np.nanmean(sta_f))  if any(np.isfinite(sta_f))  else np.nan
+
+        # コース替わりフラグ（前走と今回でtrack_typeが異なれば1）
+        prev_track   = next((p["track_type"] for p in past if p["track_type"]), None)
+        track_switch = 0.0 if (prev_track and race_track_type and prev_track == race_track_type) else 1.0
+
+        # 芝・ダート別成績
+        turf_pos = [p["finish_pos"] for p in past
+                    if p["track_type"] == "芝" and p["finish_pos"] is not None]
+        dart_pos = [p["finish_pos"] for p in past
+                    if p["track_type"] == "ダート" and p["finish_pos"] is not None]
+        turf_n   = float(sum(1 for p in past if p["track_type"] == "芝"))
+        dart_n   = float(sum(1 for p in past if p["track_type"] == "ダート"))
+        turf_place_rate = (sum(1 for p in turf_pos if p <= 3) / len(turf_pos)) if turf_pos else np.nan
+        dart_place_rate = (sum(1 for p in dart_pos if p <= 3) / len(dart_pos)) if dart_pos else np.nan
+
         # 騎手統計
         j     = jmap.get(e["jockey_code"])
         jr30  = int(j["rides30"] or 0) if j else 0
@@ -510,6 +548,24 @@ def _build_features(date: str, venue: str, race_num: str) -> list[dict]:
             "tr_1f_last":      tr_1f,
             "tr_4f_avg14d":    tr_avg14,
             "tr_sessions_14d": tr_sess14,
+            # コース適性（モデル特徴量外・表示/Claude API用）
+            "same_track_place_rate": same_track_place,
+            "same_track_n_races":    same_track_n,
+            "same_track_avg_agari":  same_track_agari,
+            "track_switch":          track_switch,
+            "turf_place_rate":       turf_place_rate,
+            "turf_n_races":          turf_n,
+            "dart_place_rate":       dart_place_rate,
+            "dart_n_races":          dart_n,
+            "_race_track_type":      race_track_type,
+            # 同コース直近5走（スコア計算に使用）
+            "st_pos_1": stp_f[0], "st_pos_2": stp_f[1], "st_pos_3": stp_f[2],
+            "st_pos_4": stp_f[3], "st_pos_5": stp_f[4],
+            "st_agari_1": sta_f[0], "st_agari_2": sta_f[1], "st_agari_3": sta_f[2],
+            "st_agari_4": sta_f[3], "st_agari_5": sta_f[4],
+            "st_avg_pos_5":   st_avg_pos_5,
+            "st_win_rate_5":  st_win_rate_5,
+            "st_avg_agari_5": st_avg_agari_5,
         })
 
     return result
@@ -662,23 +718,38 @@ def _compute_scores(f: dict) -> dict[str, int]:
     tr_1f      = _f(f.get("tr_1f_last"))
     tr_sess    = _f(f.get("tr_sessions_14d", 0))
 
+    # 同コース直近成績（3戦以上あれば能力・過去スコアに優先使用）
+    st_n          = _f(f.get("same_track_n_races", 0))
+    st_place_rate = _f(f.get("same_track_place_rate"))
+    st_avg_pos    = _f(f.get("st_avg_pos_5"))
+    st_avg_agari  = _f(f.get("st_avg_agari_5"))
+    st_win_rate   = _f(f.get("st_win_rate_5"))
+    use_st = np.isfinite(st_place_rate) and st_n >= 3
+
+    # 能力・過去スコア用: 同コース実績が3戦以上あれば同コース値を優先
+    eff_place = st_place_rate if use_st else place_rate
+    eff_pos   = st_avg_pos    if (use_st and np.isfinite(st_avg_pos))   else avg_pos
+    eff_agari = st_avg_agari  if (use_st and np.isfinite(st_avg_agari)) else avg_agari
+    eff_win   = st_win_rate   if (use_st and np.isfinite(st_win_rate))  else win_rate
+
     def clamp(x: float) -> int:
         return int(round(float(np.clip(x, 0, 10))))
 
-    # 1. 能力（過去成績・ラップ・上がり3F）
-    if np.isfinite(place_rate):
-        s1 = place_rate * 7.0
-        if np.isfinite(avg_pos):
-            s1 += max(0.0, (5.0 - avg_pos) * 0.5)
-        if np.isfinite(avg_agari):
-            s1 += max(0.0, (36.5 - avg_agari) * 0.4)
+    # 1. 能力（同コース成績優先）
+    if np.isfinite(eff_place):
+        s1 = eff_place * 7.0
+        if np.isfinite(eff_pos):
+            s1 += max(0.0, (5.0 - eff_pos) * 0.5)
+        if np.isfinite(eff_agari):
+            s1 += max(0.0, (36.5 - eff_agari) * 0.4)
         s1 = max(2.0, s1)
     else:
         s1 = 5.0
 
-    # 2. 血統（上がり3Fを適性の代替指標として使用）
-    if np.isfinite(avg_agari) and avg_agari > 20:
-        s2 = max(2.0, min(10.0, (39.0 - avg_agari) * 1.5))
+    # 2. 血統（同コース上がり3Fを適性指標として使用）
+    agari_for_s2 = eff_agari if np.isfinite(eff_agari) else avg_agari
+    if np.isfinite(agari_for_s2) and agari_for_s2 > 20:
+        s2 = max(2.0, min(10.0, (39.0 - agari_for_s2) * 1.5))
     else:
         s2 = 5.0
 
@@ -701,11 +772,29 @@ def _compute_scores(f: dict) -> dict[str, int]:
     else:
         s4 = 5.0
 
-    # 5. 過去データ（win_rate + place_rate）
-    if np.isfinite(win_rate) and n_races > 0:
-        s5 = max(2.0, min(10.0, win_rate * 10.0 + (place_rate * 2.0 if np.isfinite(place_rate) else 0.0)))
+    # 5. 過去データ（同コース勝率・複勝率を優先）
+    if np.isfinite(eff_win) and n_races > 0:
+        s5 = max(2.0, min(10.0, eff_win * 10.0 + (eff_place * 2.0 if np.isfinite(eff_place) else 0.0)))
     else:
         s5 = 4.0
+
+    # ── 前走大敗ペナルティ ────────────────────────────────────────────────────
+    # 同コース直近1走が大敗の場合、能力・環境・過去スコアを減衰させる
+    # 過去の蓄積実績ではなく「今の状態」を重視するための補正
+    st_pos_1 = _f(f.get("st_pos_1"))
+    if np.isfinite(st_pos_1):
+        if st_pos_1 > 12:       # 13着以下：大惨敗
+            s1 = max(1.0, s1 * 0.55)
+            s3 = max(2.0, s3 * 0.60)
+            s5 = max(1.0, s5 * 0.45)
+        elif st_pos_1 > 8:      # 9〜12着：大敗
+            s1 = max(1.0, s1 * 0.75)
+            s3 = max(2.0, s3 * 0.80)
+            s5 = max(1.0, s5 * 0.65)
+        elif st_pos_1 > 5:      # 6〜8着：凡走
+            s1 = max(1.0, s1 * 0.88)
+            s3 = max(2.0, s3 * 0.92)
+            s5 = max(1.0, s5 * 0.82)
 
     # 6. 調教（タイム・頻度・直近）
     s6 = 5.0

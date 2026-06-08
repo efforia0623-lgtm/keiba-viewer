@@ -65,10 +65,22 @@ Verified field layout (from binary analysis of SU202613.DAT, 2026/4/13 Fukushima
 538      dist_class_code  距離クラス (0-5; race-constant, maps to standard JRA distance)
 539-552  [horse-level fields, not yet decoded]
 
+IMPORTANT: SU file data quality note
+  A subset of SU*.DAT records have byte537='1' (芝) for races that are actually ダート.
+  This is a data quality issue in the JRA-VAN SU source files (not a parser bug).
+  Affected: primarily Sapporo (01) / Hakodate (02) in some rounds (e.g. SU202421).
+  Cross-validation with race time + agari_3f is the most reliable verification.
+  _parse_course() applies venue-distance fallback rules for known mismatch cases.
+
 Distance mapping (dist_class_code per track_type_code):
-  芝 (1): 0→1000m, 1→1200m, 2→1400m, 3→1600m, 4→1800m, 5→2000m+
-  ダート (2): 0→~1800m, 1→~2100m, 2→~2300m, 3→~2400m, 4→~2600m
-  障害 (3): 0→~2500m, 1→~2600m, 2→~2700m, 3→~2800m, 4→~3000m, 5→~3200m
+  芝   (1): 0→1000m, 1→1200m, 2→1400m, 3→1600m, 4→1800m, 5→2000m+
+  ダート(2): 0→1700m, 1→1800m, 2→2000m, 3→2100m, 4→2400m
+  障害 (3): 0→2500m, 1→2600m, 2→2700m, 3→2800m, 4→3000m, 5→3200m
+
+Venue-distance overrides (_parse_course fallback):
+  会場01(札幌)・02(函館)・03(福島)・10(小倉) の ダート距離は 1700m が標準。
+  JRA に芝1700m は存在しないため、byte537=1 かつ inferred_dist=1800m
+  かつ会場が上記の場合は ダート1700m に補正する。
 """
 
 from dataclasses import dataclass, field
@@ -104,11 +116,11 @@ DISTANCE_MAP: dict[tuple[str, str], int] = {
     ("1", "3"): 1600,
     ("1", "4"): 1800,
     ("1", "5"): 2000,
-    ("2", "0"): 1800,
-    ("2", "1"): 2100,
-    ("2", "2"): 2300,
-    ("2", "3"): 2400,
-    ("2", "4"): 2600,
+    ("2", "0"): 1700,   # ダート class 0: 札幌/函館/福島/小倉=1700m が代表値
+    ("2", "1"): 1800,   # ダート class 1: 中山/阪神=1800m
+    ("2", "2"): 2000,   # ダート class 2: 東京=2100m / 京都=2000m 等
+    ("2", "3"): 2100,
+    ("2", "4"): 2400,
     ("3", "0"): 2500,
     ("3", "1"): 2600,
     ("3", "2"): 2700,
@@ -119,6 +131,10 @@ DISTANCE_MAP: dict[tuple[str, str], int] = {
     ("5", "0"): 4250,
     ("0", "5"): 800,
 }
+
+# 会場コード: ダート1700mのみ存在し、芝1700mがない会場
+# (JRAに芝1700mは全会場で存在しない — 1700m=必ずダート)
+_DART_1700_VENUES = {"01", "02", "03", "10"}  # 札幌,函館,福島,小倉
 
 
 def _strip_sjis(raw: bytes) -> str:
@@ -274,12 +290,26 @@ def _parse_agari(raw: bytes) -> Optional[float]:
     return None
 
 
-def _parse_course(raw: bytes) -> tuple[str, str, Optional[int]]:
-    """Extract track_type, dist_class, distance from pos 537-538."""
+def _parse_course(raw: bytes, venue_code: str = "") -> tuple[str, str, Optional[int]]:
+    """Extract track_type, dist_class, distance from pos 537-538.
+
+    byte537 is the primary track_type source (1=芝, 2=ダート, 3=障害).
+    Some SU files have data quality issues where byte537='1' for ダート races.
+    Fallback: if byte537='1' yields 芝1800m at a venue known for ダート1700m
+    (札幌/函館/福島/小倉), override to ダート1700m since no JRA venue has 芝1700m.
+    """
     tc = chr(raw[537]) if len(raw) > 537 and 0x30 <= raw[537] <= 0x39 else ""
     dc = chr(raw[538]) if len(raw) > 538 and 0x30 <= raw[538] <= 0x39 else ""
     track_type = TRACK_TYPE_MAP.get(tc, "")
     distance   = DISTANCE_MAP.get((tc, dc), None)
+
+    # Venue-distance fallback: 芝1800m at ダート1700m-primary venues → fix to ダート1700m
+    # JRAに芝1700mは存在しないため、inferred 1800m at these venues indicates SU data error.
+    if track_type == "芝" and distance == 1800 and venue_code in _DART_1700_VENUES:
+        track_type = "ダート"
+        distance   = 1700
+        dc         = "0"   # ダート class 0 (1700m 代表)
+
     return track_type, dc, distance
 
 
@@ -295,7 +325,8 @@ def parse_record(raw: bytes) -> Optional[HorseResult]:
     wc = raw[327:331].decode("ascii", errors="replace")
     weight_change = wc if wc.strip() else ""
 
-    track_type, dist_class, distance = _parse_course(raw)
+    venue_code = _ascii(raw, 19, 2)
+    track_type, dist_class, distance = _parse_course(raw, venue_code)
 
     return HorseResult(
         race_date        = _ascii(raw,   3,  8),

@@ -195,6 +195,7 @@ CREATE TABLE IF NOT EXISTS entries (
     race_name       TEXT,            -- レース名 (full Japanese name)
     grade_code      TEXT,            -- 'A'=GⅠ, ...'E'=特別, ' '=一般
     distance        INTEGER,         -- 距離 m (NULL if not in file)
+    track_type      TEXT,            -- '芝', 'ダート', '障害' (RA2 byte 705: 1/2/3)
     condition_text  TEXT,            -- ASCII conditions e.g. "TOKUBETSU(3YO)"
 
     -- Horse entry (from LU/SEA records)

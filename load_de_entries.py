@@ -63,6 +63,9 @@ def _int_field(raw: bytes, start: int, length: int) -> Optional[int]:
 
 
 # ── データクラス ──────────────────────────────────────────────────────────────
+TRACK_TYPE_MAP = {"1": "芝", "2": "ダート", "3": "障害"}
+
+
 @dataclass
 class RA2Race:
     race_date    : str
@@ -73,6 +76,7 @@ class RA2Race:
     race_name    : str
     grade_code   : str
     distance     : Optional[int]
+    track_type   : Optional[str]
 
     @property
     def race_key(self) -> str:
@@ -114,6 +118,10 @@ def parse_ra2_record(raw: bytes) -> Optional[RA2Race]:
     # distance at bytes 697-700 (confirmed from field analysis)
     distance = _int_field(raw, 697, 4)
 
+    # track_type at byte 705: '1'=芝, '2'=ダート, '3'=障害
+    tc = chr(raw[705]) if len(raw) > 705 and 0x31 <= raw[705] <= 0x33 else None
+    track_type = TRACK_TYPE_MAP.get(tc) if tc else None
+
     return RA2Race(
         race_date   = _ascii(raw, 11,  8),   # bytes 11-18 = actual race date
         venue_code  = _ascii(raw, 19,  2),
@@ -123,6 +131,7 @@ def parse_ra2_record(raw: bytes) -> Optional[RA2Race]:
         race_name   = _sjis( raw, 32, 180),  # same position as RAA
         grade_code  = grade_code,
         distance    = distance,
+        track_type  = track_type,
     )
 
 
@@ -203,6 +212,7 @@ def load_year(conn: sqlite3.Connection, year_dir: Path) -> tuple[int, int]:
             race.race_name      if race else None,
             race.grade_code     if race else None,
             race.distance       if race else None,
+            race.track_type     if race else None,
             None,                                    # condition_text (not in RA2)
             h.horse_num,
             h.gate_num,
@@ -220,11 +230,11 @@ def load_year(conn: sqlite3.Connection, year_dir: Path) -> tuple[int, int]:
     conn.executemany("""
         INSERT OR REPLACE INTO entries (
             race_date, venue_code, meeting_num, day_num, race_num,
-            race_name, grade_code, distance, condition_text,
+            race_name, grade_code, distance, track_type, condition_text,
             horse_num, gate_num, blood_reg_num, horse_name,
             horse_age, sex_code, jockey_name, jockey_code, trainer_name,
             body_weight, source_file
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, rows)
     conn.commit()
 

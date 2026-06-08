@@ -224,7 +224,7 @@ export default function PredictionView({ race }: Props) {
       {/* Race divider banner */}
       <div
         className="race-banner"
-        style={{ backgroundImage: `url(https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80)` }}
+        style={{ backgroundImage: `url(https://images.unsplash.com/photo-1635895901494-539a6b2647af?w=1920&auto=format&fit=crop&q=80)` }}
       >
         <div className="race-banner-overlay" />
         <div className="race-banner-text">{race.race_name}</div>
