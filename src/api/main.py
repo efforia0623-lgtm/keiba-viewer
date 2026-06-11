@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import sqlite3
-from collections import defaultdict
+from collections import Counter, defaultdict
 from contextlib import asynccontextmanager
 from datetime import datetime, timedelta
 from functools import lru_cache
@@ -16,9 +16,19 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 from fastapi.staticfiles import StaticFiles
+from src.parser.finish_margin import decode_finish_margin as _decode_finish_margin
 
 ROOT    = Path(__file__).parents[2]
 DB_PATH = ROOT / "data" / "keiba.db"
+
+# analyze_keshi を import（project root 配下にある）
+import sys as _sys
+_sys.path.insert(0, str(ROOT))
+from analyze_keshi import (
+    find_past_races    as _keshi_find_races,
+    collect_horse_data as _keshi_collect_horses,
+    compute_keshi      as _keshi_compute,
+)
 
 VENUE_NAMES = {
     "01": "札幌", "02": "函館", "03": "福島", "04": "新潟",
@@ -42,6 +52,56 @@ _NAR_TRACK: dict[str, str] = {
     "48": "ダート", "50": "ダート", "51": "ダート", "54": "ダート",
     "55": "ダート", "65": "障害",
 }
+
+# ── ⑤照合スコア用: 消し条件関数 (module-level; analyze_keshi と同じキー名を使用) ──
+
+def _kc_finish_ge5(h):   return h.get("prev_finish_pos") is not None and h["prev_finish_pos"] >= 5
+def _kc_finish_ge8(h):   return h.get("prev_finish_pos") is not None and h["prev_finish_pos"] >= 8
+def _kc_pop_ge4(h):      return h.get("prev_popularity") is not None and h["prev_popularity"] >= 4
+def _kc_pop_ge7(h):      return h.get("prev_popularity") is not None and h["prev_popularity"] >= 7
+def _kc_margin_ge15(h):  return h.get("prev_margin") is not None and h["prev_margin"] >= 1.5
+def _kc_margin_ge30(h):  return h.get("prev_margin") is not None and h["prev_margin"] >= 3.0
+def _kc_dart_to_turf(h): return h.get("prev_track_type") == "ダート" and h.get("target_track_type") == "芝"
+def _kc_turf_to_dart(h): return h.get("prev_track_type") == "芝"    and h.get("target_track_type") == "ダート"
+def _kc_shorten_200(h):
+    pd, td = h.get("prev_distance"), h.get("target_distance")
+    return pd is not None and td is not None and (pd - td) >= 200
+def _kc_extend_400(h):
+    pd, td = h.get("prev_distance"), h.get("target_distance")
+    return pd is not None and td is not None and (td - pd) >= 400
+def _kc_interval_90(h):  return h.get("prev_days") is not None and h["prev_days"] >= 90
+def _kc_interval_14(h):  return h.get("prev_days") is not None and 0 < h["prev_days"] <= 14
+def _kc_age_ge8(h):      return h.get("horse_age") is not None and h["horse_age"] >= 8
+def _kc_career_le5(h):   return (h.get("career") or 0) <= 5
+def _kc_grade_not_g1(h): return h.get("prev_grade_code", "") in ("B","C","2","3")
+def _kc_grade_g2(h):     return h.get("prev_grade_code", "") in ("B","2")
+def _kc_grade_tokubetsu(h):
+    gc = h.get("prev_grade_code", "") or ""
+    return gc != "" and gc not in ("A","B","C","D","E","F","1","2","3")
+def _kc_joken(h):
+    return not (h.get("prev_race_name") or "") and not (h.get("prev_grade_code") or "")
+
+_KESHI_CONDITIONS: list[tuple] = [
+    ("前走5着以下",         _kc_finish_ge5),
+    ("前走8着以下",         _kc_finish_ge8),
+    ("前走4番人気以下",     _kc_pop_ge4),
+    ("前走7番人気以下",     _kc_pop_ge7),
+    ("前走1.5馬身以上負け", _kc_margin_ge15),
+    ("前走3馬身以上負け",   _kc_margin_ge30),
+    ("前走ダート→今回芝",  _kc_dart_to_turf),
+    ("前走芝→今回ダート",  _kc_turf_to_dart),
+    ("前走200m以上短縮",   _kc_shorten_200),
+    ("前走400m以上延長",   _kc_extend_400),
+    ("前走90日以上間隔",   _kc_interval_90),
+    ("前走14日以内",       _kc_interval_14),
+    ("8歳以上",            _kc_age_ge8),
+    ("キャリア5戦以内",    _kc_career_le5),
+    ("前走G1以外の重賞",   _kc_grade_not_g1),
+    ("前走G2",             _kc_grade_g2),
+    ("前走特別戦以下",     _kc_grade_tokubetsu),
+    ("前走条件競走",       _kc_joken),
+]
+
 
 @lru_cache(maxsize=256)
 def _get_track_type_cached(venue: str, distance_bucket: int) -> str:
@@ -292,7 +352,115 @@ def get_entries(
 
 # ── 5. 特徴量ビルド ───────────────────────────────────────────────────────────
 
-def _build_features(date: str, venue: str, race_num: str) -> list[dict]:
+def _compute_bias(venue: str, track_type: str, distance: float,
+                  track_condition: str, date: str) -> dict:
+    """10年・同会場・同コース種別・同距離帯(±200m)・同馬場状態での脚質/枠バイアス。
+    N<50は空dict（データ不足）。"""
+    d10yr   = _date_sub(date, 3650)
+    dist_lo = max(0, int(distance) - 200)
+    dist_hi = int(distance) + 200
+
+    with _db() as db:
+        rows = db.execute("""
+            SELECT race_style, gate_num, finish_pos
+            FROM horse_results
+            WHERE venue_code=?
+              AND track_type=?
+              AND distance BETWEEN ? AND ?
+              AND track_condition=?
+              AND race_date BETWEEN ? AND ?
+              AND finish_pos IS NOT NULL AND finish_pos > 0
+              AND race_style IS NOT NULL AND race_style != ''
+        """, (venue, track_type, dist_lo, dist_hi, track_condition, d10yr, date)).fetchall()
+
+    if len(rows) < 50:
+        return {}
+
+    total           = len(rows)
+    avg_place_rate  = sum(1 for r in rows if r["finish_pos"] <= 3) / total
+    style_total:  dict[str, int] = defaultdict(int)
+    style_placed: dict[str, int] = defaultdict(int)
+    gate_total:   dict[str, int] = defaultdict(int)
+    gate_placed:  dict[str, int] = defaultdict(int)
+
+    for r in rows:
+        s = r["race_style"]
+        style_total[s]  += 1
+        style_placed[s] += 1 if r["finish_pos"] <= 3 else 0
+        try:
+            g  = int(r["gate_num"])
+            br = "inner" if g <= 4 else ("middle" if g <= 8 else "outer")
+        except (ValueError, TypeError):
+            br = "middle"
+        gate_total[br]  += 1
+        gate_placed[br] += 1 if r["finish_pos"] <= 3 else 0
+
+    style_bias = {
+        s: (style_placed[s] / style_total[s] - avg_place_rate if style_total[s] > 0 else 0.0)
+        for s in "1234"
+    }
+    gate_bias = {
+        br: (gate_placed[br] / gate_total[br] - avg_place_rate if gate_total[br] > 0 else 0.0)
+        for br in ("inner", "middle", "outer")
+    }
+    return {"style_bias": style_bias, "gate_bias": gate_bias, "n_total": total}
+
+
+@lru_cache(maxsize=64)
+def _keshi_thresholds(toku_race_num: str, date: str) -> tuple:
+    """過去の同名重賞から有効消し条件 (diff_pp≤-6pp, N≥10) をキャッシュして返す。"""
+    if not toku_race_num or toku_race_num == "0000":
+        return ()
+    with _db() as db:
+        past_races = _keshi_find_races(toku_race_num, date, db)
+    if not past_races:
+        return ()
+    with _db() as db:
+        horse_data = _keshi_collect_horses(past_races, db)
+    if not horse_data:
+        return ()
+
+    total      = len(horse_data)
+    placed_n   = sum(1 for h in horse_data if h["placed"])
+    base_rate  = placed_n / total if total else 0.0
+
+    valid: list[tuple] = []
+    for label, fn in _KESHI_CONDITIONS:
+        stats = _keshi_compute(horse_data, fn, label, base_rate)
+        if stats and stats["diff_pp"] <= -6.0 and stats["n"] >= 10:
+            valid.append((label, stats["diff_pp"], stats["n"], fn))
+    return tuple(valid)
+
+
+def _horse_keshi_score(keshi_h: dict, thresholds: tuple) -> int:
+    """
+    有効消し条件を今日の馬に適用してスコアを返す。
+    penalty上限4.0 → score = max(2, round(10 - penalty*2))
+    thresholds が空（非重賞・データなし）= 5点(中立)。
+    """
+    if not thresholds:
+        return 5
+    penalty = 0.0
+    for label, diff_pp, n, fn in thresholds:
+        try:
+            if fn(keshi_h):
+                if diff_pp <= -10.0 and n >= 30:
+                    w = 2.5
+                elif diff_pp <= -10.0:
+                    w = 1.5
+                elif diff_pp <= -6.0 and n >= 20:
+                    w = 1.5
+                else:
+                    w = 0.8
+                penalty += w
+        except Exception:
+            pass
+    penalty = min(penalty, 4.0)
+    return max(2, round(10 - penalty * 2))
+
+
+def _build_features(date: str, venue: str, race_num: str,
+                    track_condition: Optional[str] = None) -> list[dict]:
     d30  = _date_sub(date, 30)
     d60  = _date_sub(date, 60)
     d14  = _date_sub(date, 14)
@@ -304,7 +472,8 @@ def _build_features(date: str, venue: str, race_num: str) -> list[dict]:
         entries = db.execute("""
             SELECT horse_num, gate_num, blood_reg_num, horse_name,
                    horse_age, sex_code, body_weight, jockey_code,
-                   jockey_name, trainer_name, distance, track_type
+                   jockey_name, trainer_name, distance, track_type,
+                   race_name, grade_code
             FROM entries
             WHERE race_date=? AND venue_code=? AND race_num=?
             ORDER BY CAST(horse_num AS INTEGER)
@@ -321,10 +490,43 @@ def _build_features(date: str, venue: str, race_num: str) -> list[dict]:
         _entry_tt = entries[0]["track_type"] if entries[0]["track_type"] else None
         race_track_type = _entry_tt or _get_track_type(venue, entries[0]["distance"])
 
+        # 今回の馬場状態（パラメータ優先、なければDBから取得、デフォルト'良'）
+        if not track_condition:
+            _tc_row = db.execute("""
+                SELECT track_condition FROM horse_results
+                WHERE race_date=? AND venue_code=? AND race_num=?
+                  AND track_condition IS NOT NULL AND track_condition != ''
+                LIMIT 1
+            """, (date, venue, race_num)).fetchone()
+            track_condition = _tc_row["track_condition"] if _tc_row else "良"
+
+        # ⑨ 今回レースの toku_race_num（レース名ベースで検索）
+        # '0000' は「特別競走なし」の JV-Data フィラー値。条件競走は keshi 対象外。
+        _grade = (entries[0]["grade_code"] or "").strip() if entries else ""
+        _race_name_raw = (entries[0]["race_name"] or "").strip() if entries else ""
+        race_toku_num = ""
+        if _grade in ("A","B","C","D","1","2","3") and _race_name_raw:
+            # race_name の先頭語（空白・全角スペース前）を抽出してLIKE検索
+            _rn_clean = _race_name_raw.replace("　", " ")
+            _main_name = _rn_clean.split()[0] if _rn_clean.split() else ""
+            if _main_name:
+                _toku_row = db.execute("""
+                    SELECT toku_race_num FROM horse_results
+                    WHERE (TRIM(race_name) = ? OR race_name LIKE ?)
+                      AND toku_race_num IS NOT NULL
+                      AND toku_race_num != '' AND toku_race_num != '0000'
+                      AND CAST(toku_race_num AS INTEGER) > 0
+                      AND race_date < ?
+                    ORDER BY race_date DESC LIMIT 1
+                """, (_main_name, "%" + _main_name + "%", date)).fetchone()
+                race_toku_num = _toku_row["toku_race_num"] if _toku_row else ""
+
         # ② 各馬の過去成績（直近5年・ORDER BY を Python ソートに移して高速化）
         history = db.execute(f"""
             SELECT blood_reg_num, race_date, venue_code,
-                   finish_pos, agari_3f, corner4, track_type
+                   finish_pos, agari_3f, corner4, track_type,
+                   distance, finish_margin, race_style,
+                   popularity, grade_code, race_name
             FROM horse_results
             WHERE blood_reg_num IN ({ph})
               AND race_date BETWEEN ? AND ?
@@ -383,6 +585,20 @@ def _build_features(date: str, venue: str, race_num: str) -> list[dict]:
             ORDER BY blood_reg_num, training_date DESC
         """, blood_list + [d90]).fetchall()
 
+        # ⑦ 馬場適性: 今回コース種別・今回馬場状態での各馬成績（一括取得）
+        tc_rows_q = db.execute(f"""
+            SELECT blood_reg_num,
+                   SUM(CASE WHEN track_condition=? AND finish_pos > 0 THEN 1 ELSE 0 END) tc_n,
+                   SUM(CASE WHEN track_condition=? AND finish_pos <= 3 THEN 1 ELSE 0 END) tc_placed
+            FROM horse_results
+            WHERE track_type=?
+              AND race_date < ?
+              AND blood_reg_num IN ({ph})
+              AND finish_pos IS NOT NULL
+            GROUP BY blood_reg_num
+        """, [track_condition, track_condition, race_track_type, date] + blood_list).fetchall()
+        tc_map = {r["blood_reg_num"]: (int(r["tc_n"]), int(r["tc_placed"])) for r in tc_rows_q}
+
     # ── インデックス（horse_histは race_date DESC 順でソート）────────────────
     horse_hist: dict[str, list] = defaultdict(list)
     for r in history:
@@ -399,6 +615,16 @@ def _build_features(date: str, venue: str, race_num: str) -> list[dict]:
 
     # 距離（entries から取得）
     entry_dist = _f(entries[0]["distance"])
+
+    # ⑧ トラックバイアス計算（10年・同会場・同コース・同距離帯・同馬場）
+    _bias_data = _compute_bias(
+        venue, race_track_type,
+        entry_dist if np.isfinite(entry_dist) else 1600.0,
+        track_condition, date,
+    )
+
+    # ⑩ 消しデータ閾値（toku_race_num がある重賞のみ; キャッシュ済み）
+    keshi_thresholds = _keshi_thresholds(race_toku_num, date) if race_toku_num else ()
 
     result = []
     for e in entries:
@@ -423,15 +649,14 @@ def _build_features(date: str, venue: str, race_num: str) -> list[dict]:
 
         days_last  = _days_between(date, past[0]["race_date"]) if past else np.nan
 
-        # 同会場成績
-        vp   = [p for p in past if p["venue_code"] == venue]
+        # 同会場・同コース成績
+        vp   = [p for p in past if p["venue_code"] == venue and p["track_type"] == race_track_type]
         vpos = [p["finish_pos"] for p in vp if p["finish_pos"] is not None]
         venue_avg_pos  = float(np.nanmean(vpos)) if vpos else np.nan
         venue_win_rate = (sum(1 for p in vpos if p == 1) / len(vpos)) if vpos else np.nan
 
-        # コース（直近成績から推定、なければ NaN）
-        last_track = next((p["track_type"] for p in past if p["track_type"]), None)
-        track_enc  = _f(TRACK_MAP.get(last_track)) if last_track else np.nan
+        # 今回レースのコース種別（train_lgbm.py の track_type_enc と一致）
+        track_enc  = _f(TRACK_MAP.get(race_track_type))
 
         # コース適性統計（全期間）
         same_track = [p for p in past if p["track_type"] == race_track_type]
@@ -453,6 +678,13 @@ def _build_features(date: str, venue: str, race_num: str) -> list[dict]:
         st_win_rate_5   = (sum(1 for p in stp_list if p == 1) / len(stp_list)) if stp_list else np.nan
         st_avg_agari_5  = float(np.nanmean(sta_f))  if any(np.isfinite(sta_f))  else np.nan
 
+        # 同コース直近1走の距離・着差（度外視判定用）
+        _st0 = same_track[0] if same_track else None
+        st_prev_distance = float(_st0["distance"]) if (_st0 and _st0["distance"]) else np.nan
+        _st0_fm = _st0["finish_margin"] if _st0 else None
+        _st0_lengths, _ = _decode_finish_margin(_st0_fm) if _st0_fm is not None else (None, False)
+        st_prev_margin_lengths = float(_st0_lengths) if _st0_lengths is not None else np.nan
+
         # コース替わりフラグ（前走と今回でtrack_typeが異なれば1）
         prev_track   = next((p["track_type"] for p in past if p["track_type"]), None)
         track_switch = 0.0 if (prev_track and race_track_type and prev_track == race_track_type) else 1.0
@@ -466,6 +698,10 @@ def _build_features(date: str, venue: str, race_num: str) -> list[dict]:
         dart_n   = float(sum(1 for p in past if p["track_type"] == "ダート"))
         turf_place_rate = (sum(1 for p in turf_pos if p <= 3) / len(turf_pos)) if turf_pos else np.nan
         dart_place_rate = (sum(1 for p in dart_pos if p <= 3) / len(dart_pos)) if dart_pos else np.nan
+        turf_win_rate   = (sum(1 for p in turf_pos if p == 1) / len(turf_pos)) if turf_pos else np.nan
+        dart_win_rate   = (sum(1 for p in dart_pos if p == 1) / len(dart_pos)) if dart_pos else np.nan
+        turf_avg_pos    = float(np.nanmean(turf_pos)) if turf_pos else np.nan
+        dart_avg_pos    = float(np.nanmean(dart_pos)) if dart_pos else np.nan
 
         # 騎手統計
         j     = jmap.get(e["jockey_code"])
@@ -496,6 +732,61 @@ def _build_features(date: str, venue: str, race_num: str) -> list[dict]:
         else:
             tr_days = tr_4f = tr_1f = tr_avg14 = np.nan
             tr_sess14 = 0.0
+
+        # ── 馬場適性 ──────────────────────────────────────────────────────────
+        _tc = tc_map.get(blood, (0, 0))
+        tc_n_races  = float(_tc[0])
+        tc_place_rate = (_tc[1] / _tc[0]) if _tc[0] > 0 else np.nan
+
+        # ── 典型脚質（直近5走の最頻値、同数なら最新採用）──────────────────────
+        recent_styles = [p["race_style"] for p in past[:5]
+                         if p["race_style"] and p["race_style"] in "1234"]
+        if recent_styles:
+            _sc = {}
+            for _s in recent_styles:
+                _sc[_s] = _sc.get(_s, 0) + 1
+            _mc = max(_sc.values())
+            typical_style = next(s for s in recent_styles if _sc[s] == _mc)
+        else:
+            typical_style = None
+
+        # ── トラックバイアス ──────────────────────────────────────────────────
+        _sb = _bias_data.get("style_bias", {})
+        _gb = _bias_data.get("gate_bias", {})
+        _bias_style_exc = _sb.get(typical_style, 0.0) if (typical_style and _sb) else np.nan
+        try:
+            _gate_int = int(e["gate_num"] or 0)
+            _br = "inner" if _gate_int <= 4 else ("middle" if _gate_int <= 8 else "outer")
+            _bias_gate_exc  = _gb.get(_br, 0.0) if _gb else np.nan
+        except (ValueError, TypeError):
+            _bias_gate_exc = np.nan
+
+        # ── ⑤ 消し照合スコア（今走の馬に対して適用）────────────────────────
+        _prev = past[0] if past else None
+        _prev_fm_raw = _prev["finish_margin"] if _prev else None
+        _prev_lengths, _ = _decode_finish_margin(_prev_fm_raw) if _prev_fm_raw is not None else (None, False)
+        _prev_popularity = None
+        if _prev and _prev["popularity"] is not None:
+            try: _prev_popularity = int(_prev["popularity"])
+            except (TypeError, ValueError): pass
+        _prev_grade_code = (_prev["grade_code"] or "").strip() if _prev else ""
+        _prev_race_name  = (_prev["race_name"]  or "").strip() if _prev else ""
+
+        keshi_h = {
+            "prev_finish_pos":   int(_prev["finish_pos"]) if _prev else None,
+            "prev_popularity":   _prev_popularity,
+            "prev_margin":       float(_prev_lengths) if _prev_lengths is not None else None,
+            "prev_distance":     int(_prev["distance"]) if (_prev and _prev["distance"] is not None) else None,
+            "prev_track_type":   (_prev["track_type"] or "").strip() if _prev else "",
+            "prev_grade_code":   _prev_grade_code,
+            "prev_race_name":    _prev_race_name,
+            "prev_days":         int(days_last) if np.isfinite(days_last) else None,
+            "horse_age":         int(e["horse_age"]) if e["horse_age"] else None,
+            "career":            n,
+            "target_distance":   int(entry_dist) if np.isfinite(entry_dist) else None,
+            "target_track_type": race_track_type,
+        }
+        keshi_score = _horse_keshi_score(keshi_h, keshi_thresholds)
 
         result.append({
             # meta（モデル特徴量以外）
@@ -554,8 +845,12 @@ def _build_features(date: str, venue: str, race_num: str) -> list[dict]:
             "same_track_avg_agari":  same_track_agari,
             "track_switch":          track_switch,
             "turf_place_rate":       turf_place_rate,
+            "turf_win_rate":         turf_win_rate,
+            "turf_avg_pos":          turf_avg_pos,
             "turf_n_races":          turf_n,
             "dart_place_rate":       dart_place_rate,
+            "dart_win_rate":         dart_win_rate,
+            "dart_avg_pos":          dart_avg_pos,
             "dart_n_races":          dart_n,
             "_race_track_type":      race_track_type,
             # 同コース直近5走（スコア計算に使用）
@@ -566,6 +861,18 @@ def _build_features(date: str, venue: str, race_num: str) -> list[dict]:
             "st_avg_pos_5":   st_avg_pos_5,
             "st_win_rate_5":  st_win_rate_5,
             "st_avg_agari_5": st_avg_agari_5,
+            "st_prev_distance":       st_prev_distance,
+            "st_prev_margin_lengths": st_prev_margin_lengths,
+            # 馬場適性・バイアス（スコア計算用）
+            "tc_n_races":       tc_n_races,
+            "tc_place_rate":    tc_place_rate,
+            "_typical_style":   typical_style or "",
+            "_bias_style_exc":  _bias_style_exc,
+            "_bias_gate_exc":   _bias_gate_exc,
+            "_track_condition": track_condition,
+            "_bias_n_total":    float(_bias_data.get("n_total", 0)),
+            # ⑤ 消し照合スコア（precomputed）
+            "_keshi_score":     keshi_score,
         })
 
     return result
@@ -579,6 +886,7 @@ def get_prediction(
     venue: str = Query(...),
     race:  str = Query(...),
     day_num: Optional[str] = Query(None),
+    track_condition: Optional[str] = Query(default=None),
 ):
     cache_key = f"{date}:{venue}:{race}"
     if cache_key in _prediction_cache:
@@ -587,7 +895,7 @@ def get_prediction(
     if _model is None:
         raise HTTPException(503, "Model not loaded")
 
-    feats = _build_features(date, venue, race)
+    feats = _build_features(date, venue, race, track_condition)
     if not feats:
         raise HTTPException(404, "Race not found or no entries")
 
@@ -700,12 +1008,9 @@ def get_prediction(
 
 
 def _compute_scores(f: dict) -> dict[str, int]:
-    """6項目レーダースコアを計算（各0-10点）。"""
+    """設計書6項目スコア（①〜⑥ 各1-10点、合計60点満点）。"""
     dist       = _f(f.get("distance", np.nan))
-    place_rate = _f(f.get("horse_place_rate_5"))
-    avg_pos    = _f(f.get("horse_avg_pos_5"))
     avg_agari  = _f(f.get("horse_avg_agari_5"))
-    win_rate   = _f(f.get("horse_win_rate_5"))
     n_races    = _f(f.get("horse_n_races", 0))
     v_win_rate = _f(f.get("horse_venue_win_rate"))
     v_avg_pos  = _f(f.get("horse_venue_avg_pos"))
@@ -718,7 +1023,6 @@ def _compute_scores(f: dict) -> dict[str, int]:
     tr_1f      = _f(f.get("tr_1f_last"))
     tr_sess    = _f(f.get("tr_sessions_14d", 0))
 
-    # 同コース直近成績（3戦以上あれば能力・過去スコアに優先使用）
     st_n          = _f(f.get("same_track_n_races", 0))
     st_place_rate = _f(f.get("same_track_place_rate"))
     st_avg_pos    = _f(f.get("st_avg_pos_5"))
@@ -726,77 +1030,122 @@ def _compute_scores(f: dict) -> dict[str, int]:
     st_win_rate   = _f(f.get("st_win_rate_5"))
     use_st = np.isfinite(st_place_rate) and st_n >= 3
 
-    # 能力・過去スコア用: 同コース実績が3戦以上あれば同コース値を優先
-    eff_place = st_place_rate if use_st else place_rate
-    eff_pos   = st_avg_pos    if (use_st and np.isfinite(st_avg_pos))   else avg_pos
+    race_tt = f.get("_race_track_type", "")
+    if race_tt == "芝":
+        fb_place = _f(f.get("turf_place_rate"));  fb_win = _f(f.get("turf_win_rate"));  fb_pos = _f(f.get("turf_avg_pos"))
+    elif race_tt == "ダート":
+        fb_place = _f(f.get("dart_place_rate"));  fb_win = _f(f.get("dart_win_rate"));  fb_pos = _f(f.get("dart_avg_pos"))
+    else:
+        fb_place = _f(f.get("horse_place_rate_5")); fb_win = _f(f.get("horse_win_rate_5")); fb_pos = _f(f.get("horse_avg_pos_5"))
+
+    eff_place = st_place_rate if use_st else fb_place
+    eff_pos   = st_avg_pos    if (use_st and np.isfinite(st_avg_pos))   else fb_pos
     eff_agari = st_avg_agari  if (use_st and np.isfinite(st_avg_agari)) else avg_agari
-    eff_win   = st_win_rate   if (use_st and np.isfinite(st_win_rate))  else win_rate
+    eff_win   = st_win_rate   if (use_st and np.isfinite(st_win_rate))  else fb_win
 
-    def clamp(x: float) -> int:
-        return int(round(float(np.clip(x, 0, 10))))
+    def clamp(x: float, lo: int = 1, hi: int = 10) -> int:
+        return int(round(float(np.clip(x, lo, hi))))
 
-    # 1. 能力（同コース成績優先）
+    # ===========================================================
+    # ① 能力 (1-10): 複勝率×7.0 + 着順ボーナス + 馬場適性delta
+    # win×2.0・agari_bonusは複勝予想では「一発屋」を過剰評価するため除外
+    # ===========================================================
     if np.isfinite(eff_place):
-        s1 = eff_place * 7.0
-        if np.isfinite(eff_pos):
-            s1 += max(0.0, (5.0 - eff_pos) * 0.5)
-        if np.isfinite(eff_agari):
-            s1 += max(0.0, (36.5 - eff_agari) * 0.4)
+        s1 = (
+            eff_place * 7.0
+            + (max(0.0, (5.0 - eff_pos) * 0.5) if np.isfinite(eff_pos) else 0.0)
+        )
         s1 = max(2.0, s1)
     else:
         s1 = 5.0
 
-    # 2. 血統（同コース上がり3Fを適性指標として使用）
-    agari_for_s2 = eff_agari if np.isfinite(eff_agari) else avg_agari
-    if np.isfinite(agari_for_s2) and agari_for_s2 > 20:
-        s2 = max(2.0, min(10.0, (39.0 - agari_for_s2) * 1.5))
+    # 馬場適性 delta（±2）→ ①能力に加算
+    tc_n     = int(_f(f.get("tc_n_races", 0)) or 0)
+    tc_place = _f(f.get("tc_place_rate"))
+    if race_tt == "芝":
+        fb_tc   = _f(f.get("turf_place_rate")); fb_tc_n = int(_f(f.get("turf_n_races", 0)) or 0)
     else:
-        s2 = 5.0
-
-    # 3. レース環境（コース・距離・枠順）
-    if np.isfinite(v_win_rate) and v_races >= 2:
-        s3 = 5.0 + v_win_rate * 5.0
-        if np.isfinite(v_avg_pos):
-            s3 += max(-2.0, (4.0 - v_avg_pos) * 0.5)
-    elif np.isfinite(place_rate):
-        s3 = 3.0 + place_rate * 4.0
+        fb_tc   = _f(f.get("dart_place_rate")); fb_tc_n = int(_f(f.get("dart_n_races", 0)) or 0)
+    if tc_n >= 3 and np.isfinite(tc_place):        ref_tc = tc_place
+    elif fb_tc_n >= 3 and np.isfinite(fb_tc):      ref_tc = fb_tc
+    else:                                           ref_tc = None
+    if ref_tc is not None:
+        if ref_tc >= 0.40:   surface_delta = 2
+        elif ref_tc >= 0.30: surface_delta = 1
+        elif ref_tc >= 0.20: surface_delta = 0
+        elif ref_tc >= 0.10: surface_delta = -1
+        else:                surface_delta = -2
     else:
-        s3 = 5.0
-    if np.isfinite(gate):
-        s3 += 0.5 if gate <= 2 else (-0.5 if gate >= 7 else 0.0)
+        surface_delta = 0
 
-    # 4. 展開予想（脚質・ペース）
-    if np.isfinite(avg_c4) and np.isfinite(starters) and starters > 0:
-        c4_pct = avg_c4 / starters
-        s4 = (3.0 + c4_pct * 7.0) if (np.isfinite(dist) and dist >= 1800) else (10.0 - c4_pct * 7.0)
-    else:
-        s4 = 5.0
-
-    # 5. 過去データ（同コース勝率・複勝率を優先）
-    if np.isfinite(eff_win) and n_races > 0:
-        s5 = max(2.0, min(10.0, eff_win * 10.0 + (eff_place * 2.0 if np.isfinite(eff_place) else 0.0)))
-    else:
-        s5 = 4.0
-
-    # ── 前走大敗ペナルティ ────────────────────────────────────────────────────
-    # 同コース直近1走が大敗の場合、能力・環境・過去スコアを減衰させる
-    # 過去の蓄積実績ではなく「今の状態」を重視するための補正
+    # 前走大敗ペナルティ（同コース直近1走）
     st_pos_1 = _f(f.get("st_pos_1"))
     if np.isfinite(st_pos_1):
-        if st_pos_1 > 12:       # 13着以下：大惨敗
+        if st_pos_1 > 12:
             s1 = max(1.0, s1 * 0.55)
-            s3 = max(2.0, s3 * 0.60)
-            s5 = max(1.0, s5 * 0.45)
-        elif st_pos_1 > 8:      # 9〜12着：大敗
+        elif st_pos_1 > 8:
             s1 = max(1.0, s1 * 0.75)
-            s3 = max(2.0, s3 * 0.80)
-            s5 = max(1.0, s5 * 0.65)
-        elif st_pos_1 > 5:      # 6〜8着：凡走
-            s1 = max(1.0, s1 * 0.88)
-            s3 = max(2.0, s3 * 0.92)
-            s5 = max(1.0, s5 * 0.82)
+        elif st_pos_1 > 5:
+            _prev_dist   = _f(f.get("st_prev_distance"))
+            _prev_margin = _f(f.get("st_prev_margin_lengths"))
+            _cond_a = (np.isfinite(_prev_dist) and abs(_prev_dist - dist) >= 400
+                       and np.isfinite(_prev_margin) and _prev_margin <= 3.0)
+            _cond_b = np.isfinite(_prev_margin) and _prev_margin <= 1.5
+            if not (_cond_a or _cond_b):
+                s1 = max(1.0, s1 * 0.88)
 
-    # 6. 調教（タイム・頻度・直近）
+    s1 = clamp(s1 + surface_delta)
+
+    # ===========================================================
+    # ② 血統 (1-10): 上がり3F代理
+    # ===========================================================
+    agari_for_s2 = eff_agari if np.isfinite(eff_agari) else avg_agari
+    if np.isfinite(agari_for_s2) and agari_for_s2 > 20:
+        s2 = clamp(max(2.0, min(10.0, (39.0 - agari_for_s2) * 1.5)))
+    else:
+        s2 = 5
+
+    # ===========================================================
+    # ③ レース環境 (1-10): (会場実績 + 脚質展開) / 2
+    # ===========================================================
+    if np.isfinite(v_win_rate) and v_races >= 2:
+        s_env = 5.0 + v_win_rate * 5.0
+        if np.isfinite(v_avg_pos):
+            s_env += max(-2.0, (4.0 - v_avg_pos) * 0.5)
+    elif np.isfinite(eff_place):
+        s_env = 3.0 + eff_place * 4.0
+    else:
+        s_env = 5.0
+    if np.isfinite(gate):
+        s_env += 0.5 if gate <= 2 else (-0.5 if gate >= 7 else 0.0)
+
+    if np.isfinite(avg_c4) and np.isfinite(starters) and starters > 0:
+        c4_pct = avg_c4 / starters
+        s_pace = (3.0 + c4_pct * 7.0) if (np.isfinite(dist) and dist >= 1800) else (10.0 - c4_pct * 7.0)
+    else:
+        s_pace = 5.0
+
+    s3 = clamp((s_env + s_pace) / 2)
+
+    # ===========================================================
+    # ④ バイアス (1-9): 0.7*脚質 + 0.3*枠, スケール×15, 中立=5
+    # ===========================================================
+    bias_style_exc = _f(f.get("_bias_style_exc"))
+    bias_gate_exc  = _f(f.get("_bias_gate_exc"))
+    if np.isfinite(bias_style_exc) and np.isfinite(bias_gate_exc):
+        raw_bias = 0.7 * bias_style_exc + 0.3 * bias_gate_exc
+        s4 = int(round(float(np.clip(5.0 + raw_bias * 15, 1, 9))))
+    else:
+        s4 = 5
+
+    # ===========================================================
+    # ⑤ 照合 (2-10): 消しデータ連携（_build_featuresで計算済み）
+    # ===========================================================
+    s5 = max(2, min(10, int(f.get("_keshi_score", 5))))
+
+    # ===========================================================
+    # ⑥ 調教 (1-10): タイム・頻度・直近性
+    # ===========================================================
     s6 = 5.0
     if np.isfinite(tr_4f) and tr_4f > 0:
         s6 = max(2.0, min(10.0, (62.0 - tr_4f) / 1.5))
@@ -809,12 +1158,12 @@ def _compute_scores(f: dict) -> dict[str, int]:
         s6 = min(10.0, s6 + 0.5)
 
     return {
-        "ability":     clamp(s1),
-        "bloodline":   clamp(s2),
-        "environment": clamp(s3),
-        "pace":        clamp(s4),
-        "history":     clamp(s5),
-        "training":    clamp(s6),
+        "ability":     s1,           # ① 能力
+        "bloodline":   s2,           # ② 血統
+        "environment": s3,           # ③ 環境
+        "bias":        s4,           # ④ バイアス
+        "keshi":       s5,           # ⑤ 照合
+        "training":    clamp(s6),    # ⑥ 調教
     }
 
 
@@ -823,8 +1172,8 @@ def _generate_comment(f: dict, scores: dict, track_type: str) -> str:
     ability   = scores["ability"]
     bloodline = scores["bloodline"]
     env       = scores["environment"]
-    pace      = scores["pace"]
-    history   = scores["history"]
+    pace      = scores["environment"]   # ③環境に統合
+    history   = scores["keshi"]         # ⑤照合を代替使用
     training  = scores["training"]
 
     dist       = _f(f.get("distance", np.nan))
@@ -836,7 +1185,7 @@ def _generate_comment(f: dict, scores: dict, track_type: str) -> str:
     avg_c4     = _f(f.get("horse_avg_corner4"))
     starters   = _f(f.get("starters", 10))
     tr_days    = _f(f.get("tr_days_before"))
-    tr_4f      = _f(f.get("tr_4f_time"))
+    tr_4f      = _f(f.get("tr_4f_last"))
     v_win_rate = _f(f.get("horse_venue_win_rate"))
     v_races    = _f(f.get("horse_venue_n_races", 0))
 

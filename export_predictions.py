@@ -235,14 +235,14 @@ def _generate_horse_ai(
         f"レース: {venue_name}競馬場 {distance}m {track_type} {race_name} "
         f"天気:{weather} 馬場:{track_condition}\n\n"
         + "\n\n".join(blocks) + "\n\n"
-        "各10点満点: ability=能力（過去成績・上がり3F）, bloodline=血統（距離・コース適性）, "
-        "environment=環境（コース・天気・枠順）, pace=展開（バイアス・脚質合致）, "
-        "history=過去データ（好走馬特徴合致）, training=調教（タイム・状態）\n\n"
+        "各10点満点: ability=能力（複勝率・着順）, bloodline=血統（距離・コース適性）, "
+        "environment=環境（コース・天気・枠順・展開）, bias=トラックバイアス（脚質×コース傾向）, "
+        "keshi=照合（過去好走馬との類似度）, training=調教（タイム・状態）\n\n"
         "以下のJSON配列のみで回答（説明文不要）:\n"
         "[\n"
         '  {"horse_num": "馬番(文字列)", '
         '"scores": {"ability": 点, "bloodline": 点, "environment": 点, '
-        '"pace": 点, "history": 点, "training": 点}, '
+        '"bias": 点, "keshi": 点, "training": 点}, '
         '"comment": "300字以上（評価点・懸念点・具体的根拠を含む）"},\n'
         "  ...\n"
         "]"
@@ -419,7 +419,7 @@ def _predict_race(
             raw = ai["scores"]
             scores = {
                 k: max(0, min(10, int(raw.get(k, 5) or 5)))
-                for k in ("ability", "bloodline", "environment", "pace", "history", "training")
+                for k in ("ability", "bloodline", "environment", "bias", "keshi", "training")
             }
         else:
             scores = _compute_scores(f)
@@ -620,7 +620,7 @@ def main():
             print(f"【注目馬: {h['horse_name']}（{h['mark']}）】")
             print(
                 f"スコア: 能力{s['ability']} 血統{s['bloodline']} 環境{s['environment']} "
-                f"展開{s['pace']} 過去{s['history']} 調教{s['training']} "
+                f"バイアス{s['bias']} 照合{s['keshi']} 調教{s['training']} "
                 f"= {h['total_score']}点/60点中"
             )
             print(f"\n【解説】\n{h['comment']}")
