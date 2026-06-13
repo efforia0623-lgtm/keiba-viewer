@@ -395,35 +395,74 @@ def get_entries(
 
 def _compute_bias(venue: str, track_type: str, distance: float,
                   track_condition: str, date: str) -> dict:
-    """10年・同会場・同コース・同距離帯(±200m)・同馬場での脚質/枠バイアス(④用)。
-    + 15年・馬場状態問わず での馬番別複勝率(③用)。N<50は空dict。"""
-    d10yr   = _date_sub(date, 3650)
+    """④用: 15年・同会場・同コース・段階フォールバックで脚質/枠バイアスを集計。
+    段階1(±100m+同馬場) → 段階2(±200m+同馬場) → 段階3(±200m+良系/悪系グループ)
+    → 段階4(±200m+馬場問わず) → 段階5(N<50, 空dict)の順で採用。
+    + ③用: 15年・±200m・馬場問わずの馬番別複勝率(ベイズk=30)も同時取得。"""
     d15yr   = _date_sub(date, 5475)
     dist_lo = max(0, int(distance) - 200)
     dist_hi = int(distance) + 200
 
-    with _db() as db:
-        # ④用: 10年・同馬場状態 (脚質/枠ブラケットバイアス)
-        rows = db.execute("""
-            SELECT race_style, gate_num, finish_pos
-            FROM horse_results
-            WHERE venue_code=?
-              AND track_type=?
-              AND distance BETWEEN ? AND ?
-              AND track_condition=?
-              AND race_date BETWEEN ? AND ?
-              AND finish_pos IS NOT NULL AND finish_pos > 0
-              AND race_style IS NOT NULL AND race_style != ''
-        """, (venue, track_type, dist_lo, dist_hi, track_condition, d10yr, date)).fetchall()
+    # 馬場グループ: 良/稍重 系 vs 重/不良 系
+    tc_good = ("良", "稍重")
+    tc_bad  = ("重", "不良")
+    tc_grp  = tc_bad if (track_condition or "") in tc_bad else tc_good
 
-        # ③用: 15年・馬場状態問わず (馬番別複勝率・サンプル確保のため広げる)
+    # ④用フォールバック段階定義 (dist_delta, tc_mode)
+    # tc_mode: "exact"=同馬場, "group"=グループ, "any"=問わず
+    STAGES = [
+        (100, "exact", "1"),
+        (200, "exact", "2"),
+        (200, "group", "3"),
+        (200, "any",   "4"),
+    ]
+
+    def _fetch_bias_rows(dist_delta: int, tc_mode: str):
+        dl = max(0, int(distance) - dist_delta)
+        dh = int(distance) + dist_delta
+        with _db() as db:
+            if tc_mode == "exact":
+                return db.execute("""
+                    SELECT race_style, gate_num, finish_pos
+                    FROM horse_results
+                    WHERE venue_code=? AND track_type=?
+                      AND distance BETWEEN ? AND ?
+                      AND track_condition=?
+                      AND race_date BETWEEN ? AND ?
+                      AND finish_pos IS NOT NULL AND finish_pos > 0
+                      AND race_style IS NOT NULL AND race_style != ''
+                """, (venue, track_type, dl, dh, track_condition, d15yr, date)).fetchall()
+            elif tc_mode == "group":
+                ph = ",".join("?" * len(tc_grp))
+                return db.execute(f"""
+                    SELECT race_style, gate_num, finish_pos
+                    FROM horse_results
+                    WHERE venue_code=? AND track_type=?
+                      AND distance BETWEEN ? AND ?
+                      AND track_condition IN ({ph})
+                      AND race_date BETWEEN ? AND ?
+                      AND finish_pos IS NOT NULL AND finish_pos > 0
+                      AND race_style IS NOT NULL AND race_style != ''
+                """, (venue, track_type, dl, dh, *tc_grp, d15yr, date)).fetchall()
+            else:  # "any"
+                return db.execute("""
+                    SELECT race_style, gate_num, finish_pos
+                    FROM horse_results
+                    WHERE venue_code=? AND track_type=?
+                      AND distance BETWEEN ? AND ?
+                      AND race_date BETWEEN ? AND ?
+                      AND finish_pos IS NOT NULL AND finish_pos > 0
+                      AND race_style IS NOT NULL AND race_style != ''
+                """, (venue, track_type, dl, dh, d15yr, date)).fetchall()
+
+    # ③用: 馬番別複勝率 (15年・±200m・馬場問わず) — 段階に関係なく常に取得
+    with _db() as db:
         gate_rows = db.execute("""
             SELECT CAST(horse_num AS INTEGER) AS hnum,
                    COUNT(*) AS n,
                    SUM(CASE WHEN finish_pos <= 3 THEN 1 ELSE 0 END) AS placed
             FROM horse_results
-            WHERE venue_code=?
-              AND track_type=?
+            WHERE venue_code=? AND track_type=?
               AND distance BETWEEN ? AND ?
               AND race_date BETWEEN ? AND ?
               AND finish_pos IS NOT NULL AND finish_pos > 0
@@ -431,11 +470,42 @@ def _compute_bias(venue: str, track_type: str, distance: float,
             GROUP BY CAST(horse_num AS INTEGER)
         """, (venue, track_type, dist_lo, dist_hi, d15yr, date)).fetchall()
 
-    if len(rows) < 50:
-        return {}
+    # ④フォールバック: N>=50 の最初の段階を採用
+    rows      = []
+    bias_stage = "5"
+    for dist_delta, tc_mode, stage_label in STAGES:
+        candidate = _fetch_bias_rows(dist_delta, tc_mode)
+        if len(candidate) >= 50:
+            rows       = candidate
+            bias_stage = stage_label
+            break
 
-    total           = len(rows)
-    avg_place_rate  = sum(1 for r in rows if r["finish_pos"] <= 3) / total
+    # ③馬番データ: 段階に関係なく常に計算
+    _gn_total = sum(int(r["n"]) for r in gate_rows)
+    _gn_prior = (sum(int(r["placed"]) for r in gate_rows) / _gn_total
+                 if _gn_total > 0 else 0.33)
+    _k = 30
+    horse_num_rates: dict[int, float] = {}
+    for r in gate_rows:
+        try:
+            hn = int(r["hnum"])
+        except (ValueError, TypeError):
+            continue
+        n   = int(r["n"])
+        raw = int(r["placed"]) / n if n > 0 else _gn_prior
+        horse_num_rates[hn] = (n * raw + _k * _gn_prior) / (n + _k)
+
+    if not rows:  # 段階5: ④バイアス集計不能
+        return {
+            "horse_num_rates": horse_num_rates,
+            "horse_num_prior": _gn_prior,
+            "bias_stage":      "5",
+            "n_total":         0,
+        }
+
+    # ④バイアス集計
+    total          = len(rows)
+    avg_place_rate = sum(1 for r in rows if r["finish_pos"] <= 3) / total
     style_total:  dict[str, int] = defaultdict(int)
     style_placed: dict[str, int] = defaultdict(int)
     gate_total:   dict[str, int] = defaultdict(int)
@@ -462,26 +532,12 @@ def _compute_bias(venue: str, track_type: str, distance: float,
         for br in ("inner", "middle", "outer")
     }
 
-    # 馬番別ベイズ平滑化複勝率 (k=30でシュリンク)
-    _gn_total = sum(int(r["n"]) for r in gate_rows)
-    _gn_prior = (sum(int(r["placed"]) for r in gate_rows) / _gn_total
-                 if _gn_total > 0 else avg_place_rate)
-    _k = 30
-    horse_num_rates: dict[int, float] = {}
-    for r in gate_rows:
-        try:
-            hn = int(r["hnum"])
-        except (ValueError, TypeError):
-            continue
-        n   = int(r["n"])
-        raw = int(r["placed"]) / n if n > 0 else _gn_prior
-        horse_num_rates[hn] = (n * raw + _k * _gn_prior) / (n + _k)
-
     return {
         "style_bias":      style_bias,
         "gate_bias":       gate_bias,
         "horse_num_rates": horse_num_rates,
         "horse_num_prior": _gn_prior,
+        "bias_stage":      bias_stage,
         "n_total":         total,
     }
 
@@ -1281,6 +1337,7 @@ def _build_features(date: str, venue: str, race_num: str,
             "_bias_gate_exc":   _bias_gate_exc,
             "_track_condition": track_condition,
             "_bias_n_total":    float(_bias_data.get("n_total", 0)),
+            "_bias_stage":      _bias_data.get("bias_stage", "5"),
             # ③環境: 馬番別ベイズ調整複勝率 (枠番でなく馬番で集計)
             "_horse_num_adj_rate": _bias_data.get("horse_num_rates", {}).get(
                 int(e["horse_num"] or 0) if e["horse_num"] else 0, np.nan),
@@ -1620,11 +1677,17 @@ def _compute_scores(f: dict) -> dict[str, int]:
 
     # ===========================================================
     # ④ バイアス (1-9): 0.7*脚質 + 0.3*枠, スケール×15, 中立=5
+    # 脚質のみ有効な場合も計算可(枠データなしでも脚質だけで評価)
     # ===========================================================
     bias_style_exc = _f(f.get("_bias_style_exc"))
     bias_gate_exc  = _f(f.get("_bias_gate_exc"))
     if np.isfinite(bias_style_exc) and np.isfinite(bias_gate_exc):
         raw_bias = 0.7 * bias_style_exc + 0.3 * bias_gate_exc
+    elif np.isfinite(bias_style_exc):
+        raw_bias = bias_style_exc   # 枠データなし → 脚質のみ
+    else:
+        raw_bias = np.nan
+    if np.isfinite(raw_bias):
         s4 = int(round(float(np.clip(5.0 + raw_bias * 15, 1, 9))))
     else:
         s4 = 5
