@@ -395,13 +395,15 @@ def get_entries(
 
 def _compute_bias(venue: str, track_type: str, distance: float,
                   track_condition: str, date: str) -> dict:
-    """10年・同会場・同コース種別・同距離帯(±200m)・同馬場状態での脚質/枠バイアス。
-    N<50は空dict（データ不足）。"""
+    """10年・同会場・同コース・同距離帯(±200m)・同馬場での脚質/枠バイアス(④用)。
+    + 15年・馬場状態問わず での馬番別複勝率(③用)。N<50は空dict。"""
     d10yr   = _date_sub(date, 3650)
+    d15yr   = _date_sub(date, 5475)
     dist_lo = max(0, int(distance) - 200)
     dist_hi = int(distance) + 200
 
     with _db() as db:
+        # ④用: 10年・同馬場状態 (脚質/枠ブラケットバイアス)
         rows = db.execute("""
             SELECT race_style, gate_num, finish_pos
             FROM horse_results
@@ -413,6 +415,21 @@ def _compute_bias(venue: str, track_type: str, distance: float,
               AND finish_pos IS NOT NULL AND finish_pos > 0
               AND race_style IS NOT NULL AND race_style != ''
         """, (venue, track_type, dist_lo, dist_hi, track_condition, d10yr, date)).fetchall()
+
+        # ③用: 15年・馬場状態問わず (馬番別複勝率・サンプル確保のため広げる)
+        gate_rows = db.execute("""
+            SELECT CAST(horse_num AS INTEGER) AS hnum,
+                   COUNT(*) AS n,
+                   SUM(CASE WHEN finish_pos <= 3 THEN 1 ELSE 0 END) AS placed
+            FROM horse_results
+            WHERE venue_code=?
+              AND track_type=?
+              AND distance BETWEEN ? AND ?
+              AND race_date BETWEEN ? AND ?
+              AND finish_pos IS NOT NULL AND finish_pos > 0
+              AND horse_num IS NOT NULL AND horse_num != ''
+            GROUP BY CAST(horse_num AS INTEGER)
+        """, (venue, track_type, dist_lo, dist_hi, d15yr, date)).fetchall()
 
     if len(rows) < 50:
         return {}
@@ -444,7 +461,29 @@ def _compute_bias(venue: str, track_type: str, distance: float,
         br: (gate_placed[br] / gate_total[br] - avg_place_rate if gate_total[br] > 0 else 0.0)
         for br in ("inner", "middle", "outer")
     }
-    return {"style_bias": style_bias, "gate_bias": gate_bias, "n_total": total}
+
+    # 馬番別ベイズ平滑化複勝率 (k=30でシュリンク)
+    _gn_total = sum(int(r["n"]) for r in gate_rows)
+    _gn_prior = (sum(int(r["placed"]) for r in gate_rows) / _gn_total
+                 if _gn_total > 0 else avg_place_rate)
+    _k = 30
+    horse_num_rates: dict[int, float] = {}
+    for r in gate_rows:
+        try:
+            hn = int(r["hnum"])
+        except (ValueError, TypeError):
+            continue
+        n   = int(r["n"])
+        raw = int(r["placed"]) / n if n > 0 else _gn_prior
+        horse_num_rates[hn] = (n * raw + _k * _gn_prior) / (n + _k)
+
+    return {
+        "style_bias":      style_bias,
+        "gate_bias":       gate_bias,
+        "horse_num_rates": horse_num_rates,
+        "horse_num_prior": _gn_prior,
+        "n_total":         total,
+    }
 
 
 @lru_cache(maxsize=64)
@@ -1242,6 +1281,10 @@ def _build_features(date: str, venue: str, race_num: str,
             "_bias_gate_exc":   _bias_gate_exc,
             "_track_condition": track_condition,
             "_bias_n_total":    float(_bias_data.get("n_total", 0)),
+            # ③環境: 馬番別ベイズ調整複勝率 (枠番でなく馬番で集計)
+            "_horse_num_adj_rate": _bias_data.get("horse_num_rates", {}).get(
+                int(e["horse_num"] or 0) if e["horse_num"] else 0, np.nan),
+            "_horse_num_prior":    float(_bias_data.get("horse_num_prior", np.nan)),
             # ⑤ 消し照合スコア（precomputed）
             "_keshi_score":     keshi_score,
             # ①能力改善δ（_compute_scoresで使用）
@@ -1256,6 +1299,29 @@ def _build_features(date: str, venue: str, race_num: str,
             "_matgf_name":    _mg_nm,
             "_s2_dist_bracket": _today_db,
         })
+
+    # ③環境: メンバー構成から想定ペース判定
+    # 前に行く馬(逃げ=1 + 先行=2)の割合で分類
+    # スタイルデータが出走頭数の50%未満なら判定不能→平均扱い
+    _n_front      = sum(1 for f in result if f.get("_typical_style") in ("1", "2"))
+    _n_with_style = sum(1 for f in result if f.get("_typical_style") in ("1", "2", "3", "4"))
+    _n_total      = len(result)
+    if _n_with_style >= max(2, _n_total // 2):
+        # 出走頭数の半数以上のスタイルが分かる場合のみ判定
+        _front_ratio = _n_front / _n_total
+        if _front_ratio > 0.50:
+            _pace_type = "ハイ"
+        elif _front_ratio < 0.30:
+            _pace_type = "スロー"
+        else:
+            _pace_type = "平均"
+    else:
+        _front_ratio = float(_n_front) / _n_total if _n_total > 0 else 0.0
+        _pace_type   = "平均"  # データ不足 → 中立
+    for f in result:
+        f["_race_pace_type"]   = _pace_type
+        f["_race_front_ratio"] = _front_ratio
+        f["_race_n_front"]     = _n_front
 
     return result
 
@@ -1503,26 +1569,54 @@ def _compute_scores(f: dict) -> dict[str, int]:
     s2 = clamp(s2_bl)
 
     # ===========================================================
-    # ③ レース環境 (1-10): (会場実績 + 脚質展開) / 2
+    # ③ レース環境 (1-10): 4成分加重平均
+    #   会場実績0.30 + 展開適合0.30 + 馬番有利不利0.20 + 馬場状態0.20
     # ===========================================================
+
+    # 成分A: 会場実績 (s_venue)
     if np.isfinite(v_win_rate) and v_races >= 2:
-        s_env = 5.0 + v_win_rate * 5.0
+        s_venue = 5.0 + v_win_rate * 5.0
         if np.isfinite(v_avg_pos):
-            s_env += max(-2.0, (4.0 - v_avg_pos) * 0.5)
+            s_venue += max(-2.0, (4.0 - v_avg_pos) * 0.5)
     elif np.isfinite(eff_place):
-        s_env = 3.0 + eff_place * 4.0
+        s_venue = 3.0 + eff_place * 4.0
     else:
-        s_env = 5.0
-    if np.isfinite(gate):
-        s_env += 0.5 if gate <= 2 else (-0.5 if gate >= 7 else 0.0)
+        s_venue = 5.0
+    s_venue = float(np.clip(s_venue, 1, 10))
 
-    if np.isfinite(avg_c4) and np.isfinite(starters) and starters > 0:
-        c4_pct = avg_c4 / starters
-        s_pace = (3.0 + c4_pct * 7.0) if (np.isfinite(dist) and dist >= 1800) else (10.0 - c4_pct * 7.0)
+    # 成分B: 展開適合 (s_pace_new) — メンバー構成ベース
+    # _race_pace_type は _build_features 末尾で全馬に付与
+    PACE_TABLE: dict[str, dict[str, float]] = {
+        "ハイ":   {"1": 4.0, "2": 4.5, "3": 6.5, "4": 7.0},
+        "スロー": {"1": 7.0, "2": 6.5, "3": 4.5, "4": 4.0},
+        "平均":   {"1": 5.0, "2": 5.5, "3": 5.0, "4": 5.0},
+    }
+    _pace_type  = f.get("_race_pace_type", "平均")
+    _this_style = f.get("_typical_style", "")
+    s_pace_new  = PACE_TABLE.get(_pace_type, PACE_TABLE["平均"]).get(_this_style, 5.0)
+
+    # 成分C: 馬番×コース有利不利 (s_gate_new) — 枠番でなく馬番ベース
+    _gate_adj   = _f(f.get("_horse_num_adj_rate"))
+    _gate_prior = _f(f.get("_horse_num_prior"))
+    if np.isfinite(_gate_adj) and np.isfinite(_gate_prior) and _gate_prior > 0:
+        _gate_dev = _gate_adj - _gate_prior
+        s_gate_new = float(np.clip(5.0 + _gate_dev * 20.0, 1, 10))
     else:
-        s_pace = 5.0
+        s_gate_new = 5.0
 
-    s3 = clamp((s_env + s_pace) / 2)
+    # 成分D: 馬場状態実績 (s_ground)
+    tc_n     = int(_f(f.get("tc_n_races", 0)) or 0)
+    tc_place = _f(f.get("tc_place_rate"))
+    if tc_n >= 3 and np.isfinite(tc_place) and np.isfinite(eff_place):
+        _ground_dev = tc_place - eff_place
+        s_ground = float(np.clip(5.0 + _ground_dev * 10.0, 1, 10))
+    elif tc_n >= 3 and np.isfinite(tc_place):
+        _ground_dev = tc_place - 0.33
+        s_ground = float(np.clip(5.0 + _ground_dev * 8.0, 1, 10))
+    else:
+        s_ground = 5.0
+
+    s3 = clamp(0.30 * s_venue + 0.30 * s_pace_new + 0.20 * s_gate_new + 0.20 * s_ground)
 
     # ===========================================================
     # ④ バイアス (1-9): 0.7*脚質 + 0.3*枠, スケール×15, 中立=5
