@@ -688,7 +688,7 @@ def _build_features(date: str, venue: str, race_num: str,
     d30  = _date_sub(date, 30)
     d60  = _date_sub(date, 60)
     d14  = _date_sub(date, 14)
-    d90  = _date_sub(date, 90)    # 調教データの上限
+    d3yr = _date_sub(date, 1095)  # 調教データの上限（3年、自己比較に使う）
     d5yr = _date_sub(date, 1825)  # 過去成績の上限（5年）
 
     with _db() as db:
@@ -798,16 +798,16 @@ def _build_features(date: str, venue: str, race_num: str,
         else:
             t_rows = []
 
-        # ⑤ 調教データ（直近90日のみ）
-        # idx_tr_blood_date（複合インデックス）で高速化
+        # ⑥ 調教データ（直近3年：自己比較に使う）
         tr_rows = db.execute(f"""
-            SELECT blood_reg_num, training_date, time_4f, time_1f_last
+            SELECT blood_reg_num, training_date, venue_code,
+                   time_4f, time_1f_last, extra_raw
             FROM training
             WHERE blood_reg_num IN ({ph})
               AND training_date >= ?
-              AND time_4f IS NOT NULL
+              AND time_4f IS NOT NULL AND time_4f > 0
             ORDER BY blood_reg_num, training_date DESC
-        """, blood_list + [d90]).fetchall()
+        """, blood_list + [d3yr]).fetchall()
 
         # ⑦ 馬場適性: 今回コース種別・今回馬場状態での各馬成績（一括取得）
         tc_rows_q = db.execute(f"""
@@ -1046,10 +1046,10 @@ def _build_features(date: str, venue: str, race_num: str,
         tw30 = int(t["wins30"]  or 0) if t else 0
         tw60 = int(t["wins60"]  or 0) if t else 0
 
-        # 調教データ
+        # 調教データ（⑥自己比較）
         tr_list = tr_map.get(blood, [])
         if tr_list:
-            latest    = tr_list[0]  # すでに降順ソート済み
+            latest    = tr_list[0]  # 降順ソート済み
             tr_days   = _days_between(date, latest["training_date"])
             tr_4f     = _f(latest["time_4f"])
             tr_1f     = _f(latest["time_1f_last"])
@@ -1057,9 +1057,50 @@ def _build_features(date: str, venue: str, race_num: str,
             valid_4f  = [_f(r["time_4f"]) for r in recent14 if np.isfinite(_f(r["time_4f"]))]
             tr_avg14  = float(np.mean(valid_4f)) if valid_4f else np.nan
             tr_sess14 = float(len(recent14))
+
+            # ⑥ 同コース自己比較: venue+pos[6]をコースグループキーとする
+            _er     = (latest["extra_raw"] or "0000000000")
+            _cp6    = _er[6] if len(_er) >= 7 else "0"
+            _cv     = latest["venue_code"] or "00"
+
+            if _cp6 != "0":
+                # 同コースグループの過去記録（latest除く）
+                _same = [
+                    r for r in tr_list[1:]
+                    if (r["venue_code"] or "00") == _cv
+                    and len(r["extra_raw"] or "") >= 7
+                    and (r["extra_raw"] or "0000000000")[6] == _cp6
+                ]
+                _same_4f = [_f(r["time_4f"]) for r in _same
+                            if np.isfinite(_f(r["time_4f"]))]
+                _same_1f = [_f(r["time_1f_last"]) for r in _same
+                            if np.isfinite(_f(r["time_1f_last"]))]
+                if len(_same_4f) >= 3:
+                    tr_self_n       = len(_same_4f)
+                    tr_self_avg_4f  = float(np.mean(_same_4f))
+                    tr_self_delta_4f = tr_self_avg_4f - tr_4f   # 正=今回が速い
+                    tr_self_avg_1f  = float(np.mean(_same_1f)) if len(_same_1f) >= 3 else np.nan
+                    tr_self_delta_1f = (tr_self_avg_1f - tr_1f
+                                        if np.isfinite(tr_self_avg_1f) and np.isfinite(tr_1f)
+                                        else np.nan)
+                    tr_fallback     = "self"
+                else:
+                    tr_self_n = len(_same_4f)
+                    tr_self_avg_4f = tr_self_delta_4f = np.nan
+                    tr_self_avg_1f = tr_self_delta_1f = np.nan
+                    tr_fallback = "abs"
+            else:
+                tr_self_n = 0
+                tr_self_avg_4f = tr_self_delta_4f = np.nan
+                tr_self_avg_1f = tr_self_delta_1f = np.nan
+                tr_fallback = "abs"
         else:
             tr_days = tr_4f = tr_1f = tr_avg14 = np.nan
             tr_sess14 = 0.0
+            tr_self_n = 0
+            tr_self_avg_4f = tr_self_delta_4f = np.nan
+            tr_self_avg_1f = tr_self_delta_1f = np.nan
+            tr_fallback = "neutral"
 
         # ── 馬場適性 ──────────────────────────────────────────────────────────
         _tc = tc_map.get(blood, (0, 0))
@@ -1305,6 +1346,12 @@ def _build_features(date: str, venue: str, race_num: str,
             "tr_1f_last":      tr_1f,
             "tr_4f_avg14d":    tr_avg14,
             "tr_sessions_14d": tr_sess14,
+            # ⑥ 自己比較フィールド
+            "_tr_self_n":        float(tr_self_n),
+            "_tr_self_avg_4f":   tr_self_avg_4f,
+            "_tr_self_delta_4f": tr_self_delta_4f,
+            "_tr_self_delta_1f": tr_self_delta_1f,
+            "_tr_fallback":      tr_fallback,
             # コース適性（モデル特徴量外・表示/Claude API用）
             "same_track_place_rate": same_track_place,
             "same_track_n_races":    same_track_n,
@@ -1701,16 +1748,40 @@ def _compute_scores(f: dict) -> dict[str, int]:
     s5 = max(2, min(10, int(f.get("_keshi_score", 5))))
 
     # ===========================================================
-    # ⑥ 調教 (1-10): タイム・頻度・直近性
     # ===========================================================
-    s6 = 5.0
-    if np.isfinite(tr_4f) and tr_4f > 0:
-        s6 = max(2.0, min(10.0, (62.0 - tr_4f) / 1.5))
-    if np.isfinite(tr_1f) and tr_1f > 0:
-        s6_1f = max(2.0, min(10.0, (14.5 - tr_1f) * 3.0))
-        s6 = (s6 + s6_1f) / 2.0
+    # ⑥ 調教 (1-10): 同コース自己比較主軸 + 直近性 + 本数
+    # 主パス: 同venue+pos[6]でn>=3 → 自己平均との差でスコア化
+    # フォールバック(abs): 絶対値評価(精度低い→幅を4-6点に狭める)
+    # フォールバック(neutral): データなし → 5.0
+    # 1Fは補助: ±0.3の微調整のみ
+    # ===========================================================
+    tr_self_delta_4f = _f(f.get("_tr_self_delta_4f"))
+    tr_self_delta_1f = _f(f.get("_tr_self_delta_1f"))
+    tr_fallback      = f.get("_tr_fallback", "neutral")
+
+    if tr_fallback == "self" and np.isfinite(tr_self_delta_4f):
+        # 主パス: 自己比較 (range 3-7: ±2点, キャップ±4s)
+        delta_c = float(np.clip(tr_self_delta_4f, -4.0, 4.0))
+        s6 = float(np.clip(5.0 + delta_c * 0.5, 3.0, 7.0))
+        # 1Fラスト補助: ±0.3以内の微調整
+        if np.isfinite(tr_self_delta_1f):
+            adj_1f = float(np.clip(tr_self_delta_1f * 0.3, -0.3, 0.3))
+            s6 = float(np.clip(s6 + adj_1f, 3.0, 7.0))
+    elif tr_fallback == "abs" and np.isfinite(tr_4f) and tr_4f > 0:
+        # 絶対値フォールバック: 精度低いため幅を4-6点に狭める
+        s6_raw = (62.0 - tr_4f) / 6.0  # スケール変更: ±1点/6秒
+        s6 = float(np.clip(5.0 + s6_raw, 4.0, 6.0))
+    else:
+        # データなし: 中立
+        s6 = 5.0
+
+    # 直近性補正 (±0.5以内)
     if np.isfinite(tr_days):
-        s6 = min(10.0, s6 + 0.8) if tr_days <= 7 else (max(0.0, s6 - 0.5) if tr_days > 21 else s6)
+        if tr_days <= 7:
+            s6 = min(10.0, s6 + 0.5)
+        elif tr_days > 21:
+            s6 = max(1.0, s6 - 0.5)
+    # 本数補正 (直近14日)
     if tr_sess >= 3:
         s6 = min(10.0, s6 + 0.5)
 
