@@ -1,0 +1,6207 @@
+{
+  "20260607": {
+    "venues": [
+      {
+        "venue_code": "05",
+        "venue_name": "東京",
+        "races": [
+          {
+            "race_num": "01",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "カゼノオモイデ",
+                "prob": 2.8,
+                "composite_score": 1.132,
+                "model_rank": 16,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 24
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "ハクサンミレイ",
+                "prob": 12.8,
+                "composite_score": 4.704,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 22
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "キタノローズ",
+                "prob": 14.4,
+                "composite_score": 5.503,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 23
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "ユキノサイエンス",
+                "prob": 14.1,
+                "composite_score": 5.625,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 4,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 24
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "カーボフリオ",
+                "prob": 44.1,
+                "composite_score": 24.243,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 8
+                },
+                "total_score": 33
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "ダイユウレゾナンス",
+                "prob": 3.2,
+                "composite_score": 1.376,
+                "model_rank": 15,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 3,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 7
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "エリースノー",
+                "prob": 28.8,
+                "composite_score": 15.363,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 7
+                },
+                "total_score": 32
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "ビリキナータ",
+                "prob": 10.2,
+                "composite_score": 4.59,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 3
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "ルクリーシア",
+                "prob": 9.2,
+                "composite_score": 4.15,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 4
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "アジーザム",
+                "prob": 7.4,
+                "composite_score": 3.569,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 8
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "テンハートビート",
+                "prob": 32.0,
+                "composite_score": 16.01,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "ロンバスブレス",
+                "prob": 25.6,
+                "composite_score": 10.259,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 24
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "パウラメロディーア",
+                "prob": 11.5,
+                "composite_score": 4.792,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "フィーユレアル",
+                "prob": 11.8,
+                "composite_score": 4.728,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 24
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "グラデュエール",
+                "prob": 4.4,
+                "composite_score": 1.914,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 6
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "ペリバジャ",
+                "prob": 3.7,
+                "composite_score": 1.926,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 8
+                },
+                "total_score": 31
+              }
+            ]
+          },
+          {
+            "race_num": "02",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "クリムゾンリーフ",
+                "prob": 52.2,
+                "composite_score": 24.377,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "キョウエイシュバル",
+                "prob": 8.3,
+                "composite_score": 3.339,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 24
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "ホグホグナナハン",
+                "prob": 2.3,
+                "composite_score": 1.067,
+                "model_rank": 16,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "アイムスティルミー",
+                "prob": 17.4,
+                "composite_score": 7.55,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "タートルインメイ",
+                "prob": 11.0,
+                "composite_score": 4.772,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "マスカルポーネ",
+                "prob": 40.3,
+                "composite_score": 18.825,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "ネイティヴプライド",
+                "prob": 22.4,
+                "composite_score": 9.354,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "インナーパッション",
+                "prob": 10.7,
+                "composite_score": 4.818,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "ブルーフレア",
+                "prob": 54.0,
+                "composite_score": 30.574,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 7
+                },
+                "total_score": 34
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "アルティシエル",
+                "prob": 7.6,
+                "composite_score": 3.313,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "ワンダーブリッツ",
+                "prob": 48.0,
+                "composite_score": 26.373,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 8,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 33
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "ロジキセキ",
+                "prob": 7.9,
+                "composite_score": 3.033,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 23
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "マイネルスラーヴァ",
+                "prob": 4.9,
+                "composite_score": 1.789,
+                "model_rank": 15,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 22
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "ウォーレーションズ",
+                "prob": 5.2,
+                "composite_score": 2.174,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "ブラックパロット",
+                "prob": 22.5,
+                "composite_score": 8.999,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 24
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "キタイノホシ",
+                "prob": 38.0,
+                "composite_score": 15.184,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 24
+              }
+            ]
+          },
+          {
+            "race_num": "03",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "レッドリファインド",
+                "prob": 16.1,
+                "composite_score": 7.53,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 3
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "カンフーヒーロー",
+                "prob": 5.9,
+                "composite_score": 2.074,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 21
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "ナンヨーロイヤル",
+                "prob": 5.0,
+                "composite_score": 1.925,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 23
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "レディトゥランブル",
+                "prob": 1.3,
+                "composite_score": 0.461,
+                "model_rank": 16,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 22
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "ピクシーゲイル",
+                "prob": 1.8,
+                "composite_score": 0.668,
+                "model_rank": 15,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 6,
+                  "environment": 4,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 22
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "クワッドマリニン",
+                "prob": 29.1,
+                "composite_score": 16.0,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 7
+                },
+                "total_score": 33
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "ウインビギニング",
+                "prob": 73.3,
+                "composite_score": 42.78,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 10,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 35
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "ブルーアンビエンス",
+                "prob": 2.8,
+                "composite_score": 1.04,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 22
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "ナムラドガ",
+                "prob": 6.4,
+                "composite_score": 2.657,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "ロイヤルタイム",
+                "prob": 6.0,
+                "composite_score": 2.301,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 23
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "ウェスケンジントン",
+                "prob": 14.1,
+                "composite_score": 6.337,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "ハタノグランクリュ",
+                "prob": 2.4,
+                "composite_score": 0.909,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 23
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "シンギュラリティ",
+                "prob": 10.0,
+                "composite_score": 3.51,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 3,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 21
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "ビンバラ",
+                "prob": 26.1,
+                "composite_score": 10.873,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "オーキーベルセルク",
+                "prob": 10.2,
+                "composite_score": 3.751,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 22
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "エターナルホープ",
+                "prob": 55.9,
+                "composite_score": 29.816,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 8,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 32
+              }
+            ]
+          },
+          {
+            "race_num": "04",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "カレリアフレイバー",
+                "prob": 19.6,
+                "composite_score": 8.823,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "サイモンナイスラン",
+                "prob": 2.5,
+                "composite_score": 1.145,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 4,
+                  "environment": 4,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 9
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "コーディアリー",
+                "prob": 23.9,
+                "composite_score": 10.343,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "デルマテイネ",
+                "prob": 1.6,
+                "composite_score": 0.595,
+                "model_rank": 18,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 22
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "ニシノトップダノン",
+                "prob": 14.9,
+                "composite_score": 6.702,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "メイヨシュア",
+                "prob": 2.1,
+                "composite_score": 0.749,
+                "model_rank": 16,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 21
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "セルリア",
+                "prob": 9.5,
+                "composite_score": 4.914,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 9
+                },
+                "total_score": 31
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "ロードクラシコ",
+                "prob": 6.9,
+                "composite_score": 2.859,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "ファイナルフォーム",
+                "prob": 1.7,
+                "composite_score": 0.872,
+                "model_rank": 15,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 7
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "ワイズファミリア",
+                "prob": 37.4,
+                "composite_score": 22.416,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 9,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 36
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "バトルモクオ",
+                "prob": 1.6,
+                "composite_score": 0.604,
+                "model_rank": 17,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 23
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "ショウナンサイオウ",
+                "prob": 29.1,
+                "composite_score": 14.564,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 4
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "コスモマウイ",
+                "prob": 10.2,
+                "composite_score": 4.265,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "エナノムスメ",
+                "prob": 6.5,
+                "composite_score": 3.046,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 7
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "クールフィデル",
+                "prob": 40.0,
+                "composite_score": 21.995,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 6,
+                  "environment": 7,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 33
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "バンオンタイム",
+                "prob": 58.6,
+                "composite_score": 34.178,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 10,
+                  "bloodline": 6,
+                  "environment": 7,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 35
+              },
+              {
+                "horse_num": "17",
+                "horse_name": "ルモンテ",
+                "prob": 20.2,
+                "composite_score": 7.075,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 21
+              },
+              {
+                "horse_num": "18",
+                "horse_name": "アグネスブリッツ",
+                "prob": 15.8,
+                "composite_score": 6.855,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 26
+              }
+            ]
+          },
+          {
+            "race_num": "05",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "セイルトゥグローリ",
+                "prob": 21.6,
+                "composite_score": 10.434,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 6
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "ジョドレルバンク",
+                "prob": 49.6,
+                "composite_score": 22.311,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 4
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "サノノキセキ",
+                "prob": 21.1,
+                "composite_score": 9.122,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "レオンティウス",
+                "prob": 22.0,
+                "composite_score": 9.167,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "セイウンオオゾラ",
+                "prob": 13.5,
+                "composite_score": 5.622,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "ジュンヴォルティス",
+                "prob": 27.0,
+                "composite_score": 13.502,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 7
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "シアルナーレ",
+                "prob": 25.4,
+                "composite_score": 11.871,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "ヴィラーニ",
+                "prob": 30.3,
+                "composite_score": 14.654,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "ヴェントリナ",
+                "prob": 25.4,
+                "composite_score": 10.59,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "マテンロウアルカナ",
+                "prob": 20.5,
+                "composite_score": 9.921,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              }
+            ]
+          },
+          {
+            "race_num": "06",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "エクスプレスナイト",
+                "prob": 7.4,
+                "composite_score": 2.843,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 23
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "ダイユウサルターレ",
+                "prob": 10.4,
+                "composite_score": 4.319,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "ヴェロシスタ",
+                "prob": 13.7,
+                "composite_score": 5.249,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 23
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "フェイスリフト",
+                "prob": 57.0,
+                "composite_score": 33.224,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 9,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 35
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "スカット",
+                "prob": 23.7,
+                "composite_score": 10.646,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "グランフォワイエ",
+                "prob": 1.8,
+                "composite_score": 0.693,
+                "model_rank": 16,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 4,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 23
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "ニシノランペイジ",
+                "prob": 16.4,
+                "composite_score": 5.738,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 21
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "コウソクルリアン",
+                "prob": 42.8,
+                "composite_score": 24.973,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 6
+                },
+                "total_score": 35
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "ヴィスクレス",
+                "prob": 50.0,
+                "composite_score": 25.021,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "フィールマイプラン",
+                "prob": 47.1,
+                "composite_score": 19.643,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "ニシノギャルズ",
+                "prob": 14.5,
+                "composite_score": 6.522,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "チェストー",
+                "prob": 16.3,
+                "composite_score": 6.534,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 24
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "シュンポシオン",
+                "prob": 1.9,
+                "composite_score": 0.739,
+                "model_rank": 15,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 6,
+                  "environment": 4,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 23
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "カフェプラウド",
+                "prob": 5.4,
+                "composite_score": 1.987,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 6,
+                  "environment": 3,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 22
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "ウィゾマニア",
+                "prob": 7.4,
+                "composite_score": 2.604,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 3,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 21
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "ホウオウデンファレ",
+                "prob": 11.1,
+                "composite_score": 4.256,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 23
+              }
+            ]
+          },
+          {
+            "race_num": "07",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "ビルバンテ",
+                "prob": 11.4,
+                "composite_score": 5.301,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "メーゼ",
+                "prob": 16.6,
+                "composite_score": 7.201,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "カフェブーケット",
+                "prob": 5.1,
+                "composite_score": 1.972,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 23
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "タイキブリッツェン",
+                "prob": 32.3,
+                "composite_score": 16.692,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 6,
+                  "environment": 7,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 31
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "エスシーレイジュ",
+                "prob": 9.4,
+                "composite_score": 3.447,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 22
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "リッチハンター",
+                "prob": 4.4,
+                "composite_score": 1.692,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 23
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "パータリプトラ",
+                "prob": 12.6,
+                "composite_score": 5.456,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 4,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "ベアハンドキャッチ",
+                "prob": 18.0,
+                "composite_score": 8.1,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "フォースミラクル",
+                "prob": 41.5,
+                "composite_score": 20.059,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "サイモンカーチス",
+                "prob": 2.3,
+                "composite_score": 0.866,
+                "model_rank": 16,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 23
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "ピクラリーダ",
+                "prob": 3.2,
+                "composite_score": 1.523,
+                "model_rank": 15,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 7
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "モティスフォント",
+                "prob": 10.9,
+                "composite_score": 4.908,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "ジャスフォール",
+                "prob": 9.3,
+                "composite_score": 4.362,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "シュヴァルツシルト",
+                "prob": 28.7,
+                "composite_score": 16.724,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 9,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 35
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "ガンバレベアー",
+                "prob": 14.8,
+                "composite_score": 6.653,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "ブリックンクリック",
+                "prob": 25.2,
+                "composite_score": 10.911,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 26
+              }
+            ]
+          },
+          {
+            "race_num": "08",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "カズノダイジョウ",
+                "prob": 34.8,
+                "composite_score": 18.546,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 32
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "デスサイズ",
+                "prob": 19.0,
+                "composite_score": 9.202,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 7,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "スワローシチー",
+                "prob": 11.8,
+                "composite_score": 5.312,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "オメガストリーム",
+                "prob": 2.0,
+                "composite_score": 0.732,
+                "model_rank": 17,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 22
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "コンヴァージョン",
+                "prob": 12.1,
+                "composite_score": 5.251,
+                "model_rank": 15,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "サトノラポール",
+                "prob": 13.6,
+                "composite_score": 6.104,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "ダイヤテソーロ",
+                "prob": 21.5,
+                "composite_score": 9.3,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "タイセイフレッサ",
+                "prob": 33.8,
+                "composite_score": 18.598,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 6,
+                  "environment": 7,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 3
+                },
+                "total_score": 33
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "リネンタイリン",
+                "prob": 6.9,
+                "composite_score": 3.0,
+                "model_rank": 16,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "アラスカフレイバー",
+                "prob": 21.3,
+                "composite_score": 9.241,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "イージーブリージー",
+                "prob": 13.8,
+                "composite_score": 6.229,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "ゴディアーモ",
+                "prob": 33.1,
+                "composite_score": 14.894,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "アンソニー",
+                "prob": 15.5,
+                "composite_score": 8.807,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 9,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 34
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "ナルキッソス",
+                "prob": 14.6,
+                "composite_score": 7.066,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "ツインピークス",
+                "prob": 14.7,
+                "composite_score": 6.144,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "ソニックライン",
+                "prob": 31.6,
+                "composite_score": 16.837,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 8,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 32
+              },
+              {
+                "horse_num": "17",
+                "horse_name": "ゴールドシーン",
+                "prob": 26.6,
+                "composite_score": 12.849,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 29
+              }
+            ]
+          },
+          {
+            "race_num": "09",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "コンフォルツァ",
+                "prob": 65.0,
+                "composite_score": 40.094,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 8,
+                  "bloodline": 6,
+                  "environment": 8,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 37
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "ズイウンゴサイ",
+                "prob": 39.1,
+                "composite_score": 21.481,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 8,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 8
+                },
+                "total_score": 33
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "クロシェットノエル",
+                "prob": 46.3,
+                "composite_score": 28.569,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 5,
+                  "environment": 8,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 8
+                },
+                "total_score": 37
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "エボルヴィング",
+                "prob": 33.7,
+                "composite_score": 18.545,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 33
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "マイネルアレス",
+                "prob": 45.1,
+                "composite_score": 22.57,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "ゴーラッキー",
+                "prob": 68.4,
+                "composite_score": 41.023,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 9,
+                  "bloodline": 6,
+                  "environment": 9,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 36
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "ビーオンザカバー",
+                "prob": 67.9,
+                "composite_score": 33.958,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "サラスヴァティー",
+                "prob": 71.1,
+                "composite_score": 40.271,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 10,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 34
+              }
+            ]
+          },
+          {
+            "race_num": "10",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "リリージェーン",
+                "prob": 6.7,
+                "composite_score": 2.915,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "フクチャントウメイ",
+                "prob": 2.3,
+                "composite_score": 0.972,
+                "model_rank": 16,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "エムティエスターテ",
+                "prob": 24.1,
+                "composite_score": 13.259,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 5,
+                  "environment": 8,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 33
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "メッエフアパラ",
+                "prob": 11.9,
+                "composite_score": 5.146,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "ケープアグラス",
+                "prob": 10.0,
+                "composite_score": 3.98,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 24
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "ポッドベル",
+                "prob": 41.8,
+                "composite_score": 22.972,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 8,
+                  "bloodline": 6,
+                  "environment": 7,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 33
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "シホノペルフェット",
+                "prob": 5.8,
+                "composite_score": 2.629,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "レイアポポ",
+                "prob": 24.8,
+                "composite_score": 10.748,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "レヴィテーション",
+                "prob": 3.9,
+                "composite_score": 1.643,
+                "model_rank": 15,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "マジッククッキー",
+                "prob": 50.2,
+                "composite_score": 29.266,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 8,
+                  "bloodline": 5,
+                  "environment": 8,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 4
+                },
+                "total_score": 35
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "クインズシフォン",
+                "prob": 24.3,
+                "composite_score": 14.179,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 9
+                },
+                "total_score": 35
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "ミスエル",
+                "prob": 17.9,
+                "composite_score": 9.552,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 8
+                },
+                "total_score": 32
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "キョウエイカンセ",
+                "prob": 19.5,
+                "composite_score": 7.781,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 4,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 24
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "ホウオウプレミア",
+                "prob": 27.2,
+                "composite_score": 11.771,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "プチブール",
+                "prob": 33.1,
+                "composite_score": 15.448,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "ライジンマル",
+                "prob": 15.0,
+                "composite_score": 8.739,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 7
+                },
+                "total_score": 35
+              }
+            ]
+          },
+          {
+            "race_num": "11",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "レーベンスティール",
+                "prob": 23.6,
+                "composite_score": 14.961,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 8,
+                  "bloodline": 7,
+                  "environment": 8,
+                  "bias": 6,
+                  "keshi": 7,
+                  "training": 2
+                },
+                "total_score": 38
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "ロングラン",
+                "prob": 2.6,
+                "composite_score": 1.039,
+                "model_rank": 17,
+                "mark": "",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 2,
+                  "training": 2
+                },
+                "total_score": 24
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "オフトレイル",
+                "prob": 11.8,
+                "composite_score": 8.294,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 8,
+                  "bloodline": 9,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 10,
+                  "training": 5
+                },
+                "total_score": 42
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "シックスペンス",
+                "prob": 15.4,
+                "composite_score": 9.98,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 7,
+                  "environment": 7,
+                  "bias": 6,
+                  "keshi": 7,
+                  "training": 5
+                },
+                "total_score": 39
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "サクラトゥジュール",
+                "prob": 4.0,
+                "composite_score": 1.72,
+                "model_rank": 16,
+                "mark": "",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 2,
+                  "training": 2
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "ステレンボッシュ",
+                "prob": 34.4,
+                "composite_score": 21.802,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 8,
+                  "bloodline": 7,
+                  "environment": 7,
+                  "bias": 5,
+                  "keshi": 7,
+                  "training": 4
+                },
+                "total_score": 38
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "スズハローム",
+                "prob": 13.5,
+                "composite_score": 6.062,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 4,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 2,
+                  "training": 5
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "シャンパンカラー",
+                "prob": 12.2,
+                "composite_score": 4.675,
+                "model_rank": 15,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 2,
+                  "training": 2
+                },
+                "total_score": 23
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "ウォーターリヒト",
+                "prob": 16.9,
+                "composite_score": 9.008,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 4,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 7,
+                  "training": 5
+                },
+                "total_score": 32
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "ルクソールカフェ",
+                "prob": 18.2,
+                "composite_score": 8.509,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 7,
+                  "bias": 6,
+                  "keshi": 4,
+                  "training": 2
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "ワールズエンド",
+                "prob": 29.9,
+                "composite_score": 21.919,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 10,
+                  "bloodline": 6,
+                  "environment": 7,
+                  "bias": 6,
+                  "keshi": 10,
+                  "training": 5
+                },
+                "total_score": 44
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "シリウスコルト",
+                "prob": 17.1,
+                "composite_score": 7.114,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 2,
+                  "training": 2
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "セイウンハーデス",
+                "prob": 10.1,
+                "composite_score": 5.198,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 6,
+                  "environment": 7,
+                  "bias": 6,
+                  "keshi": 2,
+                  "training": 5
+                },
+                "total_score": 31
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "ガイアフォース",
+                "prob": 25.6,
+                "composite_score": 16.608,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 8,
+                  "bloodline": 6,
+                  "environment": 7,
+                  "bias": 6,
+                  "keshi": 7,
+                  "training": 5
+                },
+                "total_score": 39
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "ドラゴンブースト",
+                "prob": 27.8,
+                "composite_score": 12.965,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 4,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 2,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "パンジャタワー",
+                "prob": 37.5,
+                "composite_score": 26.908,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 8,
+                  "bloodline": 6,
+                  "environment": 9,
+                  "bias": 5,
+                  "keshi": 10,
+                  "training": 5
+                },
+                "total_score": 43
+              },
+              {
+                "horse_num": "17",
+                "horse_name": "トロヴァトーレ",
+                "prob": 38.7,
+                "composite_score": 28.995,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 9,
+                  "bloodline": 9,
+                  "environment": 7,
+                  "bias": 5,
+                  "keshi": 10,
+                  "training": 5
+                },
+                "total_score": 45
+              }
+            ]
+          },
+          {
+            "race_num": "12",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "テンカムテキ",
+                "prob": 25.6,
+                "composite_score": 15.805,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 10,
+                  "bloodline": 6,
+                  "environment": 8,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 37
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "トーホウキザン",
+                "prob": 3.1,
+                "composite_score": 1.298,
+                "model_rank": 15,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "エンファサイズ",
+                "prob": 6.3,
+                "composite_score": 3.069,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 7
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "フィーチャリング",
+                "prob": 17.4,
+                "composite_score": 8.699,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 3
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "コパノエビータ",
+                "prob": 6.8,
+                "composite_score": 2.96,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "トラヴェリンバンド",
+                "prob": 30.8,
+                "composite_score": 17.94,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 35
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "グレイスザクラウン",
+                "prob": 6.6,
+                "composite_score": 2.647,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 4
+                },
+                "total_score": 24
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "セントラルヴァレー",
+                "prob": 33.5,
+                "composite_score": 17.889,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 6,
+                  "environment": 7,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 32
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "アースイオス",
+                "prob": 1.6,
+                "composite_score": 0.605,
+                "model_rank": 16,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 23
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "マクリール",
+                "prob": 58.9,
+                "composite_score": 35.364,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 10,
+                  "bloodline": 5,
+                  "environment": 8,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 36
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "ホウキボシ",
+                "prob": 24.3,
+                "composite_score": 12.54,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 31
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "パイシャオピン",
+                "prob": 59.2,
+                "composite_score": 29.599,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "ベラジオワールド",
+                "prob": 49.7,
+                "composite_score": 29.839,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 10,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 4
+                },
+                "total_score": 36
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "リベッチオ",
+                "prob": 27.9,
+                "composite_score": 17.223,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 6,
+                  "environment": 7,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 37
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "アスゴッド",
+                "prob": 9.5,
+                "composite_score": 4.931,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 31
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "ヘリオトロープ",
+                "prob": 55.9,
+                "composite_score": 38.223,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 10,
+                  "bloodline": 6,
+                  "environment": 8,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 6
+                },
+                "total_score": 41
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "venue_code": "09",
+        "venue_name": "阪神",
+        "races": [
+          {
+            "race_num": "01",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "オーサムデアラー",
+                "prob": 5.2,
+                "composite_score": 2.16,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "アルヴィア",
+                "prob": 30.2,
+                "composite_score": 12.091,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 24
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "セイフウサツキ",
+                "prob": 24.5,
+                "composite_score": 11.858,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "テンカオーライ",
+                "prob": 2.0,
+                "composite_score": 0.865,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "ロードオールライト",
+                "prob": 12.4,
+                "composite_score": 5.569,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "オリンポスカズマ",
+                "prob": 5.4,
+                "composite_score": 2.356,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "ゴールデンルーキー",
+                "prob": 8.0,
+                "composite_score": 3.071,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 23
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "コトブキヘスペラス",
+                "prob": 2.9,
+                "composite_score": 1.266,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "クリアクォーツ",
+                "prob": 6.1,
+                "composite_score": 2.433,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 24
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "フォーディアライフ",
+                "prob": 33.1,
+                "composite_score": 12.686,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 23
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "イモータルバード",
+                "prob": 3.7,
+                "composite_score": 1.537,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "アクロスザリバー",
+                "prob": 1.3,
+                "composite_score": 0.506,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 24
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "モズナイスバディー",
+                "prob": 3.1,
+                "composite_score": 1.394,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "スペイドアン",
+                "prob": 11.2,
+                "composite_score": 5.593,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 6
+                },
+                "total_score": 30
+              }
+            ]
+          },
+          {
+            "race_num": "02",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "カスタニッチャ",
+                "prob": 5.5,
+                "composite_score": 2.453,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "ポリキポリキ",
+                "prob": 4.3,
+                "composite_score": 1.808,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "ウィスカーパッド",
+                "prob": 33.5,
+                "composite_score": 16.759,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "カヴァティーナ",
+                "prob": 6.4,
+                "composite_score": 2.647,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "ジーティーメティオ",
+                "prob": 31.0,
+                "composite_score": 15.487,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "レーヴドリュヌ",
+                "prob": 5.0,
+                "composite_score": 2.231,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "トラカイキャッスル",
+                "prob": 20.3,
+                "composite_score": 9.127,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "キーテーマ",
+                "prob": 15.8,
+                "composite_score": 7.388,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "メイショウプレマ",
+                "prob": 40.8,
+                "composite_score": 19.038,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "サリエンテ",
+                "prob": 40.2,
+                "composite_score": 25.484,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 10,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 38
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "ルージュマデイラ",
+                "prob": 14.8,
+                "composite_score": 6.918,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "ライツェントライゼ",
+                "prob": 44.0,
+                "composite_score": 24.197,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 33
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "レディアグレッサー",
+                "prob": 4.9,
+                "composite_score": 2.212,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "サンタカリス",
+                "prob": 2.9,
+                "composite_score": 1.252,
+                "model_rank": 15,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "クロスボーダー",
+                "prob": 31.9,
+                "composite_score": 13.3,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 25
+              }
+            ]
+          },
+          {
+            "race_num": "03",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "バーバラップ",
+                "prob": 5.0,
+                "composite_score": 2.398,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "ロードヴェリタス",
+                "prob": 43.6,
+                "composite_score": 23.99,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 33
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "ロスニーニョス",
+                "prob": 10.2,
+                "composite_score": 5.077,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "ウルトラハート",
+                "prob": 40.2,
+                "composite_score": 23.464,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 35
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "ダイメイクマモト",
+                "prob": 39.8,
+                "composite_score": 22.526,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 34
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "リバーソニック",
+                "prob": 38.5,
+                "composite_score": 20.524,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 32
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "ボクサークラブ",
+                "prob": 14.9,
+                "composite_score": 7.209,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "シエルブリエ",
+                "prob": 2.7,
+                "composite_score": 1.143,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "オセアスターライト",
+                "prob": 2.5,
+                "composite_score": 1.03,
+                "model_rank": 15,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "スマイルガルーダ",
+                "prob": 4.7,
+                "composite_score": 2.27,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "セキゾウ",
+                "prob": 6.5,
+                "composite_score": 3.014,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "ウェイヴムーン",
+                "prob": 21.7,
+                "composite_score": 9.044,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 6,
+                  "environment": 4,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "マーゴットデウス",
+                "prob": 4.1,
+                "composite_score": 1.689,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "ジョイフルサンデー",
+                "prob": 1.5,
+                "composite_score": 0.671,
+                "model_rank": 16,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "シャインヴィーラ",
+                "prob": 4.0,
+                "composite_score": 1.889,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "スリーケイ",
+                "prob": 3.1,
+                "composite_score": 1.274,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 25
+              }
+            ]
+          },
+          {
+            "race_num": "04",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "アンリミテッド",
+                "prob": 20.7,
+                "composite_score": 11.358,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 33
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "メイショウタダツグ",
+                "prob": 4.0,
+                "composite_score": 1.999,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "ビッグヒーロー",
+                "prob": 46.5,
+                "composite_score": 24.011,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 31
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "ヴァンロゼ",
+                "prob": 2.8,
+                "composite_score": 1.111,
+                "model_rank": 15,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 6,
+                  "environment": 4,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 24
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "シュネープリンセス",
+                "prob": 6.1,
+                "composite_score": 2.343,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 23
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "イクヒロ",
+                "prob": 2.3,
+                "composite_score": 1.049,
+                "model_rank": 16,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "モズジェネラル",
+                "prob": 27.7,
+                "composite_score": 12.915,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "ゼルダ",
+                "prob": 27.9,
+                "composite_score": 13.971,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "ヒルノジェノヴァ",
+                "prob": 9.0,
+                "composite_score": 3.767,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "レッドピアレス",
+                "prob": 4.1,
+                "composite_score": 1.933,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "ピゲ",
+                "prob": 3.4,
+                "composite_score": 1.456,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "メイショウナナユキ",
+                "prob": 44.6,
+                "composite_score": 21.565,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "ワンダーリュクス",
+                "prob": 4.0,
+                "composite_score": 1.889,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "ココプレミア",
+                "prob": 3.8,
+                "composite_score": 1.896,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "サマーブリザード",
+                "prob": 7.0,
+                "composite_score": 3.035,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "ロードインヴォーグ",
+                "prob": 16.5,
+                "composite_score": 7.139,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 26
+              }
+            ]
+          },
+          {
+            "race_num": "05",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "クリコキアナ",
+                "prob": 11.0,
+                "composite_score": 5.137,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "レッドネビュラ",
+                "prob": 17.2,
+                "composite_score": 8.018,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "イザベル",
+                "prob": 18.1,
+                "composite_score": 8.467,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "ニシノフランケン",
+                "prob": 11.5,
+                "composite_score": 5.569,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "ビスケットサンド",
+                "prob": 15.5,
+                "composite_score": 7.227,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "ランダムナンバー",
+                "prob": 8.7,
+                "composite_score": 4.056,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "サンシルヴァリー",
+                "prob": 10.3,
+                "composite_score": 4.808,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "スピークロウ",
+                "prob": 29.2,
+                "composite_score": 13.617,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "レゾルーティオ",
+                "prob": 33.0,
+                "composite_score": 15.413,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "シスキンブルーム",
+                "prob": 12.6,
+                "composite_score": 5.863,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "スピーディスピン",
+                "prob": 13.4,
+                "composite_score": 6.468,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              }
+            ]
+          },
+          {
+            "race_num": "06",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "プリュイドール",
+                "prob": 9.4,
+                "composite_score": 4.522,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "ハナコトバ",
+                "prob": 14.8,
+                "composite_score": 7.147,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "クリムゾンバースト",
+                "prob": 8.3,
+                "composite_score": 3.728,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "エースフライト",
+                "prob": 13.4,
+                "composite_score": 6.249,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 6,
+                  "environment": 4,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "ペガサスジルシ",
+                "prob": 50.5,
+                "composite_score": 28.597,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 34
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "アリュウ",
+                "prob": 6.7,
+                "composite_score": 2.903,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "ラッキーシグネチャ",
+                "prob": 1.5,
+                "composite_score": 0.687,
+                "model_rank": 15,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 6,
+                  "environment": 7,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "アスクウルトラモア",
+                "prob": 1.6,
+                "composite_score": 0.678,
+                "model_rank": 16,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "シャイニーデイ",
+                "prob": 2.2,
+                "composite_score": 1.027,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "レイワノキセキ",
+                "prob": 13.0,
+                "composite_score": 5.853,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "ビップヴォルフ",
+                "prob": 25.1,
+                "composite_score": 12.535,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "チュオンソン",
+                "prob": 3.4,
+                "composite_score": 1.589,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "ショウナンアンバー",
+                "prob": 3.7,
+                "composite_score": 1.676,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "テイクザスローン",
+                "prob": 8.9,
+                "composite_score": 3.863,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 4,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "フレアオブセンス",
+                "prob": 55.8,
+                "composite_score": 29.774,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 6,
+                  "environment": 4,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 32
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "シェーネエルデ",
+                "prob": 10.4,
+                "composite_score": 4.498,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 26
+              }
+            ]
+          },
+          {
+            "race_num": "07",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "ブラックドレス",
+                "prob": 4.4,
+                "composite_score": 2.056,
+                "model_rank": 16,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "グロリアス",
+                "prob": 20.5,
+                "composite_score": 11.636,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 34
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "ルージュビバーチェ",
+                "prob": 18.7,
+                "composite_score": 9.644,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 31
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "クレマチス",
+                "prob": 19.2,
+                "composite_score": 10.228,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 32
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "リアンドゥクール",
+                "prob": 24.7,
+                "composite_score": 13.174,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 32
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "オラヴィンリンナ",
+                "prob": 14.8,
+                "composite_score": 6.894,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "コンテナライン",
+                "prob": 10.3,
+                "composite_score": 4.307,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "ケイツーリーブル",
+                "prob": 49.0,
+                "composite_score": 26.929,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 7
+                },
+                "total_score": 33
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "クイーンズドリーム",
+                "prob": 14.9,
+                "composite_score": 6.691,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "エコロストーム",
+                "prob": 14.9,
+                "composite_score": 6.701,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "ミルボナー",
+                "prob": 26.7,
+                "composite_score": 16.901,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 10,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 38
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "ヴェントステラーレ",
+                "prob": 6.7,
+                "composite_score": 2.778,
+                "model_rank": 15,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "ザラタン",
+                "prob": 24.5,
+                "composite_score": 11.841,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "セレーノ",
+                "prob": 16.6,
+                "composite_score": 8.032,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "ハッピーラブソング",
+                "prob": 19.2,
+                "composite_score": 10.876,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 9,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 34
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "アロマフェリス",
+                "prob": 48.2,
+                "composite_score": 32.151,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 10,
+                  "bloodline": 6,
+                  "environment": 7,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 40
+              }
+            ]
+          },
+          {
+            "race_num": "08",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "ニシノサリーナ",
+                "prob": 8.9,
+                "composite_score": 4.916,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 33
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "ゴコウサス",
+                "prob": 6.1,
+                "composite_score": 2.748,
+                "model_rank": 15,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "トモジャプレジール",
+                "prob": 21.8,
+                "composite_score": 9.457,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "オドラニャソンソン",
+                "prob": 4.8,
+                "composite_score": 2.003,
+                "model_rank": 17,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 25
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "グレースジェンヌ",
+                "prob": 8.1,
+                "composite_score": 3.9,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "ダンデノン",
+                "prob": 24.8,
+                "composite_score": 13.653,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 33
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "サリュエ",
+                "prob": 28.0,
+                "composite_score": 14.933,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 32
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "シュネーグロッケン",
+                "prob": 5.2,
+                "composite_score": 2.44,
+                "model_rank": 16,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "シンヒダカゴールド",
+                "prob": 9.0,
+                "composite_score": 4.958,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 33
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "スウィートリワード",
+                "prob": 11.5,
+                "composite_score": 5.581,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "ムーンウォーリア",
+                "prob": 3.8,
+                "composite_score": 1.823,
+                "model_rank": 18,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "リピ",
+                "prob": 14.5,
+                "composite_score": 7.466,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 31
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "ソルオーブ",
+                "prob": 7.1,
+                "composite_score": 3.566,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "ワンコールアウェイ",
+                "prob": 34.5,
+                "composite_score": 18.396,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 32
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "セディバン",
+                "prob": 11.9,
+                "composite_score": 5.745,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "サンセットゴールド",
+                "prob": 16.9,
+                "composite_score": 7.906,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "17",
+                "horse_name": "アスクヴォルテージ",
+                "prob": 11.5,
+                "composite_score": 5.733,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "18",
+                "horse_name": "ロンティケチャップ",
+                "prob": 7.6,
+                "composite_score": 3.284,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 4,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 26
+              }
+            ]
+          },
+          {
+            "race_num": "09",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "ジュルナール",
+                "prob": 14.0,
+                "composite_score": 7.458,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 32
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "ポッドデスペア",
+                "prob": 4.7,
+                "composite_score": 2.171,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "キングツェッペリン",
+                "prob": 14.0,
+                "composite_score": 6.788,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "リサシテーション",
+                "prob": 18.8,
+                "composite_score": 10.632,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 10,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 34
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "レイワサンサン",
+                "prob": 7.7,
+                "composite_score": 4.367,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 34
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "コスモストーム",
+                "prob": 18.8,
+                "composite_score": 10.016,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 32
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "ハリウッドブルース",
+                "prob": 20.3,
+                "composite_score": 9.795,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "カナタコナタ",
+                "prob": 20.9,
+                "composite_score": 12.524,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 36
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "ハリウッドパーク",
+                "prob": 11.0,
+                "composite_score": 5.333,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "マイティマイティー",
+                "prob": 39.4,
+                "composite_score": 23.616,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 6,
+                  "environment": 7,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 36
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "ホウオウゴールド",
+                "prob": 18.0,
+                "composite_score": 7.192,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 24
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "マーゴットレーヴ",
+                "prob": 3.7,
+                "composite_score": 1.722,
+                "model_rank": 16,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 6
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "ロードオルデン",
+                "prob": 9.3,
+                "composite_score": 4.018,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "ラヴオントップ",
+                "prob": 14.3,
+                "composite_score": 6.688,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "テラステラ",
+                "prob": 4.6,
+                "composite_score": 1.976,
+                "model_rank": 15,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "ポッドドンナー",
+                "prob": 21.7,
+                "composite_score": 11.581,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 32
+              }
+            ]
+          },
+          {
+            "race_num": "10",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "ウインリベラシオン",
+                "prob": 21.0,
+                "composite_score": 10.13,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "リュキア",
+                "prob": 8.1,
+                "composite_score": 3.662,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "ユメハハテシナク",
+                "prob": 13.7,
+                "composite_score": 6.158,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "ハイディージェン",
+                "prob": 8.3,
+                "composite_score": 3.862,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "ジョイエッロ",
+                "prob": 73.5,
+                "composite_score": 47.802,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 10,
+                  "bloodline": 6,
+                  "environment": 7,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 39
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "エバーグルーヴ",
+                "prob": 48.6,
+                "composite_score": 27.541,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 6,
+                  "environment": 8,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 34
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "ラーテル",
+                "prob": 4.1,
+                "composite_score": 1.498,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 1,
+                  "bloodline": 4,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 22
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "ヤマニンガラッシア",
+                "prob": 16.8,
+                "composite_score": 9.505,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 5,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 6
+                },
+                "total_score": 34
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "ツーエムクロノス",
+                "prob": 13.7,
+                "composite_score": 6.398,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              }
+            ]
+          },
+          {
+            "race_num": "11",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "ムーヴ",
+                "prob": 14.6,
+                "composite_score": 6.805,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 2
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "マルモリスペシャル",
+                "prob": 11.7,
+                "composite_score": 5.054,
+                "model_rank": 13,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "プレゼンティーア",
+                "prob": 25.9,
+                "composite_score": 15.988,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 8,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 37
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "フリームファクシ",
+                "prob": 6.3,
+                "composite_score": 3.168,
+                "model_rank": 15,
+                "mark": "",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "ショウナンアビアス",
+                "prob": 18.1,
+                "composite_score": 11.472,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 5,
+                  "environment": 8,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 8
+                },
+                "total_score": 38
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "アンズアメ",
+                "prob": 44.0,
+                "composite_score": 27.13,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 10,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 37
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "スマートフォルス",
+                "prob": 10.8,
+                "composite_score": 4.854,
+                "model_rank": 14,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 27
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "クロジシジョー",
+                "prob": 13.3,
+                "composite_score": 7.733,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 8,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 35
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "ケイアイドリー",
+                "prob": 20.9,
+                "composite_score": 13.617,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 8,
+                  "bloodline": 6,
+                  "environment": 8,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 39
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "リジル",
+                "prob": 10.7,
+                "composite_score": 6.797,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 6,
+                  "environment": 8,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 38
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "アガシ",
+                "prob": 13.5,
+                "composite_score": 6.281,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "ロードフロンティア",
+                "prob": 6.4,
+                "composite_score": 3.107,
+                "model_rank": 16,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "ペプチドヤマト",
+                "prob": 11.0,
+                "composite_score": 6.259,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 5,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 34
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "サンライズアムール",
+                "prob": 15.4,
+                "composite_score": 10.009,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 9,
+                  "bloodline": 5,
+                  "environment": 8,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 39
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "コンクイスタ",
+                "prob": 27.0,
+                "composite_score": 16.674,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 8,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 37
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "ジュンウィンダム",
+                "prob": 14.4,
+                "composite_score": 7.46,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 31
+              }
+            ]
+          },
+          {
+            "race_num": "12",
+            "horses": [
+              {
+                "horse_num": "01",
+                "horse_name": "ガーデンカメリア",
+                "prob": 26.7,
+                "composite_score": 12.914,
+                "model_rank": 5,
+                "mark": "△",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 29
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "ココロヅヨサ",
+                "prob": 20.1,
+                "composite_score": 12.372,
+                "model_rank": 6,
+                "mark": "△",
+                "scores": {
+                  "ability": 10,
+                  "bloodline": 6,
+                  "environment": 7,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 37
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "チェリヴェント",
+                "prob": 55.4,
+                "composite_score": 35.072,
+                "model_rank": 1,
+                "mark": "◎",
+                "scores": {
+                  "ability": 8,
+                  "bloodline": 6,
+                  "environment": 7,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 38
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "アーサーバローズ",
+                "prob": 14.9,
+                "composite_score": 7.945,
+                "model_rank": 10,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 6,
+                  "environment": 5,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 32
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "グロリアスグレイス",
+                "prob": 6.2,
+                "composite_score": 2.904,
+                "model_rank": 12,
+                "mark": "",
+                "scores": {
+                  "ability": 3,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 28
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "フラワームーン",
+                "prob": 7.5,
+                "composite_score": 3.985,
+                "model_rank": 11,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 5,
+                  "environment": 7,
+                  "bias": 6,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 32
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "オーレアミスト",
+                "prob": 15.4,
+                "composite_score": 8.222,
+                "model_rank": 9,
+                "mark": "",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 32
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "バートラガッツ",
+                "prob": 25.2,
+                "composite_score": 15.512,
+                "model_rank": 4,
+                "mark": "△",
+                "scores": {
+                  "ability": 10,
+                  "bloodline": 5,
+                  "environment": 5,
+                  "bias": 7,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 37
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "ブレスドナイル",
+                "prob": 24.5,
+                "composite_score": 10.624,
+                "model_rank": 7,
+                "mark": "",
+                "scores": {
+                  "ability": 2,
+                  "bloodline": 6,
+                  "environment": 4,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 26
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "ガウラディスコ",
+                "prob": 30.3,
+                "composite_score": 15.665,
+                "model_rank": 3,
+                "mark": "▲",
+                "scores": {
+                  "ability": 7,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 3,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 31
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "ウルフ",
+                "prob": 20.7,
+                "composite_score": 10.351,
+                "model_rank": 8,
+                "mark": "",
+                "scores": {
+                  "ability": 4,
+                  "bloodline": 6,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 30
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "メイショウコナン",
+                "prob": 44.3,
+                "composite_score": 22.874,
+                "model_rank": 2,
+                "mark": "○",
+                "scores": {
+                  "ability": 6,
+                  "bloodline": 5,
+                  "environment": 6,
+                  "bias": 4,
+                  "keshi": 5,
+                  "training": 5
+                },
+                "total_score": 31
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

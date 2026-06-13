@@ -2,6 +2,98 @@ import { useState, useEffect, useRef } from 'react'
 import type { DayData, Venue, Race } from './types'
 import PredictionView from './components/PredictionView'
 
+const PASSWORD    = 'LegacyWorld'
+const AUTH_KEY    = 'efforia_auth_v1'
+
+function PasswordGate({ onAuth }: { onAuth: () => void }) {
+  const [value, setValue] = useState('')
+  const [error, setError] = useState(false)
+  const [shake, setShake] = useState(false)
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    if (value === PASSWORD) {
+      onAuth()
+    } else {
+      setError(true)
+      setShake(true)
+      setValue('')
+      setTimeout(() => setShake(false), 600)
+    }
+  }
+
+  return (
+    <div style={{
+      minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
+      background: '#f4f6fa',
+    }}>
+      <div style={{
+        background: '#fff', borderRadius: 12, padding: '48px 40px 40px',
+        boxShadow: '0 4px 32px rgba(0,51,160,0.10)', width: '100%', maxWidth: 380,
+        textAlign: 'center',
+      }}>
+        <div style={{
+          width: 52, height: 52, borderRadius: 12,
+          background: '#0033A0', color: '#fff',
+          fontSize: 26, fontWeight: 700, lineHeight: '52px',
+          margin: '0 auto 20px', letterSpacing: 1,
+        }}>E</div>
+        <div style={{ fontSize: 20, fontWeight: 700, color: '#0a1929', marginBottom: 4 }}>
+          競馬予想 Efforia
+        </div>
+        <div style={{ fontSize: 13, color: '#6b7a8d', marginBottom: 32 }}>
+          パスワードを入力してください
+        </div>
+        <form onSubmit={handleSubmit} style={{ animation: shake ? 'pw-shake 0.6s' : 'none' }}>
+          <input
+            type="password"
+            value={value}
+            onChange={e => { setValue(e.target.value); setError(false) }}
+            placeholder="Password"
+            autoFocus
+            style={{
+              width: '100%', padding: '12px 14px', fontSize: 15,
+              border: `1.5px solid ${error ? '#d32f2f' : '#c8d0dc'}`,
+              borderRadius: 8, outline: 'none', boxSizing: 'border-box',
+              marginBottom: 8, background: '#f9fafc', color: '#0a1929',
+              transition: 'border-color 0.2s',
+            }}
+            onFocus={e => { if (!error) e.target.style.borderColor = '#0033A0' }}
+            onBlur={e =>  { if (!error) e.target.style.borderColor = '#c8d0dc' }}
+          />
+          {error && (
+            <div style={{ color: '#d32f2f', fontSize: 13, marginBottom: 8, textAlign: 'left' }}>
+              パスワードが違います
+            </div>
+          )}
+          <button
+            type="submit"
+            style={{
+              width: '100%', padding: '12px', fontSize: 15, fontWeight: 600,
+              background: '#0033A0', color: '#fff', border: 'none', borderRadius: 8,
+              cursor: 'pointer', marginTop: 8, letterSpacing: 0.5,
+              transition: 'background 0.2s',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.background = '#002280')}
+            onMouseLeave={e => (e.currentTarget.style.background = '#0033A0')}
+          >
+            ログイン
+          </button>
+        </form>
+      </div>
+      <style>{`
+        @keyframes pw-shake {
+          0%,100% { transform: translateX(0); }
+          20%      { transform: translateX(-8px); }
+          40%      { transform: translateX(8px); }
+          60%      { transform: translateX(-6px); }
+          80%      { transform: translateX(6px); }
+        }
+      `}</style>
+    </div>
+  )
+}
+
 type View = 'date' | 'venue' | 'race' | 'prediction'
 
 const SLIDES = [
@@ -292,6 +384,8 @@ function Footer() {
 
 // ── App ───────────────────────────────────────────────────────────────────────
 export default function App() {
+  const [authed, setAuthed] = useState(false)
+
   const [view, setView]   = useState<View>('date')
   const [dates, setDates] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
@@ -301,15 +395,19 @@ export default function App() {
   const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null)
   const [selectedRace, setSelectedRace]   = useState<Race | null>(null)
 
+  // すべてのフックを条件分岐より前に呼ぶ（Rules of Hooks）
   const scrolled = useScrolled()
   const headerScrolled = view !== 'date' || scrolled
 
   useEffect(() => {
+    if (!authed) return
     fetch('/predictions/manifest.json')
       .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json() as Promise<{ dates: string[] }> })
       .then(d => { setDates([...d.dates].reverse()); setLoading(false) })
       .catch((e: Error) => { setError(`データ取得に失敗しました: ${e.message}`); setLoading(false) })
-  }, [])
+  }, [authed])
+
+  if (!authed) return <PasswordGate onAuth={() => setAuthed(true)} />
 
   async function selectDate(date: string) {
     setLoading(true); setError(null)

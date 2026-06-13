@@ -3,12 +3,12 @@ import type { Scores } from '../types'
 interface Props { scores: Scores }
 
 const AXES: { key: keyof Scores; label: string }[] = [
-  { key: 'ability',     label: '能力' },
-  { key: 'bloodline',   label: '血統' },
-  { key: 'environment', label: '環境' },
-  { key: 'pace',        label: '展開' },
-  { key: 'history',     label: '過去' },
-  { key: 'training',    label: '調教' },
+  { key: 'ability',     label: '①能力' },
+  { key: 'bloodline',   label: '②血統' },
+  { key: 'environment', label: '③環境' },
+  { key: 'bias',        label: '④バイアス' },
+  { key: 'keshi',       label: '⑤照合' },
+  { key: 'training',    label: '⑥調教' },
 ]
 
 const N  = 6

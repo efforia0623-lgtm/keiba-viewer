@@ -5,12 +5,12 @@ import RadarChart from './RadarChart'
 interface Props { race: Race }
 
 const SCORE_LABELS: Record<keyof Scores, string> = {
-  ability:     '能力',
-  bloodline:   '血統',
-  environment: '環境',
-  pace:        '展開',
-  history:     '過去',
-  training:    '調教',
+  ability:     '①能力',
+  bloodline:   '②血統',
+  environment: '③環境',
+  bias:        '④バイアス',
+  keshi:       '⑤照合',
+  training:    '⑥調教',
 }
 const SCORE_KEYS = Object.keys(SCORE_LABELS) as Array<keyof Scores>
 

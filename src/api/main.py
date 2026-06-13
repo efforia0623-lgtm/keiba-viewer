@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import sqlite3
 from collections import Counter, defaultdict
 from contextlib import asynccontextmanager
@@ -155,6 +156,46 @@ FEATURES = [
 
 _model: Optional[lgb.Booster] = None
 _prediction_cache: dict[str, bytes] = {}  # key: "date:venue:race" → UTF-8 JSON bytes
+
+# ── 複合スコア: prob × (total_score/60)^COMPOSITE_ALPHA で印を決める ─────────
+# α=0: probのみ(モデル依存)  α=1: prob×スコアを対等に掛ける  α>1: スコア支配的
+# 本番実績蓄積後に調整すること
+COMPOSITE_ALPHA: float = 1.0
+
+# ── ②血統 手動注入 ──────────────────────────────────────────────────────────
+_BLOOD_MANUAL_PATH = ROOT / "data" / "blood_manual.json"
+_BLOOD_RANK_SCORES: dict[str, float] = {
+    "S": 9.0, "A+": 8.0, "A": 7.0, "B+": 6.5, "B": 6.0, "C": 4.0,
+}
+_blood_manual_cache: dict = {}
+_blood_manual_mtime: float = 0.0
+
+
+def _load_manual_blood() -> dict:
+    """blood_manual.jsonをロード(変更があれば自動リロード)。存在しない・壊れた場合は空dict。"""
+    global _blood_manual_cache, _blood_manual_mtime
+    try:
+        mtime = _BLOOD_MANUAL_PATH.stat().st_mtime
+        if mtime != _blood_manual_mtime:
+            _blood_manual_cache = json.loads(_BLOOD_MANUAL_PATH.read_text(encoding="utf-8"))
+            _blood_manual_mtime = mtime
+    except FileNotFoundError:
+        _blood_manual_cache = {}
+    except Exception:
+        pass  # 読み込みエラー時はキャッシュをそのまま使用
+    return _blood_manual_cache
+
+
+def _get_manual_s2(date: str, venue: str, race_num: str, horse_num: str) -> Optional[float]:
+    """手動血統スコアを返す。入力なし → None(統計②フォールバック)。"""
+    ratings = _load_manual_blood()
+    race_key = f"{venue}-{race_num}"
+    horse_data = ratings.get(date, {}).get(race_key, {}).get("horses", {})
+    entry = horse_data.get(str(horse_num))
+    if entry is None:
+        return None
+    rank = entry.get("rank", "") if isinstance(entry, dict) else str(entry)
+    return _BLOOD_RANK_SCORES.get(rank)
 
 
 def _json_bytes(obj) -> bytes:
@@ -459,6 +500,94 @@ def _horse_keshi_score(keshi_h: dict, thresholds: tuple) -> int:
     return max(2, round(10 - penalty * 2))
 
 
+def _build_sire_stats(rows) -> dict:
+    """
+    GROUP BY rows (sire_name, track_type, dist_bracket, venue_code, n, places)
+    → {sire_name: {track_type: {'base': {'n','places'}, 'dist': {...}, 'venue': {...}}}}
+    """
+    stats: dict = {}
+    for r in rows:
+        sn = r["sire_name"] or ""
+        tt = r["track_type"] or ""
+        db_ = r["dist_bracket"] or ""
+        vc = r["venue_code"] or ""
+        n  = int(r["n"]      or 0)
+        pl = int(r["places"] or 0)
+        if not sn or not tt:
+            continue
+        if sn not in stats:
+            stats[sn] = {}
+        if tt not in stats[sn]:
+            stats[sn][tt] = {"base": {"n": 0, "places": 0}, "dist": {}, "venue": {}}
+        s = stats[sn][tt]
+        s["base"]["n"]      += n
+        s["base"]["places"] += pl
+        if db_:
+            d = s["dist"].setdefault(db_, {"n": 0, "places": 0})
+            d["n"]      += n
+            d["places"] += pl
+        if vc:
+            v = s["venue"].setdefault(vc, {"n": 0, "places": 0})
+            v["n"]      += n
+            v["places"] += pl
+    return stats
+
+
+def _sire_ratios(sire_name: str, track_type: str, dist_bracket: str,
+                 venue: str, stats: dict) -> tuple[float, float]:
+    """
+    Returns (dist_ratio, venue_ratio): sire's Bayesian-adjusted place rate for the
+    specific condition divided by sire's baseline for the same track_type.
+    ratio > 1.0 = better than sire's average; < 1.0 = worse.
+    Falls back to (1.0, 1.0) when data is missing.
+    """
+    _PRIOR_N    = 20
+    _PRIOR_RATE = 0.33
+
+    def _adj(n: int, pl: int) -> float:
+        return (_PRIOR_RATE * _PRIOR_N + pl) / (_PRIOR_N + n)
+
+    if not sire_name or sire_name not in stats:
+        return 1.0, 1.0
+    tt_data = stats[sire_name].get(track_type)
+    if not tt_data:
+        return 1.0, 1.0
+
+    base_rate = _adj(tt_data["base"]["n"], tt_data["base"]["places"])
+    if base_rate <= 0:
+        return 1.0, 1.0
+
+    dd = tt_data["dist"].get(dist_bracket, {"n": 0, "places": 0})
+    vv = tt_data["venue"].get(venue,        {"n": 0, "places": 0})
+    return _adj(dd["n"], dd["places"]) / base_rate, _adj(vv["n"], vv["places"]) / base_rate
+
+
+# 同コース種別グローバル複勝率（実測値・定数）
+# 芝22.29% / ダート21.23% (7年・345,260走 実測)
+_GLOBAL_TRACK_RATE: dict[str, float] = {"芝": 0.2229, "ダート": 0.2123}
+_SIRE_ABS_MIN_N: int = 30  # 絶対評価に最低限必要なサンプル数
+
+
+def _sire_abs_score(sire_name: str, track_type: str, stats: dict) -> float:
+    """
+    Returns absolute strength score (1-10) for sire on this track_type.
+    Uses raw place rate (not Bayesian) vs global track_type rate.
+    Falls back to 5.0 (neutral) when n < _SIRE_ABS_MIN_N or data missing.
+    """
+    if not sire_name or sire_name not in stats:
+        return 5.0
+    tt_data = stats[sire_name].get(track_type)
+    if not tt_data:
+        return 5.0
+    base = tt_data["base"]
+    n, pl = base["n"], base["places"]
+    if n < _SIRE_ABS_MIN_N:
+        return 5.0
+    raw_rate = pl / n
+    global_rate = _GLOBAL_TRACK_RATE.get(track_type, 0.22)
+    return float(np.clip(5.0 * raw_rate / global_rate, 1.0, 10.0))
+
+
 def _build_features(date: str, venue: str, race_num: str,
                     track_condition: Optional[str] = None) -> list[dict]:
     d30  = _date_sub(date, 30)
@@ -523,10 +652,10 @@ def _build_features(date: str, venue: str, race_num: str,
 
         # ② 各馬の過去成績（直近5年・ORDER BY を Python ソートに移して高速化）
         history = db.execute(f"""
-            SELECT blood_reg_num, race_date, venue_code,
+            SELECT blood_reg_num, race_date, venue_code, race_num,
                    finish_pos, agari_3f, corner4, track_type,
                    distance, finish_margin, race_style,
-                   popularity, grade_code, race_name
+                   popularity, grade_code, race_name, dist_class
             FROM horse_results
             WHERE blood_reg_num IN ({ph})
               AND race_date BETWEEN ? AND ?
@@ -599,6 +728,57 @@ def _build_features(date: str, venue: str, race_num: str,
         """, [track_condition, track_condition, race_track_type, date] + blood_list).fetchall()
         tc_map = {r["blood_reg_num"]: (int(r["tc_n"]), int(r["tc_placed"])) for r in tc_rows_q}
 
+        # ② 血統: pedigree から父・母父名を取得
+        ped_rows = db.execute(f"""
+            SELECT blood_reg_num, father_name, mat_gf_name,
+                   pat_gf_name, pmgf_name
+            FROM pedigree
+            WHERE blood_reg_num IN ({ph})
+        """, blood_list).fetchall()
+
+        _ped_map_raw = {r["blood_reg_num"]: r for r in ped_rows}
+        _all_fn  = list({r["father_name"] for r in ped_rows if r["father_name"]})
+        _all_mn  = list({r["mat_gf_name"]  for r in ped_rows if r["mat_gf_name"]})
+        _d7yr    = _date_sub(date, 2555)
+
+        _SIRE_SQL = (
+            "SELECT p.{col} AS sire_name, hr.track_type,"
+            " CASE WHEN hr.distance <= 1400 THEN 'short'"
+            "      WHEN hr.distance <= 1800 THEN 'mile'"
+            "      WHEN hr.distance <= 2200 THEN 'middle'"
+            "      ELSE 'long' END AS dist_bracket,"
+            " hr.venue_code, COUNT(*) AS n,"
+            " SUM(CASE WHEN hr.finish_pos <= 3 THEN 1 ELSE 0 END) AS places"
+            " FROM horse_results hr"
+            " JOIN pedigree p ON p.blood_reg_num = hr.blood_reg_num"
+            " WHERE p.{col} IN ({ph2})"
+            "   AND hr.race_date >= ?"
+            "   AND hr.finish_pos IS NOT NULL"
+            "   AND hr.track_type IN ('芝', 'ダート')"
+            " GROUP BY sire_name, hr.track_type, dist_bracket, hr.venue_code"
+        )
+        if _all_fn:
+            _fph2 = ",".join("?" * len(_all_fn))
+            _f_stat_rows = db.execute(
+                _SIRE_SQL.format(col="father_name", ph2=_fph2),
+                _all_fn + [_d7yr]
+            ).fetchall()
+        else:
+            _f_stat_rows = []
+
+        if _all_mn:
+            _mph2 = ",".join("?" * len(_all_mn))
+            _mg_stat_rows = db.execute(
+                _SIRE_SQL.format(col="mat_gf_name", ph2=_mph2),
+                _all_mn + [_d7yr]
+            ).fetchall()
+        else:
+            _mg_stat_rows = []
+
+    # ── ② 血統スタッツをビルド ─────────────────────────────────────────────
+    _father_sire_stats = _build_sire_stats(_f_stat_rows)
+    _matgf_sire_stats  = _build_sire_stats(_mg_stat_rows)
+
     # ── インデックス（horse_histは race_date DESC 順でソート）────────────────
     horse_hist: dict[str, list] = defaultdict(list)
     for r in history:
@@ -612,6 +792,59 @@ def _build_features(date: str, venue: str, race_num: str,
     tr_map: dict[str, list] = defaultdict(list)
     for r in tr_rows:
         tr_map[r["blood_reg_num"]].append(r)
+
+    # ── ①能力改善: メンバーレベル用バルククエリ ─────────────────────────────
+    # 各馬の過去5走のレースキーを収集し、同走馬の後日グレード勝ちを確認する
+    _horse_race_info: dict[str, list] = {}
+    _all_member_keys: set[tuple] = set()
+    for _mb in blood_list:
+        _horse_race_info[_mb] = []
+        for _mr in horse_hist.get(_mb, [])[:5]:
+            _mk = (_mr["race_date"], _mr["venue_code"], _mr["race_num"])
+            _all_member_keys.add(_mk)
+            _horse_race_info[_mb].append({
+                "ref_date":  _mr["race_date"],
+                "key":       _mk,
+                "my_pos":    _mr["finish_pos"],
+                "my_margin": _mr["finish_margin"],
+            })
+
+    _race_opps_map: dict[tuple, list] = defaultdict(list)
+    _opp_grade_map: dict[str, list]   = defaultdict(list)
+    if _all_member_keys:
+        with _db() as _mdb:
+            _mcond = " OR ".join(
+                "(race_date=? AND venue_code=? AND race_num=?)"
+                for _ in _all_member_keys
+            )
+            _mparams = [p for _mk in _all_member_keys for p in _mk]
+            _mopp_rows = _mdb.execute(
+                f"SELECT race_date, venue_code, race_num, blood_reg_num,"
+                f" finish_pos, finish_margin FROM horse_results"
+                f" WHERE ({_mcond}) AND finish_pos IS NOT NULL",
+                _mparams
+            ).fetchall()
+            _all_opp_bloods: set[str] = set()
+            for _mrow in _mopp_rows:
+                _mkey = (_mrow["race_date"], _mrow["venue_code"], _mrow["race_num"])
+                _race_opps_map[_mkey].append({
+                    "blood":  _mrow["blood_reg_num"],
+                    "pos":    _mrow["finish_pos"],
+                    "margin": _mrow["finish_margin"],
+                })
+                _all_opp_bloods.add(_mrow["blood_reg_num"])
+            if _all_opp_bloods:
+                _mph = ",".join("?" * len(_all_opp_bloods))
+                _mgw_rows = _mdb.execute(
+                    f"SELECT blood_reg_num, grade_code, race_date as win_date"
+                    f" FROM horse_results WHERE blood_reg_num IN ({_mph})"
+                    f" AND finish_pos=1 AND grade_code IN ('A','B','C')",
+                    list(_all_opp_bloods)
+                ).fetchall()
+                for _mgr in _mgw_rows:
+                    _opp_grade_map[_mgr["blood_reg_num"]].append(
+                        (_mgr["grade_code"], _mgr["win_date"])
+                    )
 
     # 距離（entries から取得）
     entry_dist = _f(entries[0]["distance"])
@@ -788,6 +1021,144 @@ def _build_features(date: str, venue: str, race_num: str,
         }
         keshi_score = _horse_keshi_score(keshi_h, keshi_thresholds)
 
+        # ── ①能力改善: 5材料のδ計算 ────────────────────────────────────────────
+        # 各δは「可能性の材料」として小さく。複数が同方向で揃った時だけ強評価。
+
+        # A. クラス補正: グレード別に重み付き複勝率 vs 単純複勝率の差をスコアに換算
+        _CW = {"1": 0.8, "2": 1.0, "3": 1.2, "4": 1.4, "5": 1.6}
+        _GW = {"E": 1.7, "L": 1.7, "C": 1.9, "B": 2.1, "A": 2.3,
+               "D": 1.8, "F": 1.9, "G": 2.1, "H": 2.3}
+        _cls_tw = 0.0; _cls_wp = 0.0; _cls_n = 0; _cls_pn = 0
+        for _cr in past[:10]:
+            if _cr["finish_pos"] is None:
+                continue
+            _cg = (_cr["grade_code"] or "").strip()
+            _cdc = str(_cr["dist_class"] or "")
+            _cw = _GW.get(_cg) or _CW.get(_cdc, 1.0)
+            _cls_tw += _cw; _cls_n += 1
+            if _cr["finish_pos"] <= 3:
+                _cls_wp += _cw; _cls_pn += 1
+        if _cls_n > 0 and _cls_tw > 0:
+            _adelta_class = float(np.clip(
+                (_cls_wp / _cls_tw - _cls_pn / _cls_n) * 7.0, -1.0, 1.5
+            ))
+        else:
+            _adelta_class = 0.0
+
+        # B. 着差補正: 着外(4着以下)時の平均着差で「惜しい負け」か「大差」かを区別
+        _umargs: list[float] = []
+        for _br in past[:5]:
+            if _br["finish_pos"] is None or _br["finish_pos"] <= 3:
+                continue
+            _bmv, _ = _decode_finish_margin(_br["finish_margin"])
+            if _bmv is not None:
+                _umargs.append(_bmv)
+        if _umargs:
+            _avg_um = float(np.mean(_umargs))
+            if   _avg_um <= 1.0: _adelta_margin =  0.5
+            elif _avg_um <= 2.0: _adelta_margin =  0.2
+            elif _avg_um <= 4.0: _adelta_margin =  0.0
+            elif _avg_um <= 8.0: _adelta_margin = -0.3
+            else:                _adelta_margin = -0.5
+        else:
+            _adelta_margin = 0.0
+
+        # C. メンバーレベル補正: 同走馬が後日グレード勝ちした場合に弱加点
+        _MBPLA = {"A": 0.4, "B": 0.3, "C": 0.2}
+        _MBMRG = {"A": 0.3, "B": 0.2, "C": 0.1}
+        _mem_acc = 0.0
+        for _ri in _horse_race_info.get(blood, []):
+            _rdt = _ri["ref_date"]
+            _rmp = _ri["my_pos"]
+            _rmv, _ = _decode_finish_margin(_ri["my_margin"]) if _ri["my_margin"] else (None, False)
+            for _opp in _race_opps_map.get(_ri["key"], []):
+                if _opp["blood"] == blood:
+                    continue
+                _best_gc: str | None = None
+                for _gc, _wd in _opp_grade_map.get(_opp["blood"], []):
+                    if _wd > _rdt and (_best_gc is None or _gc < _best_gc):
+                        _best_gc = _gc
+                if _best_gc is None:
+                    continue
+                if _rmp is not None and _rmp <= 3:
+                    _mem_acc += _MBPLA.get(_best_gc, 0.0)
+                elif _rmv is not None and _rmv <= 1.0:
+                    _mem_acc += _MBMRG.get(_best_gc, 0.0)
+        _adelta_member = float(np.clip(_mem_acc, 0.0, 1.0))
+
+        # D. 上がり3F補正: 距離・競馬場込みの末脚傾向(あくまで可能性の材料、上限+0.5)
+        _adelta_agari = 0.0
+        _td = float(entry_dist) if np.isfinite(entry_dist) else 0.0
+        # (1) 今日以上の距離・同コースで上がり良好経験 → 距離適性の可能性
+        _ag_thr = 34.5 if race_track_type == "芝" else 37.5
+        for _dr in past:
+            _dag = _f(_dr["agari_3f"])
+            if (np.isfinite(_dag) and _dag >= 25 and _dag <= _ag_thr
+                    and _f(_dr["distance"] or 0) >= _td
+                    and (_dr["track_type"] or "") == race_track_type):
+                _adelta_agari = max(_adelta_agari, 0.2)
+                break
+        # (2) 長直競馬場(東京05/新潟04)で上がり良好 かつ 今日も同会場
+        if venue in ("05", "04"):
+            for _dr in past:
+                if (_dr["venue_code"] or "") not in ("05", "04"):
+                    continue
+                _dag = _f(_dr["agari_3f"])
+                if np.isfinite(_dag) and 25 <= _dag <= _ag_thr:
+                    _adelta_agari = min(0.5, _adelta_agari + 0.2)
+                    break
+        # (3) 逃/先行馬で上がり良好 → 持続力優秀の可能性(最も強い材料)
+        _fa = [_f(_dr["agari_3f"]) for _dr in past[:5]
+               if (_dr["race_style"] or "") in ("1", "2")
+               and _dr["agari_3f"] and _f(_dr["agari_3f"]) >= 25]
+        if _fa and float(np.mean(_fa)) <= _ag_thr:
+            _adelta_agari = min(0.5, _adelta_agari + 0.3)
+        _adelta_agari = float(np.clip(_adelta_agari, 0.0, 0.5))
+
+        # E. 格降格補正: 過去3走に高グレードレースがあり今日が大幅格下 → 弱加点
+        _GL = {"A": 5, "B": 4, "C": 3, "L": 2, "E": 2, "D": 3, "G": 3, "H": 4, "F": 3}
+        _today_gl    = _GL.get(_grade, 0)
+        _past_max_gl = max(
+            (_GL.get((_pr["grade_code"] or "").strip(), 0) for _pr in past[:3]),
+            default=0
+        )
+        _gg = _past_max_gl - _today_gl
+        if   _gg >= 3: _adelta_grade_drop = 0.6
+        elif _gg >= 2: _adelta_grade_drop = 0.4
+        elif _gg >= 1: _adelta_grade_drop = 0.2
+        else:          _adelta_grade_drop = 0.0
+
+        # ── ② 血統適性スコアの計算 (B案: 相対70% + 絶対30%) ─────────────────
+        _ped     = _ped_map_raw.get(blood)
+        _f_nm    = (_ped["father_name"] or "") if _ped else ""
+        _mg_nm   = (_ped["mat_gf_name"]  or "") if _ped else ""
+
+        _today_db = ("short"  if np.isfinite(entry_dist) and entry_dist <= 1400 else
+                     "mile"   if np.isfinite(entry_dist) and entry_dist <= 1800 else
+                     "middle" if np.isfinite(entry_dist) and entry_dist <= 2200 else
+                     "long"   if np.isfinite(entry_dist) else "mile")
+
+        _f_dr, _f_vr   = _sire_ratios(_f_nm,  race_track_type, _today_db, venue, _father_sire_stats)
+        _mg_dr, _mg_vr = _sire_ratios(_mg_nm, race_track_type, _today_db, venue, _matgf_sire_stats)
+
+        # 相対評価: 父80%(dist40%+venue40%) + 母父20%(dist10%+venue10%)
+        _s2_rel = 5.0 * (0.40 * _f_dr + 0.40 * _f_vr + 0.10 * _mg_dr + 0.10 * _mg_vr)
+
+        # 絶対評価: 同コース種別の産駒全体複勝率 vs グローバル実測値
+        # n<30の種牡馬は中立(5.0)。全産駒・全条件ではなく同コース種別に限定
+        # (全条件だと芝/マイル専門の父がダート戦でも高評価になるため)
+        _s2_abs_f  = _sire_abs_score(_f_nm,  race_track_type, _father_sire_stats)
+        _s2_abs_mg = _sire_abs_score(_mg_nm, race_track_type, _matgf_sire_stats)
+        _s2_abs = 0.80 * _s2_abs_f + 0.20 * _s2_abs_mg  # 父80% 母父20%
+
+        # B案合成: 相対70% + 絶対30%
+        _s2_raw = float(np.clip(0.70 * _s2_rel + 0.30 * _s2_abs, 1.0, 10.0))
+
+        # 手動血統注入(純粋上書き): 入力があれば統計②を無視
+        _manual_s2 = _get_manual_s2(date, venue, race_num, e["horse_num"])
+        if _manual_s2 is not None:
+            _s2_raw = _manual_s2
+
         result.append({
             # meta（モデル特徴量以外）
             "horse_num":    e["horse_num"],
@@ -873,6 +1244,17 @@ def _build_features(date: str, venue: str, race_num: str,
             "_bias_n_total":    float(_bias_data.get("n_total", 0)),
             # ⑤ 消し照合スコア（precomputed）
             "_keshi_score":     keshi_score,
+            # ①能力改善δ（_compute_scoresで使用）
+            "ability_delta_class":      _adelta_class,
+            "ability_delta_margin":     _adelta_margin,
+            "ability_delta_member":     _adelta_member,
+            "ability_delta_agari":      _adelta_agari,
+            "ability_delta_grade_drop": _adelta_grade_drop,
+            # ②血統適性スコア（_compute_scoresで使用）
+            "s2_bloodline":   _s2_raw,
+            "_father_name":   _f_nm,
+            "_matgf_name":    _mg_nm,
+            "_s2_dist_bracket": _today_db,
         })
 
     return result
@@ -901,9 +1283,17 @@ def get_prediction(
 
     X     = np.array([[f[col] for col in FEATURES] for f in feats], dtype=float)
     probs = _model.predict(X)
-    order = np.argsort(-probs)          # 確率降順のインデックス列
 
-    # rank_of[i] = 確率順位（0始まり）
+    # 全馬のスコアを先に計算（複合スコアに必要）
+    all_scores      = [_compute_scores(f) for f in feats]
+    all_totals      = [sum(s.values()) for s in all_scores]
+
+    # 複合スコア = prob × (total/60)^COMPOSITE_ALPHA で印を決める
+    composite = np.array([
+        float(probs[i]) * (all_totals[i] / 60.0) ** COMPOSITE_ALPHA
+        for i in range(len(feats))
+    ])
+    order   = np.argsort(-composite)          # 複合スコア降順
     rank_of = {int(idx): int(pos) for pos, idx in enumerate(order)}
 
     MARK_BY_RANK = {0: "◎", 1: "○", 2: "▲", 3: "△", 4: "△", 5: "△"}
@@ -911,10 +1301,10 @@ def get_prediction(
 
     horses = []
     for i, f in enumerate(feats):
-        model_rank = rank_of[i]
-        prob_pct   = round(float(probs[i]) * 100, 1)
-        scores     = _compute_scores(f)
-        total_score = sum(scores.values())
+        model_rank  = rank_of[i]
+        prob_pct    = round(float(probs[i]) * 100, 1)
+        scores      = all_scores[i]
+        total_score = all_totals[i]
         horses.append({
             "model_rank":   model_rank + 1,
             "horse_num":    f["horse_num"],
@@ -1047,9 +1437,17 @@ def _compute_scores(f: dict) -> dict[str, int]:
         return int(round(float(np.clip(x, lo, hi))))
 
     # ===========================================================
-    # ① 能力 (1-10): 複勝率×7.0 + 着順ボーナス + 馬場適性delta
+    # ① 能力 (1-10): 複勝率×7.0 + 着順ボーナス + 馬場適性delta + 改善5材料delta
     # win×2.0・agari_bonusは複勝予想では「一発屋」を過剰評価するため除外
     # ===========================================================
+    # 改善5材料δを読み取る（大原則: 各材料は可能性として弱め。複数同方向で初めて強評価）
+    _s1_dc = float(f.get("ability_delta_class",      0.0) or 0.0)
+    _s1_dm = float(f.get("ability_delta_margin",     0.0) or 0.0)
+    _s1_mb = float(f.get("ability_delta_member",     0.0) or 0.0)
+    _s1_ag = float(f.get("ability_delta_agari",      0.0) or 0.0)
+    _s1_gd = float(f.get("ability_delta_grade_drop", 0.0) or 0.0)
+    _s1_improvement = _s1_dc + _s1_dm + _s1_mb + _s1_ag + _s1_gd
+
     if np.isfinite(eff_place):
         s1 = (
             eff_place * 7.0
@@ -1057,7 +1455,8 @@ def _compute_scores(f: dict) -> dict[str, int]:
         )
         s1 = max(2.0, s1)
     else:
-        s1 = 5.0
+        # データなし = 「不明」。5(平均)ではなく3.0で保守的に扱う
+        s1 = 3.0
 
     # 馬場適性 delta（±2）→ ①能力に加算
     tc_n     = int(_f(f.get("tc_n_races", 0)) or 0)
@@ -1094,16 +1493,14 @@ def _compute_scores(f: dict) -> dict[str, int]:
             if not (_cond_a or _cond_b):
                 s1 = max(1.0, s1 * 0.88)
 
-    s1 = clamp(s1 + surface_delta)
+    s1 = clamp(s1 + surface_delta + _s1_improvement)
 
     # ===========================================================
-    # ② 血統 (1-10): 上がり3F代理
+    # ② 血統 (1-10): pedigreeベースの父/母父×距離帯/会場の複勝率比率
+    # 上がり3F代理は廃止。比率=1.0(実績なし)→ s2=5(中立)。
     # ===========================================================
-    agari_for_s2 = eff_agari if np.isfinite(eff_agari) else avg_agari
-    if np.isfinite(agari_for_s2) and agari_for_s2 > 20:
-        s2 = clamp(max(2.0, min(10.0, (39.0 - agari_for_s2) * 1.5)))
-    else:
-        s2 = 5
+    s2_bl = float(f.get("s2_bloodline", 5.0) or 5.0)
+    s2 = clamp(s2_bl)
 
     # ===========================================================
     # ③ レース環境 (1-10): (会場実績 + 脚質展開) / 2
@@ -1137,6 +1534,9 @@ def _compute_scores(f: dict) -> dict[str, int]:
         s4 = int(round(float(np.clip(5.0 + raw_bias * 15, 1, 9))))
     else:
         s4 = 5
+    # データなし馬(①中立)のバイアス上限: 実績なしでバイアスだけ浮上するのを防ぐ
+    if not np.isfinite(eff_place) and s4 > 6:
+        s4 = 6
 
     # ===========================================================
     # ⑤ 照合 (2-10): 消しデータ連携（_build_featuresで計算済み）

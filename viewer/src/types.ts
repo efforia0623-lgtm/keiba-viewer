@@ -4,12 +4,12 @@ export interface PastResult {
 }
 
 export interface Scores {
-  ability: number
-  bloodline: number
-  environment: number
-  pace: number
-  history: number
-  training: number
+  ability: number      // ①能力
+  bloodline: number    // ②血統
+  environment: number  // ③環境
+  bias: number         // ④バイアス
+  keshi: number        // ⑤照合
+  training: number     // ⑥調教
 }
 
 export interface Caution {

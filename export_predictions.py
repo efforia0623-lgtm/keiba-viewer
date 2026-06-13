@@ -40,6 +40,7 @@ from src.api.main import (
     _db,
     VENUE_NAMES,
     FEATURES,
+    COMPOSITE_ALPHA,
 )
 
 SEX_JP       = {"1": "牡", "2": "牝", "3": "騸", "10": "牡", "20": "牝", "30": "騸"}
@@ -372,7 +373,15 @@ def _predict_race(
 
     X     = np.array([[f[col] for col in FEATURES] for f in feats], dtype=float)
     probs = model.predict(X)
-    order = np.argsort(-probs)
+
+    # 全馬スコアを先に計算（複合スコアで印を決めるため）
+    all_scores_base = [_compute_scores(f) for f in feats]
+    all_totals_base = [sum(s.values()) for s in all_scores_base]
+    composite = np.array([
+        float(probs[i]) * (all_totals_base[i] / 60.0) ** COMPOSITE_ALPHA
+        for i in range(len(feats))
+    ])
+    order   = np.argsort(-composite)
     rank_of = {int(idx): int(pos) for pos, idx in enumerate(order)}
 
     with _db() as db:
