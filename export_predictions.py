@@ -635,8 +635,11 @@ def main():
             print(f"\n【解説】\n{h['comment']}")
         print(sep)
 
-    # manifest.json 更新
-    all_json_dates = sorted(p.stem for p in OUT_DIR.glob("????????.json"))
+    # manifest.json 更新（8桁数字ファイルのみ、manifest自身を除外）
+    all_json_dates = sorted(
+        p.stem for p in OUT_DIR.glob("????????.json")
+        if p.stem.isdigit()
+    )
     (OUT_DIR / "manifest.json").write_text(
         json.dumps({"dates": all_json_dates}, ensure_ascii=False, indent=2),
         encoding="utf-8",
