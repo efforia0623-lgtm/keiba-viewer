@@ -20886,7 +20886,7 @@
             "course_description": "阪神競馬場1800mの解説なし",
             "horses": [
               {
-                "model_rank": 7,
+                "model_rank": 9,
                 "horse_num": "01",
                 "gate_num": "1",
                 "horse_name": "オーマイラッキーン",
@@ -20894,7 +20894,7 @@
                 "trainer_name": "高橋康之",
                 "sex": "牝",
                 "horse_age": 3,
-                "mark": "△",
+                "mark": "",
                 "prob": 8.9,
                 "scores": {
                   "ability": 4,
@@ -20927,10 +20927,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.8145
               },
               {
-                "model_rank": 8,
+                "model_rank": 13,
                 "horse_num": "02",
                 "gate_num": "1",
                 "horse_name": "ブラッドムーン",
@@ -20971,7 +20972,8 @@
                     "pos": 8,
                     "agari": 40.8
                   }
-                ]
+                ],
+                "combined": 0.4569
               },
               {
                 "model_rank": 6,
@@ -20987,12 +20989,12 @@
                 "scores": {
                   "ability": 3,
                   "bloodline": 5,
-                  "environment": 4,
+                  "environment": 5,
                   "bias": 4,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 26,
+                "total_score": 27,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】ダートへの適性は標準的で大きなプラスマイナスなし。【展開】内枠の利を活かした差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -21015,10 +21017,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 1.1927
               },
               {
-                "model_rank": 12,
+                "model_rank": 16,
                 "horse_num": "04",
                 "gate_num": "2",
                 "horse_name": "メイショウサザナミ",
@@ -21059,7 +21062,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.0576
               },
               {
                 "model_rank": 4,
@@ -21075,12 +21079,12 @@
                 "scores": {
                   "ability": 2,
                   "bloodline": 5,
-                  "environment": 4,
+                  "environment": 5,
                   "bias": 3,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 24,
+                "total_score": 25,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】ダートへの適性は標準的で大きなプラスマイナスなし。【展開】差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -21103,10 +21107,11 @@
                     "pos": 10,
                     "agari": 38.0
                   }
-                ]
+                ],
+                "combined": 1.8967
               },
               {
-                "model_rank": 14,
+                "model_rank": 11,
                 "horse_num": "06",
                 "gate_num": "3",
                 "horse_name": "リリーボレア",
@@ -21147,10 +21152,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.7046
               },
               {
-                "model_rank": 11,
+                "model_rank": 15,
                 "horse_num": "07",
                 "gate_num": "4",
                 "horse_name": "グラディオール",
@@ -21191,7 +21197,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.2804
               },
               {
                 "model_rank": 5,
@@ -21207,12 +21214,12 @@
                 "scores": {
                   "ability": 2,
                   "bloodline": 6,
-                  "environment": 4,
+                  "environment": 5,
                   "bias": 4,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 26,
+                "total_score": 27,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】ダートへの適性は標準的で大きなプラスマイナスなし。【展開】差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -21235,10 +21242,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 1.2928
               },
               {
-                "model_rank": 16,
+                "model_rank": 14,
                 "horse_num": "09",
                 "gate_num": "5",
                 "horse_name": "ステインアライヴ",
@@ -21279,10 +21287,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.3333
               },
               {
-                "model_rank": 13,
+                "model_rank": 10,
                 "horse_num": "10",
                 "gate_num": "5",
                 "horse_name": "ラヴィングチャンプ",
@@ -21323,7 +21332,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.7218
               },
               {
                 "model_rank": 2,
@@ -21367,10 +21377,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 2.546
               },
               {
-                "model_rank": 9,
+                "model_rank": 12,
                 "horse_num": "12",
                 "gate_num": "6",
                 "horse_name": "ソブリンズオーブ",
@@ -21411,7 +21422,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.6752
               },
               {
                 "model_rank": 1,
@@ -21427,12 +21439,12 @@
                 "scores": {
                   "ability": 4,
                   "bloodline": 5,
-                  "environment": 5,
+                  "environment": 6,
                   "bias": 7,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 31,
+                "total_score": 32,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】ダートへの適性は標準的で大きなプラスマイナスなし。【展開】差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -21455,10 +21467,11 @@
                     "pos": 6,
                     "agari": 35.6
                   }
-                ]
+                ],
+                "combined": 3.0
               },
               {
-                "model_rank": 15,
+                "model_rank": 7,
                 "horse_num": "14",
                 "gate_num": "7",
                 "horse_name": "アルビオン",
@@ -21466,7 +21479,7 @@
                 "trainer_name": "笹田和秀",
                 "sex": "牝",
                 "horse_age": 3,
-                "mark": "",
+                "mark": "△",
                 "prob": 3.6,
                 "scores": {
                   "ability": 3,
@@ -21499,7 +21512,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.8591
               },
               {
                 "model_rank": 3,
@@ -21543,10 +21557,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 2.49
               },
               {
-                "model_rank": 10,
+                "model_rank": 8,
                 "horse_num": "16",
                 "gate_num": "8",
                 "horse_name": "ワイルドカグラ",
@@ -21587,7 +21602,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.8399
               }
             ],
             "recommendations": {
@@ -21864,7 +21880,58 @@
                   }
                 ]
               }
-            }
+            },
+            "marks": [
+              {
+                "horse_num": "13",
+                "horse_name": "フィデリス",
+                "mark": "◎",
+                "label": "本命",
+                "prob": 40.0
+              },
+              {
+                "horse_num": "11",
+                "horse_name": "シャドウルーラー",
+                "mark": "○",
+                "label": "対抗",
+                "prob": 38.2
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "タガノラヴズワン",
+                "mark": "▲",
+                "label": "単穴",
+                "prob": 29.5
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "セントピュアベース",
+                "mark": "△",
+                "label": "紐",
+                "prob": 14.6
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "アクシュラ",
+                "mark": "△",
+                "label": "紐",
+                "prob": 36.8
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "ラミアスペランツァ",
+                "mark": "△",
+                "label": "紐",
+                "prob": 20.6
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "アルビオン",
+                "mark": "△",
+                "label": "紐",
+                "prob": 3.6
+              }
+            ]
           },
           {
             "race_num": "2",
@@ -21924,10 +21991,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.1777
               },
               {
-                "model_rank": 8,
+                "model_rank": 7,
                 "horse_num": "02",
                 "gate_num": "1",
                 "horse_name": "ホウオウワイズ",
@@ -21935,7 +22003,7 @@
                 "trainer_name": "吉岡辰弥",
                 "sex": "牝",
                 "horse_age": 3,
-                "mark": "",
+                "mark": "△",
                 "prob": 9.5,
                 "scores": {
                   "ability": 3,
@@ -21968,10 +22036,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.5594
               },
               {
-                "model_rank": 6,
+                "model_rank": 5,
                 "horse_num": "03",
                 "gate_num": "2",
                 "horse_name": "チョウスター",
@@ -21984,12 +22053,12 @@
                 "scores": {
                   "ability": 1,
                   "bloodline": 5,
-                  "environment": 4,
+                  "environment": 5,
                   "bias": 5,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 25,
+                "total_score": 26,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】ダートへの適性は標準的で大きなプラスマイナスなし。【展開】内枠の利を活かした差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -22012,7 +22081,8 @@
                     "pos": 6,
                     "agari": 37.5
                   }
-                ]
+                ],
+                "combined": 0.6585
               },
               {
                 "model_rank": 2,
@@ -22028,12 +22098,12 @@
                 "scores": {
                   "ability": 4,
                   "bloodline": 6,
-                  "environment": 5,
+                  "environment": 6,
                   "bias": 6,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 31,
+                "total_score": 32,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】ダートへの適性は標準的で大きなプラスマイナスなし。【展開】内枠の利を活かした先行の競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -22056,10 +22126,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 2.0647
               },
               {
-                "model_rank": 14,
+                "model_rank": 12,
                 "horse_num": "05",
                 "gate_num": "3",
                 "horse_name": "ブルークレスト",
@@ -22100,10 +22171,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.3204
               },
               {
-                "model_rank": 7,
+                "model_rank": 11,
                 "horse_num": "06",
                 "gate_num": "3",
                 "horse_name": "サンライズナスカ",
@@ -22111,7 +22183,7 @@
                 "trainer_name": "小林真也",
                 "sex": "牡",
                 "horse_age": 3,
-                "mark": "△",
+                "mark": "",
                 "prob": 11.7,
                 "scores": {
                   "ability": 1,
@@ -22144,10 +22216,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.3327
               },
               {
-                "model_rank": 11,
+                "model_rank": 10,
                 "horse_num": "07",
                 "gate_num": "4",
                 "horse_name": "ダイシンヨーク",
@@ -22188,10 +22261,11 @@
                     "pos": 7,
                     "agari": 37.3
                   }
-                ]
+                ],
+                "combined": 0.3353
               },
               {
-                "model_rank": 5,
+                "model_rank": 9,
                 "horse_num": "08",
                 "gate_num": "4",
                 "horse_name": "ファツアップ",
@@ -22199,7 +22273,7 @@
                 "trainer_name": "緒方努",
                 "sex": "牡",
                 "horse_age": 3,
-                "mark": "△",
+                "mark": "",
                 "prob": 15.0,
                 "scores": {
                   "ability": 1,
@@ -22232,10 +22306,11 @@
                     "pos": 16,
                     "agari": 39.9
                   }
-                ]
+                ],
+                "combined": 0.4038
               },
               {
-                "model_rank": 13,
+                "model_rank": 14,
                 "horse_num": "09",
                 "gate_num": "5",
                 "horse_name": "ブロンザイト",
@@ -22276,7 +22351,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.2014
               },
               {
                 "model_rank": 4,
@@ -22320,10 +22396,11 @@
                     "pos": 3,
                     "agari": 34.5
                   }
-                ]
+                ],
+                "combined": 1.0163
               },
               {
-                "model_rank": 12,
+                "model_rank": 8,
                 "horse_num": "11",
                 "gate_num": "6",
                 "horse_name": "ラッキーストーン",
@@ -22364,10 +22441,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.4583
               },
               {
-                "model_rank": 9,
+                "model_rank": 13,
                 "horse_num": "12",
                 "gate_num": "6",
                 "horse_name": "オアシスアラン",
@@ -22408,7 +22486,8 @@
                     "pos": 9,
                     "agari": 39.4
                   }
-                ]
+                ],
+                "combined": 0.2827
               },
               {
                 "model_rank": 1,
@@ -22452,10 +22531,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 3.0
               },
               {
-                "model_rank": 10,
+                "model_rank": 6,
                 "horse_num": "14",
                 "gate_num": "7",
                 "horse_name": "ガロピーネ",
@@ -22463,7 +22543,7 @@
                 "trainer_name": "笹田和秀",
                 "sex": "牝",
                 "horse_age": 3,
-                "mark": "",
+                "mark": "△",
                 "prob": 6.3,
                 "scores": {
                   "ability": 3,
@@ -22496,7 +22576,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.6086
               },
               {
                 "model_rank": 16,
@@ -22540,7 +22621,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.0
               },
               {
                 "model_rank": 3,
@@ -22584,7 +22666,8 @@
                     "pos": 10,
                     "agari": 35.3
                   }
-                ]
+                ],
+                "combined": 1.3299
               }
             ],
             "recommendations": {
@@ -22861,7 +22944,58 @@
                   }
                 ]
               }
-            }
+            },
+            "marks": [
+              {
+                "horse_num": "13",
+                "horse_name": "タガノプディング",
+                "mark": "◎",
+                "label": "本命",
+                "prob": 65.1
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "ウイルソン",
+                "mark": "○",
+                "label": "対抗",
+                "prob": 49.9
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "モズジェネラル",
+                "mark": "▲",
+                "label": "単穴",
+                "prob": 32.6
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "ホウオウワイズ",
+                "mark": "△",
+                "label": "紐",
+                "prob": 9.5
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "チョウスター",
+                "mark": "△",
+                "label": "紐",
+                "prob": 14.7
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "ハピネスサンライズ",
+                "mark": "△",
+                "label": "紐",
+                "prob": 22.6
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "ガロピーネ",
+                "mark": "△",
+                "label": "紐",
+                "prob": 6.3
+              }
+            ]
           },
           {
             "race_num": "3",
@@ -22880,7 +23014,7 @@
             "course_description": "阪神競馬場1800mの解説なし",
             "horses": [
               {
-                "model_rank": 2,
+                "model_rank": 3,
                 "horse_num": "01",
                 "gate_num": "1",
                 "horse_name": "アルジェンタム",
@@ -22888,17 +23022,17 @@
                 "trainer_name": "野中賢二",
                 "sex": "騸",
                 "horse_age": 3,
-                "mark": "○",
+                "mark": "▲",
                 "prob": 30.1,
                 "scores": {
                   "ability": 8,
                   "bloodline": 5,
-                  "environment": 6,
+                  "environment": 5,
                   "bias": 7,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 36,
+                "total_score": 35,
                 "comment": "【能力】上がり3F平均38.2秒・勝率0%と実力は最上位クラス。【血統】ダートへの適性は標準的で大きなプラスマイナスなし。【展開】内枠の利を活かした先行の競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -22921,7 +23055,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 2.6233
               },
               {
                 "model_rank": 13,
@@ -22937,12 +23072,12 @@
                 "scores": {
                   "ability": 1,
                   "bloodline": 5,
-                  "environment": 5,
+                  "environment": 4,
                   "bias": 3,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 24,
+                "total_score": 23,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】ダートへの適性は標準的で大きなプラスマイナスなし。【展開】内枠の利を活かした差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -22965,7 +23100,8 @@
                     "pos": 7,
                     "agari": 37.6
                   }
-                ]
+                ],
+                "combined": 0.0777
               },
               {
                 "model_rank": 7,
@@ -23009,10 +23145,11 @@
                     "pos": 5,
                     "agari": 39.2
                   }
-                ]
+                ],
+                "combined": 1.3795
               },
               {
-                "model_rank": 5,
+                "model_rank": 4,
                 "horse_num": "04",
                 "gate_num": "2",
                 "horse_name": "ワンダーゾルダート",
@@ -23025,12 +23162,12 @@
                 "scores": {
                   "ability": 5,
                   "bloodline": 6,
-                  "environment": 6,
+                  "environment": 5,
                   "bias": 7,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 34,
+                "total_score": 33,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】ダート1800mに合った適性で条件は前向き。【展開】内枠の利を活かした先行の競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -23053,10 +23190,11 @@
                     "pos": 2,
                     "agari": 38.8
                   }
-                ]
+                ],
+                "combined": 2.2048
               },
               {
-                "model_rank": 10,
+                "model_rank": 11,
                 "horse_num": "05",
                 "gate_num": "3",
                 "horse_name": "マクローリン",
@@ -23069,12 +23207,12 @@
                 "scores": {
                   "ability": 1,
                   "bloodline": 6,
-                  "environment": 4,
+                  "environment": 5,
                   "bias": 4,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 25,
+                "total_score": 26,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】ダートへの適性は標準的で大きなプラスマイナスなし。【展開】差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -23097,7 +23235,8 @@
                     "pos": 8,
                     "agari": 36.9
                   }
-                ]
+                ],
+                "combined": 0.496
               },
               {
                 "model_rank": 15,
@@ -23141,10 +23280,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.0652
               },
               {
-                "model_rank": 6,
+                "model_rank": 5,
                 "horse_num": "07",
                 "gate_num": "4",
                 "horse_name": "レッドホット",
@@ -23185,7 +23325,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 1.8859
               },
               {
                 "model_rank": 12,
@@ -23201,12 +23342,12 @@
                 "scores": {
                   "ability": 1,
                   "bloodline": 6,
-                  "environment": 4,
+                  "environment": 5,
                   "bias": 4,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 25,
+                "total_score": 26,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】ダートへの適性は標準的で大きなプラスマイナスなし。【展開】差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -23229,7 +23370,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.3886
               },
               {
                 "model_rank": 16,
@@ -23273,10 +23415,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.0
               },
               {
-                "model_rank": 9,
+                "model_rank": 10,
                 "horse_num": "10",
                 "gate_num": "5",
                 "horse_name": "ジェンティール",
@@ -23317,7 +23460,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.5368
               },
               {
                 "model_rank": 14,
@@ -23361,10 +23505,11 @@
                     "pos": 8,
                     "agari": 38.2
                   }
-                ]
+                ],
+                "combined": 0.0715
               },
               {
-                "model_rank": 3,
+                "model_rank": 2,
                 "horse_num": "12",
                 "gate_num": "6",
                 "horse_name": "キープシャイニング",
@@ -23372,17 +23517,17 @@
                 "trainer_name": "長谷川浩",
                 "sex": "牡",
                 "horse_age": 3,
-                "mark": "▲",
+                "mark": "○",
                 "prob": 32.9,
                 "scores": {
                   "ability": 5,
                   "bloodline": 5,
-                  "environment": 5,
+                  "environment": 6,
                   "bias": 7,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 32,
+                "total_score": 33,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】ダートへの適性は標準的で大きなプラスマイナスなし。【展開】差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -23405,7 +23550,8 @@
                     "pos": 2,
                     "agari": 37.6
                   }
-                ]
+                ],
+                "combined": 2.6729
               },
               {
                 "model_rank": 8,
@@ -23449,10 +23595,11 @@
                     "pos": 9,
                     "agari": 39.6
                   }
-                ]
+                ],
+                "combined": 1.1754
               },
               {
-                "model_rank": 4,
+                "model_rank": 6,
                 "horse_num": "14",
                 "gate_num": "7",
                 "horse_name": "インドミタビリティ",
@@ -23493,10 +23640,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 1.8453
               },
               {
-                "model_rank": 11,
+                "model_rank": 9,
                 "horse_num": "15",
                 "gate_num": "8",
                 "horse_name": "アイランド",
@@ -23537,7 +23685,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.7737
               },
               {
                 "model_rank": 1,
@@ -23581,7 +23730,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 2.8333
               }
             ],
             "recommendations": {
@@ -23858,7 +24008,58 @@
                   }
                 ]
               }
-            }
+            },
+            "marks": [
+              {
+                "horse_num": "16",
+                "horse_name": "キタノトレボーネ",
+                "mark": "◎",
+                "label": "本命",
+                "prob": 40.3
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "キープシャイニング",
+                "mark": "○",
+                "label": "対抗",
+                "prob": 32.9
+              },
+              {
+                "horse_num": "01",
+                "horse_name": "アルジェンタム",
+                "mark": "▲",
+                "label": "単穴",
+                "prob": 30.1
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "ワルトシュタイン",
+                "mark": "△",
+                "label": "紐",
+                "prob": 24.8
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "ワンダーゾルダート",
+                "mark": "△",
+                "label": "紐",
+                "prob": 27.2
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "レッドホット",
+                "mark": "△",
+                "label": "紐",
+                "prob": 21.1
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "インドミタビリティ",
+                "mark": "△",
+                "label": "紐",
+                "prob": 32.8
+              }
+            ]
           },
           {
             "race_num": "4",
@@ -23877,7 +24078,7 @@
             "course_description": "阪神競馬場2200mの解説なし",
             "horses": [
               {
-                "model_rank": 10,
+                "model_rank": 8,
                 "horse_num": "01",
                 "gate_num": "1",
                 "horse_name": "スクランプシャス",
@@ -23890,12 +24091,12 @@
                 "scores": {
                   "ability": 1,
                   "bloodline": 6,
-                  "environment": 4,
+                  "environment": 5,
                   "bias": 5,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 26,
+                "total_score": 27,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】内枠の利を活かした差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -23918,7 +24119,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.5115
               },
               {
                 "model_rank": 15,
@@ -23962,10 +24164,11 @@
                     "pos": 9,
                     "agari": 38.3
                   }
-                ]
+                ],
+                "combined": 0.1821
               },
               {
-                "model_rank": 11,
+                "model_rank": 9,
                 "horse_num": "03",
                 "gate_num": "2",
                 "horse_name": "スーパービジー",
@@ -24006,10 +24209,11 @@
                     "pos": 14,
                     "agari": 38.9
                   }
-                ]
+                ],
+                "combined": 0.4372
               },
               {
-                "model_rank": 6,
+                "model_rank": 5,
                 "horse_num": "04",
                 "gate_num": "2",
                 "horse_name": "ボンボンベイビー",
@@ -24050,7 +24254,8 @@
                     "pos": 8,
                     "agari": 36.8
                   }
-                ]
+                ],
+                "combined": 1.1484
               },
               {
                 "model_rank": 3,
@@ -24094,7 +24299,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 1.8458
               },
               {
                 "model_rank": 1,
@@ -24138,10 +24344,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 3.0
               },
               {
-                "model_rank": 12,
+                "model_rank": 14,
                 "horse_num": "07",
                 "gate_num": "4",
                 "horse_name": "レットミーテイク",
@@ -24182,10 +24389,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.2631
               },
               {
-                "model_rank": 5,
+                "model_rank": 6,
                 "horse_num": "08",
                 "gate_num": "4",
                 "horse_name": "ラルヴァンダード",
@@ -24226,10 +24434,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 1.127
               },
               {
-                "model_rank": 7,
+                "model_rank": 10,
                 "horse_num": "09",
                 "gate_num": "5",
                 "horse_name": "マコトエウロペ",
@@ -24237,7 +24446,7 @@
                 "trainer_name": "昆貢",
                 "sex": "牝",
                 "horse_age": 3,
-                "mark": "△",
+                "mark": "",
                 "prob": 12.1,
                 "scores": {
                   "ability": 2,
@@ -24270,10 +24479,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.4176
               },
               {
-                "model_rank": 17,
+                "model_rank": 13,
                 "horse_num": "10",
                 "gate_num": "5",
                 "horse_name": "デプレ",
@@ -24314,10 +24524,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.2857
               },
               {
-                "model_rank": 8,
+                "model_rank": 11,
                 "horse_num": "11",
                 "gate_num": "6",
                 "horse_name": "パゴスピグイノス",
@@ -24358,10 +24569,11 @@
                     "pos": 7,
                     "agari": 35.3
                   }
-                ]
+                ],
+                "combined": 0.3872
               },
               {
-                "model_rank": 13,
+                "model_rank": 12,
                 "horse_num": "12",
                 "gate_num": "6",
                 "horse_name": "ドットカモン",
@@ -24402,7 +24614,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.3869
               },
               {
                 "model_rank": 4,
@@ -24418,12 +24631,12 @@
                 "scores": {
                   "ability": 2,
                   "bloodline": 6,
-                  "environment": 4,
+                  "environment": 5,
                   "bias": 5,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 27,
+                "total_score": 28,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -24446,10 +24659,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 1.5809
               },
               {
-                "model_rank": 9,
+                "model_rank": 7,
                 "horse_num": "14",
                 "gate_num": "7",
                 "horse_name": "ゼータレティクル",
@@ -24457,7 +24671,7 @@
                 "trainer_name": "小手川準",
                 "sex": "牝",
                 "horse_age": 3,
-                "mark": "",
+                "mark": "△",
                 "prob": 9.2,
                 "scores": {
                   "ability": 1,
@@ -24490,7 +24704,8 @@
                     "pos": 5,
                     "agari": 37.6
                   }
-                ]
+                ],
+                "combined": 0.5222
               },
               {
                 "model_rank": 2,
@@ -24506,12 +24721,12 @@
                 "scores": {
                   "ability": 5,
                   "bloodline": 5,
-                  "environment": 4,
+                  "environment": 5,
                   "bias": 5,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 29,
+                "total_score": 30,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】外枠のハンデを抱える差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -24534,7 +24749,8 @@
                     "pos": 7,
                     "agari": 35.7
                   }
-                ]
+                ],
+                "combined": 2.2006
               },
               {
                 "model_rank": 16,
@@ -24550,12 +24766,12 @@
                 "scores": {
                   "ability": 4,
                   "bloodline": 5,
-                  "environment": 5,
+                  "environment": 4,
                   "bias": 4,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 28,
+                "total_score": 27,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】外枠のハンデを抱える追い込みの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -24578,10 +24794,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.1721
               },
               {
-                "model_rank": 14,
+                "model_rank": 17,
                 "horse_num": "17",
                 "gate_num": "8",
                 "horse_name": "リュネヴィル",
@@ -24622,7 +24839,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.073
               }
             ],
             "recommendations": {
@@ -24899,7 +25117,58 @@
                   }
                 ]
               }
-            }
+            },
+            "marks": [
+              {
+                "horse_num": "06",
+                "horse_name": "チェルヴァーラ",
+                "mark": "◎",
+                "label": "本命",
+                "prob": 53.1
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "ミエノクラウン",
+                "mark": "○",
+                "label": "対抗",
+                "prob": 45.6
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "ダノンミッドナイト",
+                "mark": "▲",
+                "label": "単穴",
+                "prob": 33.8
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "ボンボンベイビー",
+                "mark": "△",
+                "label": "紐",
+                "prob": 22.4
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "ラルヴァンダード",
+                "mark": "△",
+                "label": "紐",
+                "prob": 27.9
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "イクオクコウネン",
+                "mark": "△",
+                "label": "紐",
+                "prob": 31.9
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "ゼータレティクル",
+                "mark": "△",
+                "label": "紐",
+                "prob": 9.2
+              }
+            ]
           },
           {
             "race_num": "5",
@@ -24918,7 +25187,7 @@
             "course_description": "阪神競馬場1800mの解説なし",
             "horses": [
               {
-                "model_rank": 6,
+                "model_rank": 5,
                 "horse_num": "01",
                 "gate_num": "1",
                 "horse_name": "ジュンヴァグネル",
@@ -24959,7 +25228,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.8805
               },
               {
                 "model_rank": 8,
@@ -25003,7 +25273,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.1667
               },
               {
                 "model_rank": 7,
@@ -25047,7 +25318,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.2029
               },
               {
                 "model_rank": 4,
@@ -25063,12 +25335,12 @@
                 "scores": {
                   "ability": 3,
                   "bloodline": 5,
-                  "environment": 5,
+                  "environment": 6,
                   "bias": 5,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 28,
+                "total_score": 29,
                 "comment": "初出走または実績データ不足で未知の能力を秘める。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】展開データ不足のため脚質評価は不透明。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -25091,10 +25363,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 1.6459
               },
               {
-                "model_rank": 5,
+                "model_rank": 6,
                 "horse_num": "05",
                 "gate_num": "5",
                 "horse_name": "ジーティーアツモリ",
@@ -25135,10 +25408,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.7349
               },
               {
-                "model_rank": 1,
+                "model_rank": 2,
                 "horse_num": "06",
                 "gate_num": "6",
                 "horse_name": "インカルナータ",
@@ -25146,7 +25420,7 @@
                 "trainer_name": "西園翔太",
                 "sex": "牡",
                 "horse_age": 2,
-                "mark": "◎",
+                "mark": "○",
                 "prob": 49.2,
                 "scores": {
                   "ability": 3,
@@ -25179,7 +25453,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 2.3333
               },
               {
                 "model_rank": 3,
@@ -25223,10 +25498,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 1.8256
               },
               {
-                "model_rank": 2,
+                "model_rank": 1,
                 "horse_num": "08",
                 "gate_num": "8",
                 "horse_name": "メモリアデルレ",
@@ -25234,17 +25510,17 @@
                 "trainer_name": "吉岡辰弥",
                 "sex": "牡",
                 "horse_age": 2,
-                "mark": "○",
+                "mark": "◎",
                 "prob": 43.3,
                 "scores": {
                   "ability": 3,
                   "bloodline": 6,
-                  "environment": 5,
+                  "environment": 6,
                   "bias": 5,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 29,
+                "total_score": 30,
                 "comment": "初出走または実績データ不足で未知の能力を秘める。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】外枠スタートで先行馬にはポジション確保が課題。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -25267,7 +25543,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 2.8278
               }
             ],
             "recommendations": {
@@ -25544,7 +25821,58 @@
                   }
                 ]
               }
-            }
+            },
+            "marks": [
+              {
+                "horse_num": "08",
+                "horse_name": "メモリアデルレ",
+                "mark": "◎",
+                "label": "本命",
+                "prob": 43.3
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "インカルナータ",
+                "mark": "○",
+                "label": "対抗",
+                "prob": 49.2
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "オンユアマークス",
+                "mark": "▲",
+                "label": "単穴",
+                "prob": 40.8
+              },
+              {
+                "horse_num": "01",
+                "horse_name": "ジュンヴァグネル",
+                "mark": "△",
+                "label": "紐",
+                "prob": 25.0
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "オスカーレイア",
+                "mark": "△",
+                "label": "紐",
+                "prob": 18.6
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "ダイナマイク",
+                "mark": "△",
+                "label": "紐",
+                "prob": 28.4
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "ジーティーアツモリ",
+                "mark": "△",
+                "label": "紐",
+                "prob": 28.1
+              }
+            ]
           },
           {
             "race_num": "6",
@@ -25563,7 +25891,7 @@
             "course_description": "阪神競馬場1200mの解説なし",
             "horses": [
               {
-                "model_rank": 12,
+                "model_rank": 11,
                 "horse_num": "01",
                 "gate_num": "1",
                 "horse_name": "ペルセポネ",
@@ -25604,10 +25932,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.9875
               },
               {
-                "model_rank": 14,
+                "model_rank": 15,
                 "horse_num": "02",
                 "gate_num": "1",
                 "horse_name": "モズイージス",
@@ -25648,10 +25977,11 @@
                     "pos": 5,
                     "agari": 35.7
                   }
-                ]
+                ],
+                "combined": 0.2724
               },
               {
-                "model_rank": 11,
+                "model_rank": 12,
                 "horse_num": "03",
                 "gate_num": "2",
                 "horse_name": "クインズシャウラ",
@@ -25692,10 +26022,11 @@
                     "pos": 3,
                     "agari": 36.7
                   }
-                ]
+                ],
+                "combined": 0.8391
               },
               {
-                "model_rank": 15,
+                "model_rank": 16,
                 "horse_num": "04",
                 "gate_num": "2",
                 "horse_name": "ランドプリメーロ",
@@ -25736,7 +26067,8 @@
                     "pos": 8,
                     "agari": 39.0
                   }
-                ]
+                ],
+                "combined": 0.2063
               },
               {
                 "model_rank": 5,
@@ -25780,10 +26112,11 @@
                     "pos": 15,
                     "agari": 37.4
                   }
-                ]
+                ],
+                "combined": 1.672
               },
               {
-                "model_rank": 10,
+                "model_rank": 13,
                 "horse_num": "06",
                 "gate_num": "3",
                 "horse_name": "ディーエストッキー",
@@ -25824,7 +26157,8 @@
                     "pos": 6,
                     "agari": 37.8
                   }
-                ]
+                ],
+                "combined": 0.5434
               },
               {
                 "model_rank": 2,
@@ -25868,10 +26202,11 @@
                     "pos": 5,
                     "agari": 36.8
                   }
-                ]
+                ],
+                "combined": 2.2576
               },
               {
-                "model_rank": 6,
+                "model_rank": 7,
                 "horse_num": "08",
                 "gate_num": "4",
                 "horse_name": "カネコメファミリー",
@@ -25884,12 +26219,12 @@
                 "scores": {
                   "ability": 1,
                   "bloodline": 5,
-                  "environment": 4,
+                  "environment": 5,
                   "bias": 8,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 28,
+                "total_score": 29,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】ダートへの適性は標準的で大きなプラスマイナスなし。【展開】先行の競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -25912,10 +26247,11 @@
                     "pos": 4,
                     "agari": 36.5
                   }
-                ]
+                ],
+                "combined": 1.4395
               },
               {
-                "model_rank": 9,
+                "model_rank": 8,
                 "horse_num": "09",
                 "gate_num": "5",
                 "horse_name": "エリカヴェローナ",
@@ -25956,10 +26292,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 1.2285
               },
               {
-                "model_rank": 16,
+                "model_rank": 14,
                 "horse_num": "10",
                 "gate_num": "5",
                 "horse_name": "メイショウハボマイ",
@@ -26000,7 +26337,8 @@
                     "pos": 11,
                     "agari": 36.0
                   }
-                ]
+                ],
+                "combined": 0.3333
               },
               {
                 "model_rank": 1,
@@ -26044,7 +26382,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 3.0
               },
               {
                 "model_rank": 4,
@@ -26088,10 +26427,11 @@
                     "pos": 4,
                     "agari": 38.1
                   }
-                ]
+                ],
+                "combined": 2.1105
               },
               {
-                "model_rank": 7,
+                "model_rank": 6,
                 "horse_num": "13",
                 "gate_num": "7",
                 "horse_name": "キンダープンシュ",
@@ -26132,10 +26472,11 @@
                     "pos": 8,
                     "agari": 34.8
                   }
-                ]
+                ],
+                "combined": 1.5107
               },
               {
-                "model_rank": 13,
+                "model_rank": 10,
                 "horse_num": "14",
                 "gate_num": "7",
                 "horse_name": "グラスゴー",
@@ -26148,12 +26489,12 @@
                 "scores": {
                   "ability": 6,
                   "bloodline": 5,
-                  "environment": 6,
+                  "environment": 5,
                   "bias": 3,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 30,
+                "total_score": 29,
                 "comment": "【能力】複勝率40%で堅実な走りが持ち味。【血統】ダートへの適性は標準的で大きなプラスマイナスなし。【展開】差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -26176,10 +26517,11 @@
                     "pos": 7,
                     "agari": 35.8
                   }
-                ]
+                ],
+                "combined": 1.0855
               },
               {
-                "model_rank": 8,
+                "model_rank": 9,
                 "horse_num": "15",
                 "gate_num": "8",
                 "horse_name": "マウンテンバローズ",
@@ -26220,7 +26562,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 1.1411
               },
               {
                 "model_rank": 3,
@@ -26264,7 +26607,8 @@
                     "pos": 11,
                     "agari": 41.9
                   }
-                ]
+                ],
+                "combined": 2.158
               }
             ],
             "recommendations": {
@@ -26541,7 +26885,58 @@
                   }
                 ]
               }
-            }
+            },
+            "marks": [
+              {
+                "horse_num": "11",
+                "horse_name": "アームズレジェンド",
+                "mark": "◎",
+                "label": "本命",
+                "prob": 49.9
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "グランデスフィーダ",
+                "mark": "○",
+                "label": "対抗",
+                "prob": 48.4
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "ラヴネヴァーダイズ",
+                "mark": "▲",
+                "label": "単穴",
+                "prob": 32.9
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "オースミライト",
+                "mark": "△",
+                "label": "紐",
+                "prob": 26.6
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "カネコメファミリー",
+                "mark": "△",
+                "label": "紐",
+                "prob": 27.2
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "レッドレベンディス",
+                "mark": "△",
+                "label": "紐",
+                "prob": 32.6
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "キンダープンシュ",
+                "mark": "△",
+                "label": "紐",
+                "prob": 21.9
+              }
+            ]
           },
           {
             "race_num": "7",
@@ -26601,10 +26996,11 @@
                     "pos": 11,
                     "agari": 37.5
                   }
-                ]
+                ],
+                "combined": 0.9504
               },
               {
-                "model_rank": 2,
+                "model_rank": 3,
                 "horse_num": "02",
                 "gate_num": "2",
                 "horse_name": "ピカキウイ",
@@ -26612,7 +27008,7 @@
                 "trainer_name": "杉山晴紀",
                 "sex": "牝",
                 "horse_age": 3,
-                "mark": "○",
+                "mark": "▲",
                 "prob": 44.3,
                 "scores": {
                   "ability": 9,
@@ -26645,7 +27041,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 2.3013
               },
               {
                 "model_rank": 4,
@@ -26689,10 +27086,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 1.5841
               },
               {
-                "model_rank": 9,
+                "model_rank": 8,
                 "horse_num": "04",
                 "gate_num": "4",
                 "horse_name": "ノリノリソックス",
@@ -26733,10 +27131,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 0.7991
               },
               {
-                "model_rank": 11,
+                "model_rank": 10,
                 "horse_num": "05",
                 "gate_num": "5",
                 "horse_name": "キタノファーンヒル",
@@ -26777,7 +27176,8 @@
                     "pos": 9,
                     "agari": 38.4
                   }
-                ]
+                ],
+                "combined": 0.125
               },
               {
                 "model_rank": 7,
@@ -26793,12 +27193,12 @@
                 "scores": {
                   "ability": 1,
                   "bloodline": 6,
-                  "environment": 4,
+                  "environment": 5,
                   "bias": 3,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 24,
+                "total_score": 25,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -26821,7 +27221,8 @@
                     "pos": 5,
                     "agari": 34.6
                   }
-                ]
+                ],
+                "combined": 0.8125
               },
               {
                 "model_rank": 1,
@@ -26865,7 +27266,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 3.0
               },
               {
                 "model_rank": 5,
@@ -26909,10 +27311,11 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 1.5704
               },
               {
-                "model_rank": 3,
+                "model_rank": 2,
                 "horse_num": "09",
                 "gate_num": "7",
                 "horse_name": "ナリタエスペランサ",
@@ -26920,17 +27323,17 @@
                 "trainer_name": "福永祐一",
                 "sex": "牡",
                 "horse_age": 3,
-                "mark": "▲",
+                "mark": "○",
                 "prob": 42.2,
                 "scores": {
                   "ability": 7,
                   "bloodline": 6,
-                  "environment": 5,
+                  "environment": 6,
                   "bias": 7,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 35,
+                "total_score": 36,
                 "comment": "【能力】複勝率60%で堅実な走りが持ち味。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -26953,10 +27356,11 @@
                     "pos": 6,
                     "agari": 36.2
                   }
-                ]
+                ],
+                "combined": 2.3029
               },
               {
-                "model_rank": 8,
+                "model_rank": 9,
                 "horse_num": "10",
                 "gate_num": "8",
                 "horse_name": "レーヌマロン",
@@ -26997,10 +27401,11 @@
                     "pos": 7,
                     "agari": 34.7
                   }
-                ]
+                ],
+                "combined": 0.6096
               },
               {
-                "model_rank": 10,
+                "model_rank": 11,
                 "horse_num": "11",
                 "gate_num": "8",
                 "horse_name": "アンビアンス",
@@ -27041,7 +27446,8 @@
                     "pos": 13,
                     "agari": 35.1
                   }
-                ]
+                ],
+                "combined": 0.0389
               }
             ],
             "recommendations": {
@@ -27318,7 +27724,58 @@
                   }
                 ]
               }
-            }
+            },
+            "marks": [
+              {
+                "horse_num": "07",
+                "horse_name": "ダノンテムズ",
+                "mark": "◎",
+                "label": "本命",
+                "prob": 56.2
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "ナリタエスペランサ",
+                "mark": "○",
+                "label": "対抗",
+                "prob": 42.2
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "ピカキウイ",
+                "mark": "▲",
+                "label": "単穴",
+                "prob": 44.3
+              },
+              {
+                "horse_num": "01",
+                "horse_name": "ウィテカービート",
+                "mark": "△",
+                "label": "紐",
+                "prob": 22.9
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "メイショウハンター",
+                "mark": "△",
+                "label": "紐",
+                "prob": 28.5
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "サイン",
+                "mark": "△",
+                "label": "紐",
+                "prob": 26.9
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "ロングホリデー",
+                "mark": "△",
+                "label": "紐",
+                "prob": 24.4
+              }
+            ]
           },
           {
             "race_num": "8",
@@ -27350,12 +27807,12 @@
                 "scores": {
                   "ability": 8,
                   "bloodline": 5,
-                  "environment": 5,
+                  "environment": 6,
                   "bias": 7,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 35,
+                "total_score": 36,
                 "comment": "【能力】上がり3F平均37.6秒・勝率20%と実力は最上位クラス。【血統】ダートへの適性は標準的で大きなプラスマイナスなし。【展開】内枠の利を活かした差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -27378,7 +27835,8 @@
                     "pos": 3,
                     "agari": 37.7
                   }
-                ]
+                ],
+                "combined": 2.4083
               },
               {
                 "model_rank": 5,
@@ -27422,7 +27880,8 @@
                     "pos": 6,
                     "agari": 36.6
                   }
-                ]
+                ],
+                "combined": 0.8191
               },
               {
                 "model_rank": 9,
@@ -27466,7 +27925,8 @@
                     "pos": 9,
                     "agari": 36.3
                   }
-                ]
+                ],
+                "combined": 0.1429
               },
               {
                 "model_rank": 8,
@@ -27510,7 +27970,8 @@
                     "pos": 5,
                     "agari": 36.2
                   }
-                ]
+                ],
+                "combined": 0.1762
               },
               {
                 "model_rank": 3,
@@ -27526,12 +27987,12 @@
                 "scores": {
                   "ability": 8,
                   "bloodline": 6,
-                  "environment": 6,
+                  "environment": 5,
                   "bias": 4,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 34,
+                "total_score": 33,
                 "comment": "【能力】上がり3F平均37.4秒・勝率66%と実力は最上位クラス。【血統】ダート1800mに合った適性で条件は前向き。【展開】追い込みの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -27554,7 +28015,8 @@
                     "pos": null,
                     "agari": null
                   }
-                ]
+                ],
+                "combined": 2.03
               },
               {
                 "model_rank": 4,
@@ -27598,10 +28060,11 @@
                     "pos": 1,
                     "agari": 37.7
                   }
-                ]
+                ],
+                "combined": 1.7805
               },
               {
-                "model_rank": 6,
+                "model_rank": 7,
                 "horse_num": "07",
                 "gate_num": "7",
                 "horse_name": "ユウェンタース",
@@ -27614,12 +28077,12 @@
                 "scores": {
                   "ability": 1,
                   "bloodline": 5,
-                  "environment": 4,
+                  "environment": 5,
                   "bias": 4,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 24,
+                "total_score": 25,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】ダートへの適性は標準的で大きなプラスマイナスなし。【展開】追い込みの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -27642,7 +28105,8 @@
                     "pos": 4,
                     "agari": 38.2
                   }
-                ]
+                ],
+                "combined": 0.418
               },
               {
                 "model_rank": 1,
@@ -27686,10 +28150,11 @@
                     "pos": 1,
                     "agari": 37.0
                   }
-                ]
+                ],
+                "combined": 3.0
               },
               {
-                "model_rank": 7,
+                "model_rank": 6,
                 "horse_num": "09",
                 "gate_num": "8",
                 "horse_name": "ラヴァブル",
@@ -27730,7 +28195,8 @@
                     "pos": 9,
                     "agari": 39.4
                   }
-                ]
+                ],
+                "combined": 0.5362
               }
             ],
             "recommendations": {
@@ -28007,7 +28473,58 @@
                   }
                 ]
               }
-            }
+            },
+            "marks": [
+              {
+                "horse_num": "08",
+                "horse_name": "ヴァンアグレアブル",
+                "mark": "◎",
+                "label": "本命",
+                "prob": 63.3
+              },
+              {
+                "horse_num": "01",
+                "horse_name": "ハギノコラソン",
+                "mark": "○",
+                "label": "対抗",
+                "prob": 47.3
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "メイショウコマチ",
+                "mark": "▲",
+                "label": "単穴",
+                "prob": 40.2
+              },
+              {
+                "horse_num": "02",
+                "horse_name": "メイショウリリー",
+                "mark": "△",
+                "label": "紐",
+                "prob": 25.5
+              },
+              {
+                "horse_num": "06",
+                "horse_name": "アイブリンク",
+                "mark": "△",
+                "label": "紐",
+                "prob": 45.4
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "ユウェンタース",
+                "mark": "△",
+                "label": "紐",
+                "prob": 23.0
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "ラヴァブル",
+                "mark": "△",
+                "label": "紐",
+                "prob": 16.3
+              }
+            ]
           },
           {
             "race_num": "9",
@@ -28026,7 +28543,7 @@
             "course_description": "阪神競馬場1200mの解説なし",
             "horses": [
               {
-                "model_rank": 12,
+                "model_rank": 9,
                 "horse_num": "01",
                 "gate_num": "1",
                 "horse_name": "インフローレ",
@@ -28039,12 +28556,12 @@
                 "scores": {
                   "ability": 2,
                   "bloodline": 5,
-                  "environment": 4,
+                  "environment": 5,
                   "bias": 4,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 25,
+                "total_score": 26,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】内枠の利を活かした差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -28067,10 +28584,11 @@
                     "pos": 11,
                     "agari": 34.3
                   }
-                ]
+                ],
+                "combined": 0.6795
               },
               {
-                "model_rank": 13,
+                "model_rank": 12,
                 "horse_num": "02",
                 "gate_num": "2",
                 "horse_name": "ジョウゲンノツキ",
@@ -28111,10 +28629,11 @@
                     "pos": 11,
                     "agari": 33.6
                   }
-                ]
+                ],
+                "combined": 0.2032
               },
               {
-                "model_rank": 4,
+                "model_rank": 3,
                 "horse_num": "03",
                 "gate_num": "3",
                 "horse_name": "ヒーローインチーフ",
@@ -28122,7 +28641,7 @@
                 "trainer_name": "吉田直弘",
                 "sex": "騸",
                 "horse_age": 5,
-                "mark": "△",
+                "mark": "▲",
                 "prob": 18.3,
                 "scores": {
                   "ability": 3,
@@ -28155,10 +28674,11 @@
                     "pos": 6,
                     "agari": 33.6
                   }
-                ]
+                ],
+                "combined": 1.2065
               },
               {
-                "model_rank": 7,
+                "model_rank": 6,
                 "horse_num": "04",
                 "gate_num": "3",
                 "horse_name": "カリーシ",
@@ -28199,7 +28719,8 @@
                     "pos": 12,
                     "agari": 33.9
                   }
-                ]
+                ],
+                "combined": 0.9531
               },
               {
                 "model_rank": 2,
@@ -28243,10 +28764,11 @@
                     "pos": 1,
                     "agari": 33.6
                   }
-                ]
+                ],
+                "combined": 1.7569
               },
               {
-                "model_rank": 5,
+                "model_rank": 10,
                 "horse_num": "06",
                 "gate_num": "4",
                 "horse_name": "ミロワール",
@@ -28254,7 +28776,7 @@
                 "trainer_name": "柴田卓",
                 "sex": "牝",
                 "horse_age": 7,
-                "mark": "△",
+                "mark": "",
                 "prob": 13.5,
                 "scores": {
                   "ability": 3,
@@ -28287,10 +28809,11 @@
                     "pos": 11,
                     "agari": 37.9
                   }
-                ]
+                ],
+                "combined": 0.5033
               },
               {
-                "model_rank": 3,
+                "model_rank": 5,
                 "horse_num": "07",
                 "gate_num": "5",
                 "horse_name": "マキシマムドライブ",
@@ -28298,7 +28821,7 @@
                 "trainer_name": "尾関知人",
                 "sex": "牡",
                 "horse_age": 4,
-                "mark": "▲",
+                "mark": "△",
                 "prob": 19.8,
                 "scores": {
                   "ability": 3,
@@ -28331,10 +28854,11 @@
                     "pos": 13,
                     "agari": 35.4
                   }
-                ]
+                ],
+                "combined": 1.1353
               },
               {
-                "model_rank": 9,
+                "model_rank": 11,
                 "horse_num": "08",
                 "gate_num": "5",
                 "horse_name": "スネーフリンガ",
@@ -28375,10 +28899,11 @@
                     "pos": 5,
                     "agari": 34.3
                   }
-                ]
+                ],
+                "combined": 0.2757
               },
               {
-                "model_rank": 10,
+                "model_rank": 7,
                 "horse_num": "09",
                 "gate_num": "6",
                 "horse_name": "ストラテージュ",
@@ -28386,7 +28911,7 @@
                 "trainer_name": "矢作芳人",
                 "sex": "牡",
                 "horse_age": 4,
-                "mark": "",
+                "mark": "△",
                 "prob": 10.8,
                 "scores": {
                   "ability": 4,
@@ -28419,10 +28944,11 @@
                     "pos": 1,
                     "agari": 34.4
                   }
-                ]
+                ],
+                "combined": 0.924
               },
               {
-                "model_rank": 6,
+                "model_rank": 4,
                 "horse_num": "10",
                 "gate_num": "6",
                 "horse_name": "バシレウスシチー",
@@ -28463,10 +28989,11 @@
                     "pos": 16,
                     "agari": 36.2
                   }
-                ]
+                ],
+                "combined": 1.1475
               },
               {
-                "model_rank": 11,
+                "model_rank": 13,
                 "horse_num": "11",
                 "gate_num": "7",
                 "horse_name": "メイショウミリオレ",
@@ -28507,7 +29034,8 @@
                     "pos": 12,
                     "agari": 34.7
                   }
-                ]
+                ],
+                "combined": 0.1741
               },
               {
                 "model_rank": 8,
@@ -28551,7 +29079,8 @@
                     "pos": 10,
                     "agari": 33.4
                   }
-                ]
+                ],
+                "combined": 0.7778
               },
               {
                 "model_rank": 14,
@@ -28595,7 +29124,8 @@
                     "pos": 13,
                     "agari": 35.4
                   }
-                ]
+                ],
+                "combined": 0.0
               },
               {
                 "model_rank": 1,
@@ -28611,12 +29141,12 @@
                 "scores": {
                   "ability": 8,
                   "bloodline": 5,
-                  "environment": 6,
+                  "environment": 5,
                   "bias": 6,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 35,
+                "total_score": 34,
                 "comment": "【能力】上がり3F平均34.4秒・勝率20%と実力は最上位クラス。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】外枠のハンデを抱える差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -28639,7 +29169,8 @@
                     "pos": 2,
                     "agari": 34.2
                   }
-                ]
+                ],
+                "combined": 3.0
               }
             ],
             "recommendations": {
@@ -28916,7 +29447,58 @@
                   }
                 ]
               }
-            }
+            },
+            "marks": [
+              {
+                "horse_num": "14",
+                "horse_name": "マーゴットミスト",
+                "mark": "◎",
+                "label": "本命",
+                "prob": 41.8
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "ヤマニンレセディ",
+                "mark": "○",
+                "label": "対抗",
+                "prob": 21.0
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "ヒーローインチーフ",
+                "mark": "▲",
+                "label": "単穴",
+                "prob": 18.3
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "カリーシ",
+                "mark": "△",
+                "label": "紐",
+                "prob": 12.8
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "マキシマムドライブ",
+                "mark": "△",
+                "label": "紐",
+                "prob": 19.8
+              },
+              {
+                "horse_num": "09",
+                "horse_name": "ストラテージュ",
+                "mark": "△",
+                "label": "紐",
+                "prob": 10.8
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "バシレウスシチー",
+                "mark": "△",
+                "label": "紐",
+                "prob": 11.3
+              }
+            ]
           },
           {
             "race_num": "10",
@@ -28935,7 +29517,7 @@
             "course_description": "阪神競馬場1600mの解説なし",
             "horses": [
               {
-                "model_rank": 2,
+                "model_rank": 3,
                 "horse_num": "01",
                 "gate_num": "1",
                 "horse_name": "サンタンカ",
@@ -28943,17 +29525,17 @@
                 "trainer_name": "千田輝彦",
                 "sex": "牡",
                 "horse_age": 4,
-                "mark": "○",
+                "mark": "▲",
                 "prob": 49.2,
                 "scores": {
                   "ability": 9,
                   "bloodline": 5,
-                  "environment": 6,
+                  "environment": 5,
                   "bias": 6,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 36,
+                "total_score": 35,
                 "comment": "【能力】上がり3F平均33.7秒・勝率40%と実力は最上位クラス。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】内枠の利を活かした差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -28976,7 +29558,8 @@
                     "pos": 2,
                     "agari": 33.6
                   }
-                ]
+                ],
+                "combined": 2.5968
               },
               {
                 "model_rank": 9,
@@ -29020,10 +29603,11 @@
                     "pos": 3,
                     "agari": 33.7
                   }
-                ]
+                ],
+                "combined": 0.877
               },
               {
-                "model_rank": 1,
+                "model_rank": 2,
                 "horse_num": "03",
                 "gate_num": "3",
                 "horse_name": "テラメリタ",
@@ -29031,7 +29615,7 @@
                 "trainer_name": "須貝尚介",
                 "sex": "牝",
                 "horse_age": 5,
-                "mark": "◎",
+                "mark": "○",
                 "prob": 50.7,
                 "scores": {
                   "ability": 7,
@@ -29064,10 +29648,11 @@
                     "pos": 3,
                     "agari": 33.8
                   }
-                ]
+                ],
+                "combined": 2.6667
               },
               {
-                "model_rank": 6,
+                "model_rank": 7,
                 "horse_num": "04",
                 "gate_num": "3",
                 "horse_name": "チャンネルトンネル",
@@ -29108,10 +29693,11 @@
                     "pos": 3,
                     "agari": 33.6
                   }
-                ]
+                ],
+                "combined": 1.4398
               },
               {
-                "model_rank": 12,
+                "model_rank": 13,
                 "horse_num": "05",
                 "gate_num": "4",
                 "horse_name": "エポックヴィーナス",
@@ -29152,7 +29738,8 @@
                     "pos": 3,
                     "agari": 33.9
                   }
-                ]
+                ],
+                "combined": 0.1955
               },
               {
                 "model_rank": 11,
@@ -29196,10 +29783,11 @@
                     "pos": 3,
                     "agari": 33.2
                   }
-                ]
+                ],
+                "combined": 0.6587
               },
               {
-                "model_rank": 7,
+                "model_rank": 6,
                 "horse_num": "07",
                 "gate_num": "5",
                 "horse_name": "ケーブパール",
@@ -29212,12 +29800,12 @@
                 "scores": {
                   "ability": 6,
                   "bloodline": 6,
-                  "environment": 5,
+                  "environment": 6,
                   "bias": 4,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 31,
+                "total_score": 32,
                 "comment": "【能力】複勝率40%で堅実な走りが持ち味。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】追い込みの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -29240,7 +29828,8 @@
                     "pos": 2,
                     "agari": 32.8
                   }
-                ]
+                ],
+                "combined": 1.4661
               },
               {
                 "model_rank": 4,
@@ -29256,12 +29845,12 @@
                 "scores": {
                   "ability": 6,
                   "bloodline": 5,
-                  "environment": 5,
+                  "environment": 6,
                   "bias": 6,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 32,
+                "total_score": 33,
                 "comment": "【能力】複勝率20%で堅実な走りが持ち味。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】先行の競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -29284,7 +29873,8 @@
                     "pos": 2,
                     "agari": 34.0
                   }
-                ]
+                ],
+                "combined": 1.8698
               },
               {
                 "model_rank": 14,
@@ -29328,10 +29918,11 @@
                     "pos": 6,
                     "agari": 33.0
                   }
-                ]
+                ],
+                "combined": 0.1667
               },
               {
-                "model_rank": 3,
+                "model_rank": 1,
                 "horse_num": "10",
                 "gate_num": "6",
                 "horse_name": "アウフヘーベン",
@@ -29339,17 +29930,17 @@
                 "trainer_name": "高橋亮",
                 "sex": "牝",
                 "horse_age": 6,
-                "mark": "▲",
+                "mark": "◎",
                 "prob": 48.7,
                 "scores": {
                   "ability": 8,
                   "bloodline": 6,
-                  "environment": 5,
+                  "environment": 6,
                   "bias": 6,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 35,
+                "total_score": 36,
                 "comment": "【能力】上がり3F平均33.6秒・勝率0%と実力は最上位クラス。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -29372,7 +29963,8 @@
                     "pos": 2,
                     "agari": 34.1
                   }
-                ]
+                ],
+                "combined": 2.9735
               },
               {
                 "model_rank": 8,
@@ -29416,7 +30008,8 @@
                     "pos": 1,
                     "agari": 33.9
                   }
-                ]
+                ],
+                "combined": 0.9983
               },
               {
                 "model_rank": 5,
@@ -29460,10 +30053,11 @@
                     "pos": 6,
                     "agari": 33.8
                   }
-                ]
+                ],
+                "combined": 1.6421
               },
               {
-                "model_rank": 13,
+                "model_rank": 12,
                 "horse_num": "13",
                 "gate_num": "8",
                 "horse_name": "ワイドアラジン",
@@ -29504,7 +30098,8 @@
                     "pos": 6,
                     "agari": 34.1
                   }
-                ]
+                ],
+                "combined": 0.2163
               },
               {
                 "model_rank": 10,
@@ -29520,12 +30115,12 @@
                 "scores": {
                   "ability": 6,
                   "bloodline": 6,
-                  "environment": 6,
+                  "environment": 5,
                   "bias": 5,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 33,
+                "total_score": 32,
                 "comment": "【能力】複勝率20%で堅実な走りが持ち味。【血統】芝1600mに合った適性で条件は前向き。【展開】外枠のハンデを抱える差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -29548,7 +30143,8 @@
                     "pos": 4,
                     "agari": 35.3
                   }
-                ]
+                ],
+                "combined": 0.8446
               }
             ],
             "recommendations": {
@@ -29825,7 +30421,58 @@
                   }
                 ]
               }
-            }
+            },
+            "marks": [
+              {
+                "horse_num": "10",
+                "horse_name": "アウフヘーベン",
+                "mark": "◎",
+                "label": "本命",
+                "prob": 48.7
+              },
+              {
+                "horse_num": "03",
+                "horse_name": "テラメリタ",
+                "mark": "○",
+                "label": "対抗",
+                "prob": 50.7
+              },
+              {
+                "horse_num": "01",
+                "horse_name": "サンタンカ",
+                "mark": "▲",
+                "label": "単穴",
+                "prob": 49.2
+              },
+              {
+                "horse_num": "04",
+                "horse_name": "チャンネルトンネル",
+                "mark": "△",
+                "label": "紐",
+                "prob": 32.5
+              },
+              {
+                "horse_num": "07",
+                "horse_name": "ケーブパール",
+                "mark": "△",
+                "label": "紐",
+                "prob": 32.1
+              },
+              {
+                "horse_num": "08",
+                "horse_name": "ミナデオロ",
+                "mark": "△",
+                "label": "紐",
+                "prob": 36.3
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "セブンマジシャン",
+                "mark": "△",
+                "label": "紐",
+                "prob": 29.5
+              }
+            ]
           },
           {
             "race_num": "11",
@@ -29844,7 +30491,7 @@
             "course_description": "阪神競馬場2200mの解説なし",
             "horses": [
               {
-                "model_rank": 2,
+                "model_rank": 3,
                 "horse_num": "01",
                 "gate_num": "1",
                 "horse_name": "ダノンデサイル",
@@ -29852,7 +30499,7 @@
                 "trainer_name": "安田翔伍",
                 "sex": "牡",
                 "horse_age": 5,
-                "mark": "○",
+                "mark": "▲",
                 "prob": 35.7,
                 "scores": {
                   "ability": 9,
@@ -29885,7 +30532,8 @@
                     "pos": 3,
                     "agari": 35.4
                   }
-                ]
+                ],
+                "combined": 2.0838
               },
               {
                 "model_rank": 1,
@@ -29929,10 +30577,11 @@
                     "pos": 1,
                     "agari": 34.1
                   }
-                ]
+                ],
+                "combined": 2.7143
               },
               {
-                "model_rank": 15,
+                "model_rank": 16,
                 "horse_num": "03",
                 "gate_num": "2",
                 "horse_name": "シュガークン",
@@ -29973,10 +30622,11 @@
                     "pos": 1,
                     "agari": 34.5
                   }
-                ]
+                ],
+                "combined": 0.4123
               },
               {
-                "model_rank": 5,
+                "model_rank": 8,
                 "horse_num": "04",
                 "gate_num": "2",
                 "horse_name": "ミクニインスパイア",
@@ -29984,7 +30634,7 @@
                 "trainer_name": "林徹",
                 "sex": "牡",
                 "horse_age": 4,
-                "mark": "△",
+                "mark": "",
                 "prob": 24.4,
                 "scores": {
                   "ability": 10,
@@ -30017,10 +30667,11 @@
                     "pos": 1,
                     "agari": 35.2
                   }
-                ]
+                ],
+                "combined": 1.3034
               },
               {
-                "model_rank": 3,
+                "model_rank": 2,
                 "horse_num": "05",
                 "gate_num": "3",
                 "horse_name": "クロワデュノール",
@@ -30028,7 +30679,7 @@
                 "trainer_name": "斉藤崇史",
                 "sex": "牡",
                 "horse_age": 4,
-                "mark": "▲",
+                "mark": "○",
                 "prob": 26.6,
                 "scores": {
                   "ability": 10,
@@ -30061,7 +30712,8 @@
                     "pos": 2,
                     "agari": 34.7
                   }
-                ]
+                ],
+                "combined": 2.1752
               },
               {
                 "model_rank": 12,
@@ -30105,10 +30757,11 @@
                     "pos": 17,
                     "agari": 33.7
                   }
-                ]
+                ],
+                "combined": 0.6117
               },
               {
-                "model_rank": 10,
+                "model_rank": 15,
                 "horse_num": "07",
                 "gate_num": "4",
                 "horse_name": "ファミリータイム",
@@ -30149,7 +30802,8 @@
                     "pos": 1,
                     "agari": 33.2
                   }
-                ]
+                ],
+                "combined": 0.4528
               },
               {
                 "model_rank": 13,
@@ -30193,7 +30847,8 @@
                     "pos": 3,
                     "agari": 35.1
                   }
-                ]
+                ],
+                "combined": 0.6061
               },
               {
                 "model_rank": 17,
@@ -30237,7 +30892,8 @@
                     "pos": 8,
                     "agari": 35.2
                   }
-                ]
+                ],
+                "combined": 0.3173
               },
               {
                 "model_rank": 9,
@@ -30253,12 +30909,12 @@
                 "scores": {
                   "ability": 7,
                   "bloodline": 6,
-                  "environment": 4,
+                  "environment": 5,
                   "bias": 6,
                   "keshi": 7,
                   "training": 5
                 },
-                "total_score": 35,
+                "total_score": 36,
                 "comment": "【能力】複勝率40%で堅実な走りが持ち味。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】差しの競馬で流れ次第の面がある。【調教】状態は良好。過去の好走実績も豊富で安定した走りが見込める。",
                 "past_5": [
                   {
@@ -30281,10 +30937,11 @@
                     "pos": 10,
                     "agari": 34.5
                   }
-                ]
+                ],
+                "combined": 0.9008
               },
               {
-                "model_rank": 14,
+                "model_rank": 11,
                 "horse_num": "11",
                 "gate_num": "6",
                 "horse_name": "シンエンペラー",
@@ -30325,10 +30982,11 @@
                     "pos": 3,
                     "agari": 33.4
                   }
-                ]
+                ],
+                "combined": 0.7278
               },
               {
-                "model_rank": 11,
+                "model_rank": 10,
                 "horse_num": "12",
                 "gate_num": "6",
                 "horse_name": "マイネルエンペラー",
@@ -30369,10 +31027,11 @@
                     "pos": 1,
                     "agari": 37.0
                   }
-                ]
+                ],
+                "combined": 0.8294
               },
               {
-                "model_rank": 16,
+                "model_rank": 14,
                 "horse_num": "13",
                 "gate_num": "7",
                 "horse_name": "シェイクユアハート",
@@ -30385,12 +31044,12 @@
                 "scores": {
                   "ability": 8,
                   "bloodline": 6,
-                  "environment": 6,
+                  "environment": 5,
                   "bias": 5,
                   "keshi": 2,
                   "training": 5
                 },
-                "total_score": 32,
+                "total_score": 31,
                 "comment": "【能力】上がり3F平均33.7秒・勝率40%と実力は最上位クラス。【血統】芝2200mに合った適性で条件は前向き。【展開】先行の競馬で流れ次第の面がある。【過去】好走実績が少なく信頼度は低め。穴候補としての一考はあり。",
                 "past_5": [
                   {
@@ -30413,10 +31072,11 @@
                     "pos": 11,
                     "agari": 33.4
                   }
-                ]
+                ],
+                "combined": 0.4994
               },
               {
-                "model_rank": 8,
+                "model_rank": 7,
                 "horse_num": "14",
                 "gate_num": "7",
                 "horse_name": "スティンガーグラス",
@@ -30424,17 +31084,17 @@
                 "trainer_name": "友道康夫",
                 "sex": "牡",
                 "horse_age": 5,
-                "mark": "",
+                "mark": "△",
                 "prob": 18.8,
                 "scores": {
                   "ability": 9,
-                  "bloodline": 6,
+                  "bloodline": 4,
                   "environment": 5,
                   "bias": 6,
                   "keshi": 10,
                   "training": 3
                 },
-                "total_score": 39,
+                "total_score": 37,
                 "comment": "【能力】上がり3F平均35.3秒・勝率60%と実力は最上位クラス。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】差しの競馬で流れ次第の面がある。【調教】前走から180日の間隔で調教量が不足、仕上がり面に不安。",
                 "past_5": [
                   {
@@ -30457,10 +31117,11 @@
                     "pos": 1,
                     "agari": 37.0
                   }
-                ]
+                ],
+                "combined": 1.3314
               },
               {
-                "model_rank": 7,
+                "model_rank": 5,
                 "horse_num": "15",
                 "gate_num": "7",
                 "horse_name": "マイユニバース",
@@ -30501,7 +31162,8 @@
                     "pos": 1,
                     "agari": 34.1
                   }
-                ]
+                ],
+                "combined": 1.6136
               },
               {
                 "model_rank": 6,
@@ -30545,7 +31207,8 @@
                     "pos": 11,
                     "agari": 39.5
                   }
-                ]
+                ],
+                "combined": 1.3839
               },
               {
                 "model_rank": 4,
@@ -30561,12 +31224,12 @@
                 "scores": {
                   "ability": 8,
                   "bloodline": 8,
-                  "environment": 5,
+                  "environment": 6,
                   "bias": 5,
                   "keshi": 10,
                   "training": 7
                 },
-                "total_score": 43,
+                "total_score": 44,
                 "comment": "【能力】上がり3F平均34.9秒・勝率60%と実力は最上位クラス。【血統】芝2200mへの適性は最高クラスで条件は完璧に合致。【展開】外枠のハンデを抱える差しの競馬で流れ次第の面がある。【調教】状態は良好。過去の好走実績も豊富で安定した走りが見込める。",
                 "past_5": [
                   {
@@ -30589,7 +31252,8 @@
                     "pos": 1,
                     "agari": 34.9
                   }
-                ]
+                ],
+                "combined": 1.9653
               },
               {
                 "model_rank": 18,
@@ -30633,7 +31297,8 @@
                     "pos": 1,
                     "agari": 36.4
                   }
-                ]
+                ],
+                "combined": 0.0
               }
             ],
             "recommendations": {
@@ -30910,7 +31575,58 @@
                   }
                 ]
               }
-            }
+            },
+            "marks": [
+              {
+                "horse_num": "02",
+                "horse_name": "ミュージアムマイル",
+                "mark": "◎",
+                "label": "本命",
+                "prob": 45.1
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "クロワデュノール",
+                "mark": "○",
+                "label": "対抗",
+                "prob": 26.6
+              },
+              {
+                "horse_num": "01",
+                "horse_name": "ダノンデサイル",
+                "mark": "▲",
+                "label": "単穴",
+                "prob": 35.7
+              },
+              {
+                "horse_num": "14",
+                "horse_name": "スティンガーグラス",
+                "mark": "△",
+                "label": "紐",
+                "prob": 18.8
+              },
+              {
+                "horse_num": "15",
+                "horse_name": "マイユニバース",
+                "mark": "△",
+                "label": "紐",
+                "prob": 20.0
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "メイショウタバル",
+                "mark": "△",
+                "label": "紐",
+                "prob": 21.8
+              },
+              {
+                "horse_num": "17",
+                "horse_name": "レガレイラ",
+                "mark": "△",
+                "label": "紐",
+                "prob": 25.9
+              }
+            ]
           },
           {
             "race_num": "12",
@@ -30970,10 +31686,11 @@
                     "pos": 9,
                     "agari": 38.6
                   }
-                ]
+                ],
+                "combined": 2.1602
               },
               {
-                "model_rank": 15,
+                "model_rank": 13,
                 "horse_num": "02",
                 "gate_num": "1",
                 "horse_name": "プロミシングスター",
@@ -31014,7 +31731,8 @@
                     "pos": 12,
                     "agari": 37.0
                   }
-                ]
+                ],
+                "combined": 0.4972
               },
               {
                 "model_rank": 16,
@@ -31058,10 +31776,11 @@
                     "pos": 6,
                     "agari": 37.6
                   }
-                ]
+                ],
+                "combined": 0.0
               },
               {
-                "model_rank": 13,
+                "model_rank": 12,
                 "horse_num": "04",
                 "gate_num": "2",
                 "horse_name": "ハッピーロンドン",
@@ -31102,7 +31821,8 @@
                     "pos": 11,
                     "agari": 36.8
                   }
-                ]
+                ],
+                "combined": 0.545
               },
               {
                 "model_rank": 4,
@@ -31146,7 +31866,8 @@
                     "pos": 9,
                     "agari": 36.0
                   }
-                ]
+                ],
+                "combined": 1.3638
               },
               {
                 "model_rank": 10,
@@ -31190,10 +31911,11 @@
                     "pos": 5,
                     "agari": 37.0
                   }
-                ]
+                ],
+                "combined": 0.7009
               },
               {
-                "model_rank": 11,
+                "model_rank": 14,
                 "horse_num": "07",
                 "gate_num": "4",
                 "horse_name": "サンダーバース",
@@ -31206,12 +31928,12 @@
                 "scores": {
                   "ability": 2,
                   "bloodline": 5,
-                  "environment": 4,
+                  "environment": 5,
                   "bias": 3,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 24,
+                "total_score": 25,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】ダートへの適性は標準的で大きなプラスマイナスなし。【展開】差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -31234,7 +31956,8 @@
                     "pos": 1,
                     "agari": 38.6
                   }
-                ]
+                ],
+                "combined": 0.2803
               },
               {
                 "model_rank": 9,
@@ -31278,10 +32001,11 @@
                     "pos": 9,
                     "agari": 38.2
                   }
-                ]
+                ],
+                "combined": 0.7033
               },
               {
-                "model_rank": 14,
+                "model_rank": 15,
                 "horse_num": "09",
                 "gate_num": "5",
                 "horse_name": "ロサンゼルス",
@@ -31322,10 +32046,11 @@
                     "pos": 1,
                     "agari": 36.2
                   }
-                ]
+                ],
+                "combined": 0.2343
               },
               {
-                "model_rank": 7,
+                "model_rank": 5,
                 "horse_num": "10",
                 "gate_num": "5",
                 "horse_name": "ウルスクローム",
@@ -31338,12 +32063,12 @@
                 "scores": {
                   "ability": 7,
                   "bloodline": 5,
-                  "environment": 6,
+                  "environment": 5,
                   "bias": 3,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 31,
+                "total_score": 30,
                 "comment": "【能力】複勝率40%で堅実な走りが持ち味。【血統】ダートへの適性は標準的で大きなプラスマイナスなし。【展開】差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -31366,10 +32091,11 @@
                     "pos": 6,
                     "agari": 37.1
                   }
-                ]
+                ],
+                "combined": 1.195
               },
               {
-                "model_rank": 6,
+                "model_rank": 8,
                 "horse_num": "11",
                 "gate_num": "6",
                 "horse_name": "イリフィ",
@@ -31377,7 +32103,7 @@
                 "trainer_name": "高野友和",
                 "sex": "牝",
                 "horse_age": 4,
-                "mark": "△",
+                "mark": "",
                 "prob": 19.8,
                 "scores": {
                   "ability": 6,
@@ -31410,7 +32136,8 @@
                     "pos": 1,
                     "agari": 35.6
                   }
-                ]
+                ],
+                "combined": 0.9397
               },
               {
                 "model_rank": 3,
@@ -31454,10 +32181,11 @@
                     "pos": 3,
                     "agari": 34.9
                   }
-                ]
+                ],
+                "combined": 1.8674
               },
               {
-                "model_rank": 8,
+                "model_rank": 7,
                 "horse_num": "13",
                 "gate_num": "7",
                 "horse_name": "ベルギューン",
@@ -31465,7 +32193,7 @@
                 "trainer_name": "牧浦充徳",
                 "sex": "牝",
                 "horse_age": 4,
-                "mark": "",
+                "mark": "△",
                 "prob": 16.7,
                 "scores": {
                   "ability": 5,
@@ -31498,10 +32226,11 @@
                     "pos": 3,
                     "agari": 37.9
                   }
-                ]
+                ],
+                "combined": 1.0334
               },
               {
-                "model_rank": 12,
+                "model_rank": 11,
                 "horse_num": "14",
                 "gate_num": "7",
                 "horse_name": "ショウナンハクウン",
@@ -31542,7 +32271,8 @@
                     "pos": 7,
                     "agari": 38.0
                   }
-                ]
+                ],
+                "combined": 0.5501
               },
               {
                 "model_rank": 1,
@@ -31586,10 +32316,11 @@
                     "pos": 2,
                     "agari": 38.1
                   }
-                ]
+                ],
+                "combined": 3.0
               },
               {
-                "model_rank": 5,
+                "model_rank": 6,
                 "horse_num": "16",
                 "gate_num": "8",
                 "horse_name": "ヴェロクオーレ",
@@ -31602,12 +32333,12 @@
                 "scores": {
                   "ability": 5,
                   "bloodline": 5,
-                  "environment": 6,
+                  "environment": 5,
                   "bias": 7,
                   "keshi": 5,
                   "training": 5
                 },
-                "total_score": 33,
+                "total_score": 32,
                 "comment": "【能力】近走成績はやや物足りず上位争いへの壁は厚い。【血統】ダートへの適性は標準的で大きなプラスマイナスなし。【展開】外枠のハンデを抱える先行の競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -31630,7 +32361,8 @@
                     "pos": 2,
                     "agari": 36.5
                   }
-                ]
+                ],
+                "combined": 1.0676
               }
             ],
             "recommendations": {
@@ -31907,7 +32639,58 @@
                   }
                 ]
               }
-            }
+            },
+            "marks": [
+              {
+                "horse_num": "15",
+                "horse_name": "ルクスデイジー",
+                "mark": "◎",
+                "label": "本命",
+                "prob": 53.1
+              },
+              {
+                "horse_num": "01",
+                "horse_name": "ニューオーリンズ",
+                "mark": "○",
+                "label": "対抗",
+                "prob": 35.8
+              },
+              {
+                "horse_num": "12",
+                "horse_name": "ノボリショウリュウ",
+                "mark": "▲",
+                "label": "単穴",
+                "prob": 35.0
+              },
+              {
+                "horse_num": "05",
+                "horse_name": "ライジン",
+                "mark": "△",
+                "label": "紐",
+                "prob": 30.3
+              },
+              {
+                "horse_num": "10",
+                "horse_name": "ウルスクローム",
+                "mark": "△",
+                "label": "紐",
+                "prob": 19.5
+              },
+              {
+                "horse_num": "13",
+                "horse_name": "ベルギューン",
+                "mark": "△",
+                "label": "紐",
+                "prob": 16.7
+              },
+              {
+                "horse_num": "16",
+                "horse_name": "ヴェロクオーレ",
+                "mark": "△",
+                "label": "紐",
+                "prob": 18.7
+              }
+            ]
           }
         ]
       }

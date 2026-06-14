@@ -157,6 +157,19 @@ FEATURES = [
 _model: Optional[lgb.Booster] = None
 _prediction_cache: dict[str, bytes] = {}  # key: "date:venue:race" → UTF-8 JSON bytes
 
+# ── 騎手×条件別ベイズ平滑化パラメータ ────────────────────────────────────────
+JOCKEY_K     = 30      # ベイズ平滑化強度（④馬番と同じ）
+JOCKEY_PRIOR = 0.214   # 全騎手・全条件の実績複勝率（グローバル先行確率）
+
+
+def _dist_band(distance) -> str:
+    """距離を4帯に分類する（段階フォールバック用）。"""
+    d = int(distance) if distance else 0
+    if d <= 1400: return "short"   # 〜1400m
+    if d <= 1800: return "mile"    # 1500〜1800m
+    if d <= 2200: return "middle"  # 1900〜2200m
+    return "long"                  # 2300m〜
+
 # ── 複合スコア: prob × (total_score/60)^COMPOSITE_ALPHA で印を決める ─────────
 # α=0: probのみ(モデル依存)  α=1: prob×スコアを対等に掛ける  α>1: スコア支配的
 # 本番実績蓄積後に調整すること
@@ -798,6 +811,51 @@ def _build_features(date: str, venue: str, race_num: str,
         else:
             t_rows = []
 
+        # ⑦ 騎手×コース条件別成績（段階フォールバック用）
+        # DBの列名逆転に注意: entries.trainer_name が実際の騎手名
+        jnames = list({e["trainer_name"] for e in entries if e["trainer_name"]})
+        if jnames:
+            jnph = ",".join("?" * len(jnames))
+            _jcs1_rows = db.execute(f"""
+                SELECT trainer_name, venue_code, track_type, distance,
+                       COUNT(*) n,
+                       SUM(CASE WHEN CAST(finish_pos AS INTEGER) BETWEEN 1 AND 3 THEN 1 ELSE 0 END) top3
+                FROM horse_results
+                WHERE trainer_name IN ({jnph})
+                  AND finish_pos GLOB '[0-9]*'
+                  AND distance IS NOT NULL
+                GROUP BY trainer_name, venue_code, track_type, distance
+            """, jnames).fetchall()
+            _jcs2_rows = db.execute(f"""
+                SELECT trainer_name, venue_code, track_type,
+                       COUNT(*) n,
+                       SUM(CASE WHEN CAST(finish_pos AS INTEGER) BETWEEN 1 AND 3 THEN 1 ELSE 0 END) top3
+                FROM horse_results
+                WHERE trainer_name IN ({jnph})
+                  AND finish_pos GLOB '[0-9]*'
+                GROUP BY trainer_name, venue_code, track_type
+            """, jnames).fetchall()
+            _jcs3_rows = db.execute(f"""
+                SELECT trainer_name, track_type,
+                       COUNT(*) n,
+                       SUM(CASE WHEN CAST(finish_pos AS INTEGER) BETWEEN 1 AND 3 THEN 1 ELSE 0 END) top3
+                FROM horse_results
+                WHERE trainer_name IN ({jnph})
+                  AND finish_pos GLOB '[0-9]*'
+                GROUP BY trainer_name, track_type
+            """, jnames).fetchall()
+            _jcs4_rows = db.execute(f"""
+                SELECT trainer_name,
+                       COUNT(*) n,
+                       SUM(CASE WHEN CAST(finish_pos AS INTEGER) BETWEEN 1 AND 3 THEN 1 ELSE 0 END) top3
+                FROM horse_results
+                WHERE trainer_name IN ({jnph})
+                  AND finish_pos GLOB '[0-9]*'
+                GROUP BY trainer_name
+            """, jnames).fetchall()
+        else:
+            _jcs1_rows = _jcs2_rows = _jcs3_rows = _jcs4_rows = []
+
         # ⑥ 調教データ（直近3年：自己比較に使う）
         tr_rows = db.execute(f"""
             SELECT blood_reg_num, training_date, venue_code,
@@ -883,6 +941,23 @@ def _build_features(date: str, venue: str, race_num: str,
 
     jmap = {r["jockey_code"]: r for r in j_rows}
     tmap = {r["trainer_name"]: r for r in t_rows}
+
+    # 騎手×コース条件別ルックアップ（段階フォールバック）
+    # 段階1: 距離帯ごとにバンド集約（同一騎手×会場×面×距離が複数距離にまたがる場合もあるため合算）
+    _jcs1: dict = {}
+    for r in _jcs1_rows:
+        k = (r["trainer_name"], r["venue_code"], r["track_type"], _dist_band(r["distance"]))
+        if k not in _jcs1:
+            _jcs1[k] = [0, 0]
+        _jcs1[k][0] += int(r["n"] or 0)
+        _jcs1[k][1] += int(r["top3"] or 0)
+    _jcs1 = {k: tuple(v) for k, v in _jcs1.items()}
+    _jcs2 = {(r["trainer_name"], r["venue_code"], r["track_type"]): (int(r["n"] or 0), int(r["top3"] or 0))
+             for r in _jcs2_rows}
+    _jcs3 = {(r["trainer_name"], r["track_type"]): (int(r["n"] or 0), int(r["top3"] or 0))
+             for r in _jcs3_rows}
+    _jcs4 = {r["trainer_name"]: (int(r["n"] or 0), int(r["top3"] or 0))
+             for r in _jcs4_rows}
 
     tr_map: dict[str, list] = defaultdict(list)
     for r in tr_rows:
@@ -1045,6 +1120,33 @@ def _build_features(date: str, venue: str, race_num: str,
         tr60 = int(t["rides60"] or 0) if t else 0
         tw30 = int(t["wins30"]  or 0) if t else 0
         tw60 = int(t["wins60"]  or 0) if t else 0
+
+        # 騎手×条件別ベイズ複勝率（段階フォールバック）
+        # entriesのtrainer_name = 実騎手名（列名逆転のため）
+        _jname  = e["trainer_name"]
+        _jdist  = int(e["distance"]) if e["distance"] else 0
+        _jband  = _dist_band(_jdist)
+        k1 = (_jname, venue, race_track_type, _jband)
+        k2 = (_jname, venue, race_track_type)
+        k3 = (_jname, race_track_type)
+        _jvr_rate  = JOCKEY_PRIOR
+        _jvr_stage = 5
+        if k1 in _jcs1 and _jcs1[k1][0] >= JOCKEY_K:
+            _n, _t3 = _jcs1[k1]
+            _jvr_rate  = (_t3 + JOCKEY_K * JOCKEY_PRIOR) / (_n + JOCKEY_K)
+            _jvr_stage = 1
+        elif k2 in _jcs2 and _jcs2[k2][0] >= JOCKEY_K:
+            _n, _t3 = _jcs2[k2]
+            _jvr_rate  = (_t3 + JOCKEY_K * JOCKEY_PRIOR) / (_n + JOCKEY_K)
+            _jvr_stage = 2
+        elif k3 in _jcs3 and _jcs3[k3][0] >= JOCKEY_K:
+            _n, _t3 = _jcs3[k3]
+            _jvr_rate  = (_t3 + JOCKEY_K * JOCKEY_PRIOR) / (_n + JOCKEY_K)
+            _jvr_stage = 3
+        elif _jname in _jcs4 and _jcs4[_jname][0] >= JOCKEY_K:
+            _n, _t3 = _jcs4[_jname]
+            _jvr_rate  = (_t3 + JOCKEY_K * JOCKEY_PRIOR) / (_n + JOCKEY_K)
+            _jvr_stage = 4
 
         # 調教データ（⑥自己比較）
         tr_list = tr_map.get(blood, [])
@@ -1397,6 +1499,9 @@ def _build_features(date: str, venue: str, race_num: str,
             "ability_delta_member":     _adelta_member,
             "ability_delta_agari":      _adelta_agari,
             "ability_delta_grade_drop": _adelta_grade_drop,
+            # ③騎手×条件ベイズ複勝率（_compute_scoresで使用）
+            "jockey_venue_rate": _jvr_rate,
+            "jockey_stage":      float(_jvr_stage),
             # ②血統適性スコア（_compute_scoresで使用）
             "s2_bloodline":   _s2_raw,
             "_father_name":   _f_nm,
@@ -1673,8 +1778,8 @@ def _compute_scores(f: dict) -> dict[str, int]:
     s2 = clamp(s2_bl)
 
     # ===========================================================
-    # ③ レース環境 (1-10): 4成分加重平均
-    #   会場実績0.30 + 展開適合0.30 + 馬番有利不利0.20 + 馬場状態0.20
+    # ③ レース環境 (1-10): 5成分加重平均
+    #   会場0.20 + 展開0.25 + 馬番0.15 + 馬場0.15 + 騎手×条件0.25
     # ===========================================================
 
     # 成分A: 会場実績 (s_venue)
@@ -1720,7 +1825,11 @@ def _compute_scores(f: dict) -> dict[str, int]:
     else:
         s_ground = 5.0
 
-    s3 = clamp(0.30 * s_venue + 0.30 * s_pace_new + 0.20 * s_gate_new + 0.20 * s_ground)
+    # 成分E: 騎手×条件ベイズ複勝率 (clamp 3-7: 振れ幅±2)
+    _jvr     = _f(f.get("jockey_venue_rate", np.nan))
+    s_jockey = float(np.clip(5.0 + (_jvr - JOCKEY_PRIOR) * 10.0, 3.0, 7.0)) if np.isfinite(_jvr) else 5.0
+
+    s3 = clamp(0.20 * s_venue + 0.25 * s_pace_new + 0.15 * s_gate_new + 0.15 * s_ground + 0.25 * s_jockey)
 
     # ===========================================================
     # ④ バイアス (1-9): 0.7*脚質 + 0.3*枠, スケール×15, 中立=5
