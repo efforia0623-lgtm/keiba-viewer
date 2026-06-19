@@ -30483,7 +30483,7 @@
             "starters": 18,
             "caution": {
               "weather": "晴れ",
-              "track_condition": "良",
+              "track_condition": "重",
               "track_bias": "バイアス情報なし",
               "pace_prediction": "展開予想なし",
               "lineup": "データなし"
@@ -30491,7 +30491,7 @@
             "course_description": "阪神競馬場2200mの解説なし",
             "horses": [
               {
-                "model_rank": 3,
+                "model_rank": 2,
                 "horse_num": "01",
                 "gate_num": "1",
                 "horse_name": "ダノンデサイル",
@@ -30499,17 +30499,17 @@
                 "trainer_name": "安田翔伍",
                 "sex": "牡",
                 "horse_age": 5,
-                "mark": "▲",
+                "mark": "○",
                 "prob": 35.7,
                 "scores": {
                   "ability": 9,
                   "bloodline": 7,
                   "environment": 6,
-                  "bias": 5,
+                  "bias": 6,
                   "keshi": 10,
                   "training": 5
                 },
-                "total_score": 42,
+                "total_score": 43,
                 "comment": "【能力】上がり3F平均35.0秒・勝率20%と実力は最上位クラス。【血統】芝2200mに合った適性で条件は前向き。【展開】内枠の利を活かした差しの競馬で流れ次第の面がある。【調教】状態は良好。過去の好走実績も豊富で安定した走りが見込める。",
                 "past_5": [
                   {
@@ -30533,7 +30533,7 @@
                     "agari": 35.4
                   }
                 ],
-                "combined": 2.0838
+                "combined": 2.3534
               },
               {
                 "model_rank": 1,
@@ -30550,11 +30550,11 @@
                   "ability": 10,
                   "bloodline": 7,
                   "environment": 6,
-                  "bias": 5,
+                  "bias": 6,
                   "keshi": 10,
                   "training": 5
                 },
-                "total_score": 43,
+                "total_score": 44,
                 "comment": "【能力】上がり3F平均33.9秒・勝率60%と実力は最上位クラス。【血統】芝2200mに合った適性で条件は前向き。【展開】内枠の利を活かした差しの競馬で流れ次第の面がある。【調教】状態は良好。過去の好走実績も豊富で安定した走りが見込める。",
                 "past_5": [
                   {
@@ -30578,10 +30578,10 @@
                     "agari": 34.1
                   }
                 ],
-                "combined": 2.7143
+                "combined": 3.0
               },
               {
-                "model_rank": 16,
+                "model_rank": 15,
                 "horse_num": "03",
                 "gate_num": "2",
                 "horse_name": "シュガークン",
@@ -30595,11 +30595,11 @@
                   "ability": 6,
                   "bloodline": 6,
                   "environment": 5,
-                  "bias": 6,
+                  "bias": 5,
                   "keshi": 2,
                   "training": 5
                 },
-                "total_score": 30,
+                "total_score": 29,
                 "comment": "【能力】複勝率60%で堅実な走りが持ち味。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】内枠の利を活かした先行の競馬で流れ次第の面がある。【過去】好走実績が少なく信頼度は低め。穴候補としての一考はあり。",
                 "past_5": [
                   {
@@ -30623,10 +30623,10 @@
                     "agari": 34.5
                   }
                 ],
-                "combined": 0.4123
+                "combined": 0.6038
               },
               {
-                "model_rank": 8,
+                "model_rank": 7,
                 "horse_num": "04",
                 "gate_num": "2",
                 "horse_name": "ミクニインスパイア",
@@ -30634,17 +30634,17 @@
                 "trainer_name": "林徹",
                 "sex": "牡",
                 "horse_age": 4,
-                "mark": "",
+                "mark": "△",
                 "prob": 24.4,
                 "scores": {
                   "ability": 10,
                   "bloodline": 6,
                   "environment": 5,
-                  "bias": 6,
+                  "bias": 5,
                   "keshi": 7,
                   "training": 4
                 },
-                "total_score": 38,
+                "total_score": 37,
                 "comment": "【能力】上がり3F平均34.6秒・勝率80%と実力は最上位クラス。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】内枠の利を活かした先行の競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -30668,10 +30668,10 @@
                     "agari": 35.2
                   }
                 ],
-                "combined": 1.3034
+                "combined": 1.3413
               },
               {
-                "model_rank": 2,
+                "model_rank": 3,
                 "horse_num": "05",
                 "gate_num": "3",
                 "horse_name": "クロワデュノール",
@@ -30679,17 +30679,17 @@
                 "trainer_name": "斉藤崇史",
                 "sex": "牡",
                 "horse_age": 4,
-                "mark": "○",
+                "mark": "▲",
                 "prob": 26.6,
                 "scores": {
                   "ability": 10,
                   "bloodline": 9,
                   "environment": 5,
-                  "bias": 6,
+                  "bias": 5,
                   "keshi": 10,
                   "training": 5
                 },
-                "total_score": 45,
+                "total_score": 44,
                 "comment": "【能力】上がり3F平均34.6秒・勝率60%と実力は最上位クラス。【血統】芝2200mへの適性は最高クラスで条件は完璧に合致。【展開】先行の競馬で流れ次第の面がある。【調教】状態は良好。過去の好走実績も豊富で安定した走りが見込める。",
                 "past_5": [
                   {
@@ -30713,10 +30713,10 @@
                     "agari": 34.7
                   }
                 ],
-                "combined": 2.1752
+                "combined": 2.1284
               },
               {
-                "model_rank": 12,
+                "model_rank": 13,
                 "horse_num": "06",
                 "gate_num": "3",
                 "horse_name": "ビザンチンドリーム",
@@ -30727,10 +30727,10 @@
                 "mark": "",
                 "prob": 12.4,
                 "scores": {
-                  "ability": 6,
+                  "ability": 5,
                   "bloodline": 7,
                   "environment": 5,
-                  "bias": 5,
+                  "bias": 6,
                   "keshi": 7,
                   "training": 5
                 },
@@ -30758,10 +30758,10 @@
                     "agari": 33.7
                   }
                 ],
-                "combined": 0.6117
+                "combined": 0.672
               },
               {
-                "model_rank": 15,
+                "model_rank": 14,
                 "horse_num": "07",
                 "gate_num": "4",
                 "horse_name": "ファミリータイム",
@@ -30775,11 +30775,11 @@
                   "ability": 7,
                   "bloodline": 4,
                   "environment": 5,
-                  "bias": 6,
+                  "bias": 5,
                   "keshi": 2,
                   "training": 5
                 },
-                "total_score": 29,
+                "total_score": 28,
                 "comment": "【能力】複勝率60%で堅実な走りが持ち味。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】差しの競馬で流れ次第の面がある。【過去】好走実績が少なく信頼度は低め。穴候補としての一考はあり。",
                 "past_5": [
                   {
@@ -30803,10 +30803,10 @@
                     "agari": 33.2
                   }
                 ],
-                "combined": 0.4528
+                "combined": 0.6072
               },
               {
-                "model_rank": 13,
+                "model_rank": 10,
                 "horse_num": "08",
                 "gate_num": "4",
                 "horse_name": "タガノデュード",
@@ -30820,11 +30820,11 @@
                   "ability": 8,
                   "bloodline": 9,
                   "environment": 5,
-                  "bias": 5,
+                  "bias": 6,
                   "keshi": 2,
                   "training": 5
                 },
-                "total_score": 34,
+                "total_score": 35,
                 "comment": "【能力】上がり3F平均34.6秒・勝率40%と実力は最上位クラス。【血統】芝2200mへの適性は最高クラスで条件は完璧に合致。【展開】差しの競馬で流れ次第の面がある。【過去】好走実績が少なく信頼度は低め。穴候補としての一考はあり。",
                 "past_5": [
                   {
@@ -30848,7 +30848,7 @@
                     "agari": 35.1
                   }
                 ],
-                "combined": 0.6061
+                "combined": 0.8469
               },
               {
                 "model_rank": 17,
@@ -30862,10 +30862,10 @@
                 "mark": "",
                 "prob": 9.6,
                 "scores": {
-                  "ability": 5,
+                  "ability": 6,
                   "bloodline": 7,
                   "environment": 5,
-                  "bias": 6,
+                  "bias": 5,
                   "keshi": 4,
                   "training": 4
                 },
@@ -30893,10 +30893,10 @@
                     "agari": 35.2
                   }
                 ],
-                "combined": 0.3173
+                "combined": 0.3593
               },
               {
-                "model_rank": 9,
+                "model_rank": 12,
                 "horse_num": "10",
                 "gate_num": "5",
                 "horse_name": "ジューンテイク",
@@ -30907,14 +30907,14 @@
                 "mark": "",
                 "prob": 15.7,
                 "scores": {
-                  "ability": 7,
+                  "ability": 6,
                   "bloodline": 6,
                   "environment": 5,
-                  "bias": 6,
+                  "bias": 5,
                   "keshi": 7,
                   "training": 5
                 },
-                "total_score": 36,
+                "total_score": 34,
                 "comment": "【能力】複勝率40%で堅実な走りが持ち味。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】差しの競馬で流れ次第の面がある。【調教】状態は良好。過去の好走実績も豊富で安定した走りが見込める。",
                 "past_5": [
                   {
@@ -30938,7 +30938,7 @@
                     "agari": 34.5
                   }
                 ],
-                "combined": 0.9008
+                "combined": 0.7792
               },
               {
                 "model_rank": 11,
@@ -30955,11 +30955,11 @@
                   "ability": 8,
                   "bloodline": 6,
                   "environment": 6,
-                  "bias": 5,
+                  "bias": 6,
                   "keshi": 4,
                   "training": 5
                 },
-                "total_score": 34,
+                "total_score": 35,
                 "comment": "【能力】上がり3F平均34.5秒・勝率0%と実力は最上位クラス。【血統】芝2200mに合った適性で条件は前向き。【展開】差しの競馬で流れ次第の面がある。【調教】平均的な仕上がりで過去データも標準的な評価。",
                 "past_5": [
                   {
@@ -30983,10 +30983,10 @@
                     "agari": 33.4
                   }
                 ],
-                "combined": 0.7278
+                "combined": 0.8259
               },
               {
-                "model_rank": 10,
+                "model_rank": 9,
                 "horse_num": "12",
                 "gate_num": "6",
                 "horse_name": "マイネルエンペラー",
@@ -30999,8 +30999,8 @@
                 "scores": {
                   "ability": 7,
                   "bloodline": 6,
-                  "environment": 5,
-                  "bias": 6,
+                  "environment": 6,
+                  "bias": 5,
                   "keshi": 4,
                   "training": 5
                 },
@@ -31028,10 +31028,10 @@
                     "agari": 37.0
                   }
                 ],
-                "combined": 0.8294
+                "combined": 1.0775
               },
               {
-                "model_rank": 14,
+                "model_rank": 16,
                 "horse_num": "13",
                 "gate_num": "7",
                 "horse_name": "シェイクユアハート",
@@ -31045,11 +31045,11 @@
                   "ability": 8,
                   "bloodline": 6,
                   "environment": 5,
-                  "bias": 5,
+                  "bias": 6,
                   "keshi": 2,
                   "training": 5
                 },
-                "total_score": 31,
+                "total_score": 32,
                 "comment": "【能力】上がり3F平均33.7秒・勝率40%と実力は最上位クラス。【血統】芝2200mに合った適性で条件は前向き。【展開】先行の競馬で流れ次第の面がある。【過去】好走実績が少なく信頼度は低め。穴候補としての一考はあり。",
                 "past_5": [
                   {
@@ -31073,10 +31073,10 @@
                     "agari": 33.4
                   }
                 ],
-                "combined": 0.4994
+                "combined": 0.5754
               },
               {
-                "model_rank": 7,
+                "model_rank": 8,
                 "horse_num": "14",
                 "gate_num": "7",
                 "horse_name": "スティンガーグラス",
@@ -31084,17 +31084,17 @@
                 "trainer_name": "友道康夫",
                 "sex": "牡",
                 "horse_age": 5,
-                "mark": "△",
+                "mark": "",
                 "prob": 18.8,
                 "scores": {
                   "ability": 9,
                   "bloodline": 4,
                   "environment": 5,
-                  "bias": 6,
+                  "bias": 5,
                   "keshi": 10,
                   "training": 3
                 },
-                "total_score": 37,
+                "total_score": 36,
                 "comment": "【能力】上がり3F平均35.3秒・勝率60%と実力は最上位クラス。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】差しの競馬で流れ次第の面がある。【調教】前走から180日の間隔で調教量が不足、仕上がり面に不安。",
                 "past_5": [
                   {
@@ -31118,10 +31118,10 @@
                     "agari": 37.0
                   }
                 ],
-                "combined": 1.3314
+                "combined": 1.2656
               },
               {
-                "model_rank": 5,
+                "model_rank": 6,
                 "horse_num": "15",
                 "gate_num": "7",
                 "horse_name": "マイユニバース",
@@ -31135,11 +31135,11 @@
                   "ability": 9,
                   "bloodline": 9,
                   "environment": 5,
-                  "bias": 6,
+                  "bias": 5,
                   "keshi": 7,
                   "training": 5
                 },
-                "total_score": 41,
+                "total_score": 40,
                 "comment": "【能力】上がり3F平均35.1秒・勝率60%と実力は最上位クラス。【血統】芝2200mへの適性は最高クラスで条件は完璧に合致。【展開】先行の競馬で流れ次第の面がある。【調教】状態は良好。過去の好走実績も豊富で安定した走りが見込める。",
                 "past_5": [
                   {
@@ -31163,10 +31163,10 @@
                     "agari": 34.1
                   }
                 ],
-                "combined": 1.6136
+                "combined": 1.5653
               },
               {
-                "model_rank": 6,
+                "model_rank": 5,
                 "horse_num": "16",
                 "gate_num": "8",
                 "horse_name": "メイショウタバル",
@@ -31177,14 +31177,14 @@
                 "mark": "△",
                 "prob": 21.8,
                 "scores": {
-                  "ability": 6,
+                  "ability": 7,
                   "bloodline": 7,
                   "environment": 6,
                   "bias": 6,
                   "keshi": 10,
                   "training": 5
                 },
-                "total_score": 40,
+                "total_score": 41,
                 "comment": "【能力】複勝率40%で堅実な走りが持ち味。【血統】芝2200mに合った適性で条件は前向き。【展開】外枠のハンデを抱える先行の競馬で流れ次第の面がある。【調教】状態は良好。過去の好走実績も豊富で安定した走りが見込める。",
                 "past_5": [
                   {
@@ -31208,7 +31208,7 @@
                     "agari": 39.5
                   }
                 ],
-                "combined": 1.3839
+                "combined": 1.6641
               },
               {
                 "model_rank": 4,
@@ -31225,11 +31225,11 @@
                   "ability": 8,
                   "bloodline": 8,
                   "environment": 6,
-                  "bias": 5,
+                  "bias": 6,
                   "keshi": 10,
                   "training": 7
                 },
-                "total_score": 44,
+                "total_score": 45,
                 "comment": "【能力】上がり3F平均34.9秒・勝率60%と実力は最上位クラス。【血統】芝2200mへの適性は最高クラスで条件は完璧に合致。【展開】外枠のハンデを抱える差しの競馬で流れ次第の面がある。【調教】状態は良好。過去の好走実績も豊富で安定した走りが見込める。",
                 "past_5": [
                   {
@@ -31253,7 +31253,7 @@
                     "agari": 34.9
                   }
                 ],
-                "combined": 1.9653
+                "combined": 2.1201
               },
               {
                 "model_rank": 18,
@@ -31267,14 +31267,14 @@
                 "mark": "",
                 "prob": 4.6,
                 "scores": {
-                  "ability": 7,
+                  "ability": 3,
                   "bloodline": 6,
-                  "environment": 5,
+                  "environment": 4,
                   "bias": 6,
                   "keshi": 2,
                   "training": 5
                 },
-                "total_score": 31,
+                "total_score": 26,
                 "comment": "【能力】複勝率40%で堅実な走りが持ち味。【血統】芝への適性は標準的で大きなプラスマイナスなし。【展開】外枠のハンデを抱える先行の競馬で流れ次第の面がある。【過去】好走実績が少なく信頼度は低め。穴候補としての一考はあり。",
                 "past_5": [
                   {
@@ -31379,15 +31379,15 @@
                   },
                   {
                     "type": "馬連",
-                    "desc": "馬連 02-04"
-                  },
-                  {
-                    "type": "馬連",
                     "desc": "馬連 02-16"
                   },
                   {
                     "type": "馬連",
                     "desc": "馬連 02-15"
+                  },
+                  {
+                    "type": "馬連",
+                    "desc": "馬連 02-04"
                   },
                   {
                     "type": "馬連",
@@ -31399,15 +31399,15 @@
                   },
                   {
                     "type": "馬連",
-                    "desc": "馬連 01-04"
-                  },
-                  {
-                    "type": "馬連",
                     "desc": "馬連 01-16"
                   },
                   {
                     "type": "馬連",
                     "desc": "馬連 01-15"
+                  },
+                  {
+                    "type": "馬連",
+                    "desc": "馬連 01-04"
                   }
                 ],
                 "sanrenpuku_a": [
@@ -31421,10 +31421,6 @@
                   },
                   {
                     "type": "3連複",
-                    "desc": "3連複 02-01-04"
-                  },
-                  {
-                    "type": "3連複",
                     "desc": "3連複 02-01-16"
                   },
                   {
@@ -31433,11 +31429,11 @@
                   },
                   {
                     "type": "3連複",
-                    "desc": "3連複 02-05-17"
+                    "desc": "3連複 02-01-04"
                   },
                   {
                     "type": "3連複",
-                    "desc": "3連複 02-05-04"
+                    "desc": "3連複 02-05-17"
                   },
                   {
                     "type": "3連複",
@@ -31449,7 +31445,7 @@
                   },
                   {
                     "type": "3連複",
-                    "desc": "3連複 02-17-04"
+                    "desc": "3連複 02-05-04"
                   },
                   {
                     "type": "3連複",
@@ -31461,15 +31457,19 @@
                   },
                   {
                     "type": "3連複",
-                    "desc": "3連複 02-04-16"
-                  },
-                  {
-                    "type": "3連複",
-                    "desc": "3連複 02-04-15"
+                    "desc": "3連複 02-17-04"
                   },
                   {
                     "type": "3連複",
                     "desc": "3連複 02-16-15"
+                  },
+                  {
+                    "type": "3連複",
+                    "desc": "3連複 02-16-04"
+                  },
+                  {
+                    "type": "3連複",
+                    "desc": "3連複 02-15-04"
                   }
                 ],
                 "sanrenpuku_b": [
@@ -31483,10 +31483,6 @@
                   },
                   {
                     "type": "3連複",
-                    "desc": "3連複 02-01-04"
-                  },
-                  {
-                    "type": "3連複",
                     "desc": "3連複 02-01-16"
                   },
                   {
@@ -31495,11 +31491,11 @@
                   },
                   {
                     "type": "3連複",
-                    "desc": "3連複 02-05-17"
+                    "desc": "3連複 02-01-04"
                   },
                   {
                     "type": "3連複",
-                    "desc": "3連複 02-05-04"
+                    "desc": "3連複 02-05-17"
                   },
                   {
                     "type": "3連複",
@@ -31511,7 +31507,7 @@
                   },
                   {
                     "type": "3連複",
-                    "desc": "3連複 02-17-04"
+                    "desc": "3連複 02-05-04"
                   },
                   {
                     "type": "3連複",
@@ -31523,11 +31519,7 @@
                   },
                   {
                     "type": "3連複",
-                    "desc": "3連複 02-04-16"
-                  },
-                  {
-                    "type": "3連複",
-                    "desc": "3連複 02-04-15"
+                    "desc": "3連複 02-17-04"
                   },
                   {
                     "type": "3連複",
@@ -31535,11 +31527,15 @@
                   },
                   {
                     "type": "3連複",
-                    "desc": "3連複 01-05-17"
+                    "desc": "3連複 02-16-04"
                   },
                   {
                     "type": "3連複",
-                    "desc": "3連複 01-05-04"
+                    "desc": "3連複 02-15-04"
+                  },
+                  {
+                    "type": "3連複",
+                    "desc": "3連複 01-05-17"
                   },
                   {
                     "type": "3連複",
@@ -31551,7 +31547,7 @@
                   },
                   {
                     "type": "3連複",
-                    "desc": "3連複 01-17-04"
+                    "desc": "3連複 01-05-04"
                   },
                   {
                     "type": "3連複",
@@ -31563,67 +31559,71 @@
                   },
                   {
                     "type": "3連複",
-                    "desc": "3連複 01-04-16"
-                  },
-                  {
-                    "type": "3連複",
-                    "desc": "3連複 01-04-15"
+                    "desc": "3連複 01-17-04"
                   },
                   {
                     "type": "3連複",
                     "desc": "3連複 01-16-15"
+                  },
+                  {
+                    "type": "3連複",
+                    "desc": "3連複 01-16-04"
+                  },
+                  {
+                    "type": "3連複",
+                    "desc": "3連複 01-15-04"
                   }
                 ]
               }
             },
             "marks": [
               {
-                "horse_num": "02",
-                "horse_name": "ミュージアムマイル",
                 "mark": "◎",
                 "label": "本命",
+                "horse_num": "02",
+                "horse_name": "ミュージアムマイル",
                 "prob": 45.1
               },
               {
-                "horse_num": "05",
-                "horse_name": "クロワデュノール",
                 "mark": "○",
                 "label": "対抗",
-                "prob": 26.6
-              },
-              {
                 "horse_num": "01",
                 "horse_name": "ダノンデサイル",
-                "mark": "▲",
-                "label": "単穴",
                 "prob": 35.7
               },
               {
-                "horse_num": "14",
-                "horse_name": "スティンガーグラス",
-                "mark": "△",
-                "label": "紐",
-                "prob": 18.8
+                "mark": "▲",
+                "label": "単穴",
+                "horse_num": "05",
+                "horse_name": "クロワデュノール",
+                "prob": 26.6
               },
               {
-                "horse_num": "15",
-                "horse_name": "マイユニバース",
                 "mark": "△",
                 "label": "紐",
+                "horse_num": "04",
+                "horse_name": "ミクニインスパイア",
+                "prob": 24.4
+              },
+              {
+                "mark": "△",
+                "label": "紐",
+                "horse_num": "15",
+                "horse_name": "マイユニバース",
                 "prob": 20.0
               },
               {
-                "horse_num": "16",
-                "horse_name": "メイショウタバル",
                 "mark": "△",
                 "label": "紐",
+                "horse_num": "16",
+                "horse_name": "メイショウタバル",
                 "prob": 21.8
               },
               {
-                "horse_num": "17",
-                "horse_name": "レガレイラ",
                 "mark": "△",
                 "label": "紐",
+                "horse_num": "17",
+                "horse_name": "レガレイラ",
                 "prob": 25.9
               }
             ]
